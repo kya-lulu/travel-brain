@@ -21,7 +21,7 @@ const destinationImages: Record<string, string> = {
   "mobula-rays-jumping":
     "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=530&fit=crop&q=80",
   "kyrgyzstan-mountains-horses":
-    "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&h=530&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=530&fit=crop&q=80",
   "seoul-autumn":
     "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=800&h=530&fit=crop&q=80",
   "tropical-island-nz-mountains":

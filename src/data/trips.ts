@@ -6,6 +6,7 @@ export interface Flight {
   route: string;
   time?: string;
   airline?: string;
+  aircraft?: string;
   cabin?: string;
   confirmation?: string;
   status: 'booked' | 'pending' | 'needs_action' | 'canceled';
@@ -87,11 +88,11 @@ export const trips: Trip[] = [
     travelers: '4 adults (Terry, Janelle, Janelle\'s parents)',
     heroImage: 'kruger-safari-lion',
     flights: [
-      { segment: 1, date: '2026-04-21', route: 'ORD → LHR', time: '9:15pm → 11:15am +1', status: 'booked', notes: 'Overnight flight' },
-      { segment: 2, date: '2026-04-22', route: 'LHR → JNB', time: '7:00pm → 7:00am +1', status: 'booked', notes: 'Arrive JNB April 23' },
-      { segment: 3, date: '2026-04-23', route: 'JNB → HDS (Hoedspruit)', time: '10:30am → 11:30am', confirmation: 'XEB2ZT', status: 'booked', notes: 'Transfer to Shindzela upon arrival' },
-      { segment: 4, date: '2026-04-28', route: 'JNB → FRA', time: '6:35pm → 6:00am +1', airline: 'Condor', confirmation: 'AFR58A', status: 'booked', notes: '8hr layover in Frankfurt' },
-      { segment: 5, date: '2026-04-29', route: 'FRA → YYZ', time: '2:15pm → 3:45pm', confirmation: 'AFR58A', status: 'booked' },
+      { segment: 1, date: '2026-04-21', route: 'ORD → LHR', time: '9:15pm → 11:15am +1', airline: 'British Airways', cabin: 'Business', status: 'booked', notes: 'Overnight flight' },
+      { segment: 2, date: '2026-04-22', route: 'LHR → JNB', time: '7:00pm → 7:00am +1', airline: 'British Airways', cabin: 'Business', status: 'booked', notes: 'Arrive JNB April 23' },
+      { segment: 3, date: '2026-04-23', route: 'JNB → HDS (Hoedspruit)', time: '10:30am → 11:30am', airline: 'Airlink', confirmation: 'XEB2ZT', status: 'booked', notes: 'Regional hop, transfer to Shindzela' },
+      { segment: 4, date: '2026-04-28', route: 'JNB → FRA', time: '6:35pm → 6:00am +1', airline: 'Condor', aircraft: 'A330-900neo', cabin: 'Business', confirmation: 'AFR58A', status: 'booked', notes: '8hr layover in Frankfurt' },
+      { segment: 5, date: '2026-04-29', route: 'FRA → YYZ', time: '2:15pm → 3:45pm', airline: 'Condor', aircraft: 'A330-900neo', cabin: 'Business', confirmation: 'AFR58A', status: 'booked' },
     ],
     hotels: [
       { property: 'Shindzela Tented Camp', location: 'Timbavati Reserve', checkIn: '2026-04-23', checkOut: '2026-04-25', status: 'booked', cost: 'R47,310 ZAR (~$2,557 USD for 4 pax)', notes: 'Intimate bush camp, 5–8 guests per group' },
@@ -145,9 +146,9 @@ export const trips: Trip[] = [
     travelers: '2 adults',
     heroImage: 'mobula-rays-jumping',
     flights: [
-      { segment: 1, date: '2026-05-26', route: 'SEA → SJD', time: '9:45am → 2:10pm', status: 'booked', notes: 'Terry flight' },
-      { segment: 2, date: '2026-05-26', route: 'SFO → SJD', time: '10:50am → 2:02pm', confirmation: 'K3NPTC', status: 'booked', notes: 'Janelle flight' },
-      { segment: 3, date: '2026-05-31', route: 'SJD → SEA', time: '11:20am → 3:56pm', airline: 'Alaska', confirmation: 'IMDKIR', status: 'booked', notes: 'Changed from Delta JQDOIY (cancelled)' },
+      { segment: 1, date: '2026-05-26', route: 'SEA → SJD', time: '9:45am → 2:10pm', airline: 'Alaska Airlines', cabin: 'Economy', status: 'booked', notes: 'Terry flight' },
+      { segment: 2, date: '2026-05-26', route: 'SFO → SJD', time: '10:50am → 2:02pm', airline: 'Alaska Airlines', cabin: 'Economy', confirmation: 'K3NPTC', status: 'booked', notes: 'Janelle flight' },
+      { segment: 3, date: '2026-05-31', route: 'SJD → SEA', time: '11:20am → 3:56pm', airline: 'Alaska Airlines', cabin: 'Economy', confirmation: 'IMDKIR', status: 'booked', notes: 'Changed from Delta (cancelled)' },
     ],
     hotels: [
       { property: 'Park Hyatt Los Cabos', location: 'Cabo San Lucas', checkIn: '2026-05-26', checkOut: '2026-05-27', program: 'Hyatt', status: 'pending', notes: 'Pre-expedition night — needs to be changed/confirmed' },
@@ -194,10 +195,10 @@ export const trips: Trip[] = [
     travelers: '2 adults (Terry & Janelle)',
     heroImage: 'kyrgyzstan-mountains-horses',
     flights: [
-      { segment: 1, date: '2026-07-31', route: 'SEA → IST', time: '19:10 → 17:00 +1', confirmation: 'S3BPNY', status: 'booked', notes: 'Seats 4A and 6A booked' },
-      { segment: 2, date: '2026-08-01', route: 'IST → FRU (Bishkek)', time: '20:20 → 04:30 +1', airline: 'A321', confirmation: 'RP7MM5', status: 'booked', notes: '35K + $121/person. Seats booked.' },
-      { segment: 3, date: '2026-08-12', route: 'ALA → IST', time: '9:00am → 13:25', status: 'booked', notes: 'Almaty to Istanbul' },
-      { segment: 4, date: '2026-08-12', route: 'IST → SEA', status: 'needs_action', notes: 'Need to book IST→SEA connection. FinnAir HEL route (96MPQQ) cancelled. Options: direct IST 185K + $514, or 35K + $128, or 135K + $315, or 160K + $443' },
+      { segment: 1, date: '2026-07-31', route: 'SEA → IST', time: '19:10 → 17:00 +1', airline: 'Turkish Airlines', cabin: 'Business', confirmation: 'S3BPNY', status: 'booked', notes: 'Seats 4A & 6A' },
+      { segment: 2, date: '2026-08-01', route: 'IST → FRU (Bishkek)', time: '20:20 → 04:30 +1', airline: 'Turkish Airlines', aircraft: 'A321', cabin: 'Business', confirmation: 'RP7MM5', status: 'booked', notes: '35K + $121/person' },
+      { segment: 3, date: '2026-08-12', route: 'ALA → IST', time: '9:00am → 13:25', airline: 'Turkish Airlines', cabin: 'Business', status: 'booked', notes: 'Almaty to Istanbul' },
+      { segment: 4, date: '2026-08-12', route: 'IST → SEA', airline: 'TBD', cabin: 'Business', status: 'needs_action', notes: 'FinnAir HEL route cancelled. Options: direct IST 185K+$514, or 35K+$128, or 135K+$315' },
     ],
     hotels: [
       { property: 'TBD — Bishkek', location: 'Bishkek, Kyrgyzstan', checkIn: '2026-08-02', checkOut: '2026-08-03', status: 'not_booked', notes: 'Need to book — pre-trek acclimatization night' },
@@ -250,13 +251,13 @@ export const trips: Trip[] = [
     statusLabel: 'Partially Booked',
     travelers: 'Terry',
     flights: [
-      { segment: 1, date: '2026-09-24', route: 'SEA → SIN', time: '10:15am → 17:35 +1', status: 'booked', notes: 'Arrive Singapore Sept 25' },
-      { segment: 2, date: '2026-09-25', route: 'SIN → CGK', time: '18:30 → 19:20', status: 'booked', notes: 'Singapore to Jakarta same evening' },
-      { segment: 3, date: '2026-09-26', route: 'CGK → KOE', time: '7:05am → 11:05am', airline: 'Garuda', confirmation: 'AENN85', status: 'booked', notes: 'Jakarta to Kupang' },
-      { segment: 4, date: '2026-09-27', route: 'KOE → ARD', time: '8:30am → 9:30am', confirmation: 'HKSRAV', status: 'booked', notes: 'Kupang to Alor' },
-      { segment: 5, date: '2026-10-09', route: 'AMQ → CGK', time: '4:15pm → 5:40pm', airline: 'Garuda', confirmation: 'DOSB8U', status: 'booked', notes: 'Ambon to Jakarta — return from diving' },
-      { segment: 6, date: '2026-10-10', route: 'CGK → TPE', time: '2:40pm → 9:10pm', airline: 'Air France', confirmation: 'YRIBKT', status: 'booked', notes: 'Jakarta to Taipei' },
-      { segment: 7, date: '2026-10-13', route: 'TPE → SEA', time: '15:15 → 21:00', confirmation: 'FA6F6L', status: 'booked', notes: 'Taipei to Seattle. Alt: 21:50 arrival LAX + connection, or 8:45am departure.' },
+      { segment: 1, date: '2026-09-24', route: 'SEA → SIN', time: '10:15am → 17:35 +1', airline: 'Singapore Airlines', cabin: 'Business', status: 'booked', notes: 'Arrive Singapore Sept 25' },
+      { segment: 2, date: '2026-09-25', route: 'SIN → CGK', time: '18:30 → 19:20', airline: 'Singapore Airlines', cabin: 'Economy', status: 'booked', notes: 'Same evening connection' },
+      { segment: 3, date: '2026-09-26', route: 'CGK → KOE', time: '7:05am → 11:05am', airline: 'Garuda Indonesia', cabin: 'Economy', confirmation: 'AENN85', status: 'booked', notes: 'Jakarta to Kupang' },
+      { segment: 4, date: '2026-09-27', route: 'KOE → ARD', time: '8:30am → 9:30am', airline: 'TransNusa', cabin: 'Economy', confirmation: 'HKSRAV', status: 'booked', notes: 'Kupang to Alor' },
+      { segment: 5, date: '2026-10-09', route: 'AMQ → CGK', time: '4:15pm → 5:40pm', airline: 'Garuda Indonesia', cabin: 'Economy', confirmation: 'DOSB8U', status: 'booked', notes: 'Ambon to Jakarta' },
+      { segment: 6, date: '2026-10-10', route: 'CGK → TPE', time: '2:40pm → 9:10pm', airline: 'Air France', cabin: 'Business', confirmation: 'YRIBKT', status: 'booked', notes: 'Jakarta to Taipei' },
+      { segment: 7, date: '2026-10-13', route: 'TPE → SEA', time: '15:15 → 21:00', airline: 'EVA Air', cabin: 'Business', confirmation: 'FA6F6L', status: 'booked', notes: 'Alt: 21:50 LAX + connection, or 8:45am departure' },
     ],
     hotels: [
       { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'not_booked', notes: 'Overnight transit — needs booking' },
@@ -354,9 +355,9 @@ export const trips: Trip[] = [
     travelers: 'Terry',
     heroImage: 'tropical-island-nz-mountains',
     flights: [
-      { segment: 1, date: '2026-11-13', route: 'LAX → DFW', time: '3:53pm → 8:57pm', status: 'booked', notes: '1hr 48min layover in DFW' },
-      { segment: 2, date: '2026-11-13', route: 'DFW → Australia', time: '10:45pm → 9:25am Nov 15', status: 'booked', notes: 'Arrives Nov 15' },
-      { segment: 3, date: '2026-11-25', route: 'NAN → SFO', time: '10:00pm → 12:25pm', confirmation: 'C4R3MG', status: 'booked', notes: 'Nadi (Fiji) to San Francisco. Return via Fiji.' },
+      { segment: 1, date: '2026-11-13', route: 'LAX → DFW', time: '3:53pm → 8:57pm', airline: 'American Airlines', cabin: 'Business', status: 'booked', notes: '1hr 48min layover in DFW' },
+      { segment: 2, date: '2026-11-13', route: 'DFW → SYD', time: '10:45pm → 9:25am +2', airline: 'Qantas', cabin: 'Business', status: 'booked', notes: 'Arrives Nov 15' },
+      { segment: 3, date: '2026-11-25', route: 'NAN → SFO', time: '10:00pm → 12:25pm', airline: 'Fiji Airways', cabin: 'Business', confirmation: 'C4R3MG', status: 'booked', notes: 'Return via Fiji' },
     ],
     hotels: [],
     actionItems: [
@@ -397,7 +398,7 @@ export const trips: Trip[] = [
     travelers: 'TBD (likely 2–4)',
     heroImage: 'singapore-gardens-night',
     flights: [
-      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', status: 'booked' },
+      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', airline: 'Singapore Airlines', cabin: 'Business', status: 'booked', notes: 'Christmas Eve departure' },
     ],
     hotels: [
       { property: 'Andaz Singapore', location: 'Singapore', program: 'Hyatt', status: 'not_booked', notes: 'Modern, mid-range Hyatt' },

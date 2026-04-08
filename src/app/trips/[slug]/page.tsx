@@ -93,7 +93,7 @@ const tripImages: Record<string, {
     ],
   },
   'stans-aug-2026': {
-    hero: 'https://images.unsplash.com/photo-1565967511849-76a60a516170?w=1400&h=500&fit=crop&q=80',
+    hero: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&h=500&fit=crop&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&h=350&fit=crop&q=80',
       'https://images.unsplash.com/photo-1600298882525-1ac42413b969?w=500&h=350&fit=crop&q=80',
@@ -389,37 +389,37 @@ export default async function TripPage({
                   className="p-5 md:p-6 rounded-xl bg-surface border border-border/60 shadow-card"
                   style={{ animation: `fadeInUp 0.4s ease-out ${0.05 * (idx + 1)}s backwards` }}
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-4">
-                    <div className="md:col-span-2">
+                  {/* Primary row: Route / Date / Time / Status */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+                    <div>
                       <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Route</p>
-                      <p className="text-text font-display text-lg font-600">{flight.route}</p>
-                      {flight.time && (
-                        <p className="text-text font-mono text-sm font-500 mt-1">{flight.time}</p>
+                      <p className="text-text font-display text-lg font-600 leading-snug">{flight.route}</p>
+                      {flight.airline && (
+                        <p className="text-text-muted text-xs font-body mt-1">
+                          {flight.airline}{flight.aircraft ? ` · ${flight.aircraft}` : ''}
+                        </p>
                       )}
                     </div>
                     <div>
                       <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Date</p>
                       <p className="text-text font-mono text-sm">{flight.date}</p>
+                      {flight.cabin && (
+                        <p className="text-text-muted text-xs font-body mt-1">{flight.cabin}</p>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Time</p>
+                      <p className="text-text font-mono text-sm font-500">{flight.time || '—'}</p>
                     </div>
                     <div>
                       <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Status</p>
                       <StatusBadge status={flight.status as TripStatus} label={flight.status} />
                     </div>
                   </div>
-                  {(flight.airline || flight.cabin || flight.confirmation || flight.notes) && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-border/40">
-                      {flight.airline && (
-                        <div>
-                          <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Airline</p>
-                          <p className="text-text-secondary text-sm font-body">{flight.airline}</p>
-                        </div>
-                      )}
-                      {flight.cabin && (
-                        <div>
-                          <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Cabin</p>
-                          <p className="text-text-secondary text-sm font-body">{flight.cabin}</p>
-                        </div>
-                      )}
+
+                  {/* Secondary row: Confirmation / Notes */}
+                  {(flight.confirmation || flight.notes) && (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 mt-4 border-t border-border/40">
                       {flight.confirmation && (
                         <div>
                           <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Confirmation</p>
@@ -429,7 +429,7 @@ export default async function TripPage({
                         </div>
                       )}
                       {flight.notes && (
-                        <div className="col-span-2 md:col-span-1">
+                        <div className="col-span-2 md:col-span-3">
                           <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Notes</p>
                           <p className="text-text-secondary text-sm font-body">{flight.notes}</p>
                         </div>
