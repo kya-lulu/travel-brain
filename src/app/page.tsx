@@ -1,170 +1,171 @@
 import Link from "next/link";
 import { trips } from "@/data/trips";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  AlertCircle,
+  CheckCircle2,
+  Clock,
+  Compass,
+  Globe,
+  Plane,
+} from "lucide-react";
+
+// Unsplash destination images
+const destinationImages: Record<string, string> = {
+  "tokyo-shibuya":
+    "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=530&fit=crop&q=80",
+  "kruger-safari-lion":
+    "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=530&fit=crop&q=80",
+  "mobula-rays-jumping":
+    "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=530&fit=crop&q=80",
+  "kyrgyzstan-mountains-horses":
+    "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&h=530&fit=crop&q=80",
+  "seoul-autumn":
+    "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=800&h=530&fit=crop&q=80",
+  "tropical-island-nz-mountains":
+    "https://images.unsplash.com/photo-1469521669194-babb45599def?w=800&h=530&fit=crop&q=80",
+  "singapore-gardens-night":
+    "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=530&fit=crop&q=80",
+};
+
+const fallbackImage =
+  "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=530&fit=crop&q=80";
 
 export default function Home() {
-  const currentYear = new Date().getFullYear();
-  const nextYear = currentYear + 1;
-  const yearLabel = `${currentYear}-${nextYear}`;
-
-  // Calculate stats
   const activeTrips = trips.length;
-  const uniqueCountries = new Set(trips.map((t) => t.country || t.region)).size;
+  const uniqueCountries = new Set(trips.map((t) => t.country || t.region))
+    .size;
   const totalActionItems = trips.reduce(
     (sum, trip) => sum + trip.actionItems.length,
     0
   );
   const bookedTrips = trips.filter((t) => t.status === "booked").length;
 
-  // Group trips by month/year for timeline
   const sortedTrips = [...trips].sort((a, b) => {
     const aDate = new Date(`${a.month} 1, ${a.year}`);
     const bDate = new Date(`${b.month} 1, ${b.year}`);
     return aDate.getTime() - bDate.getTime();
   });
 
-  // Get status badge styling
-  const getStatusBadgeStyle = (status: string) => {
+  const getStatusStyle = (status: string) => {
     switch (status) {
       case "booked":
-        return "bg-success/20 text-success";
+        return { text: "text-success", icon: CheckCircle2 };
       case "partially_booked":
-        return "bg-warning/20 text-warning";
+        return { text: "text-warning", icon: Clock };
       case "needs_action":
-        return "bg-error/20 text-error";
+        return { text: "text-error", icon: AlertCircle };
       case "planning":
-        return "bg-accent/20 text-accent";
+        return { text: "text-accent", icon: Compass };
       case "decision_needed":
-        return "bg-border text-text-muted";
-      case "canceled":
-        return "bg-border text-text-muted line-through";
+        return { text: "text-text-muted", icon: AlertCircle };
       default:
-        return "bg-border text-text-muted";
+        return { text: "text-text-muted", icon: Clock };
     }
   };
 
   return (
     <div className="min-h-screen bg-bg">
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-20 pb-8 md:pb-12">
-        <div className="fade-in-up">
-          <h1 className="font-display text-5xl md:text-6xl font-700 text-text mb-4">
+      {/* Centered container */}
+      <div
+        className="mx-auto px-8 md:px-16 lg:px-24 py-12 md:py-16"
+        style={{ maxWidth: '960px', marginLeft: 'auto', marginRight: 'auto' }}
+      >
+
+        {/* Hero — centered */}
+        <header className="text-center mb-12 md:mb-14 pb-10 border-b border-border/60 fade-in-up">
+          <p className="font-mono text-xs tracking-[0.15em] uppercase text-accent mb-4">
+            Personal Travel Intelligence
+          </p>
+          <h1 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-700 text-text leading-[1.1] mb-4">
             Your Year of Travel
           </h1>
-          <p className="text-xl text-text-secondary mb-6">
-            {activeTrips} trips · {uniqueCountries} countries · Every detail,
-            curated
+          <p className="text-base md:text-lg text-text-secondary font-body leading-relaxed mx-auto" style={{ maxWidth: '480px' }}>
+            Every trip, flight, and action item — all in one place.
           </p>
-          <div className="h-px bg-border/50 w-24" />
-        </div>
-      </section>
+        </header>
 
-      {/* Stats Bar */}
-      <section className="border-y border-border/50 bg-surface-elevated/40">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 py-8 md:py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <div className="stagger-1 text-center">
-              <p className="text-accent font-display text-4xl md:text-5xl font-700 mb-2">
-                {activeTrips}
-              </p>
-              <p className="font-mono text-xs md:text-sm text-text-muted uppercase tracking-wide">
-                Active Trips
-              </p>
-            </div>
-            <div className="stagger-2 text-center">
-              <p className="text-accent font-display text-4xl md:text-5xl font-700 mb-2">
-                {uniqueCountries}
-              </p>
-              <p className="font-mono text-xs md:text-sm text-text-muted uppercase tracking-wide">
-                Countries
-              </p>
-            </div>
-            <div className="stagger-3 text-center">
-              <p className="text-accent font-display text-4xl md:text-5xl font-700 mb-2">
-                {totalActionItems}
-              </p>
-              <p className="font-mono text-xs md:text-sm text-text-muted uppercase tracking-wide">
-                Action Items
-              </p>
-            </div>
-            <div className="stagger-4 text-center">
-              <p className="text-accent font-display text-4xl md:text-5xl font-700 mb-2">
-                {bookedTrips}
-              </p>
-              <p className="font-mono text-xs md:text-sm text-text-muted uppercase tracking-wide">
-                Booked
-              </p>
-            </div>
-          </div>
+        {/* Stats — centered pill row */}
+        <div className="flex flex-wrap gap-3 justify-center mb-16 md:mb-20">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border/80 font-mono text-xs text-text-muted">
+            <Globe size={14} className="text-accent" />
+            <strong className="text-text font-500">{activeTrips}</strong> trips
+          </span>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border/80 font-mono text-xs text-text-muted">
+            <MapPin size={14} className="text-accent" />
+            <strong className="text-text font-500">{uniqueCountries}</strong> countries
+          </span>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border/80 font-mono text-xs text-text-muted">
+            <AlertCircle size={14} className="text-warning" />
+            <strong className="text-text font-500">{totalActionItems}</strong> action items
+          </span>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border/80 font-mono text-xs text-text-muted">
+            <CheckCircle2 size={14} className="text-success" />
+            <strong className="text-text font-500">{bookedTrips}</strong> booked
+          </span>
         </div>
-      </section>
 
-      {/* Timeline Section */}
-      <section className="max-w-5xl mx-auto px-6 md:px-8 py-12 md:py-20">
-        <div className="space-y-8 md:space-y-12">
-          {sortedTrips.map((trip, index) => (
-            <div
-              key={trip.slug}
-              className={`stagger-${Math.min(index + 1, 8)} group`}
-            >
-              <Link href={`/trips/${trip.slug}`}>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 hover:opacity-75 transition-opacity duration-200">
-                  {/* Month Label */}
-                  <div className="md:text-right">
-                    <p className="font-mono text-sm text-text-muted uppercase tracking-wide">
-                      {trip.month}
-                    </p>
-                    <p className="font-mono text-xs text-text-muted/60">
-                      {trip.year}
-                    </p>
+        {/* Trips Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+          {sortedTrips.map((trip, index) => {
+            const status = getStatusStyle(trip.status);
+            const StatusIcon = status.icon;
+            const imageUrl = trip.heroImage
+              ? destinationImages[trip.heroImage] || fallbackImage
+              : fallbackImage;
+
+            return (
+              <Link
+                key={trip.slug}
+                href={`/trips/${trip.slug}`}
+                className={`stagger-${Math.min(index + 1, 8)} group block`}
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                  <img
+                    src={imageUrl}
+                    alt={trip.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-600 bg-white/95 backdrop-blur-sm shadow-sm ${status.text}`}
+                    >
+                      <StatusIcon size={12} />
+                      {trip.statusLabel}
+                    </span>
                   </div>
+                </div>
 
-                  {/* Trip Card */}
-                  <div className="md:col-span-3">
-                    <div className="bg-surface-elevated/60 hover:bg-surface-elevated border border-border/50 hover:border-accent/30 rounded-2xl p-6 md:p-8 transition-all duration-200 hover:-translate-y-0.5">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                          <h3 className="font-display text-2xl md:text-3xl font-600 text-text mb-2 group-hover:text-accent transition-colors">
-                            {trip.title}
-                          </h3>
-                          <p className="text-text-secondary text-sm md:text-base">
-                            {trip.subtitle}
-                          </p>
-                        </div>
-                        <span
-                          className={`inline-block px-3 py-1.5 rounded-full text-xs font-500 whitespace-nowrap mt-3 md:mt-0 ${getStatusBadgeStyle(
-                            trip.status
-                          )}`}
-                        >
-                          {trip.statusLabel}
-                        </span>
-                      </div>
-
-                      <div className="flex flex-wrap gap-4 text-sm text-text-muted">
-                        <div className="flex items-center gap-2">
-                          <span className="text-text-muted">Dates:</span>
-                          <span className="text-text">{trip.dates}</span>
-                        </div>
-                        <div className="hidden md:block h-4 w-px bg-border/30" />
-                        <div className="flex items-center gap-2">
-                          <span className="text-text-muted">Travelers:</span>
-                          <span className="text-text">{trip.travelers}</span>
-                        </div>
-                        <div className="hidden md:block h-4 w-px bg-border/30" />
-                        <div className="flex items-center gap-2">
-                          <span className="text-text-muted">Action Items:</span>
-                          <span className="text-text font-600">
-                            {trip.actionItems.length}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                {/* Text block */}
+                <div className="mt-4 space-y-2">
+                  <h3 className="font-display text-xl md:text-[1.35rem] font-600 text-text group-hover:text-accent transition-colors leading-snug">
+                    {trip.title}
+                  </h3>
+                  <p className="text-sm text-text-secondary font-body leading-relaxed line-clamp-2">
+                    {trip.subtitle}
+                  </p>
+                  <div className="flex items-center gap-3 pt-1.5 text-text-muted">
+                    <span className="inline-flex items-center gap-1 font-mono text-[0.7rem] whitespace-nowrap">
+                      <Calendar size={11} className="shrink-0" />
+                      {trip.month} {trip.year}
+                    </span>
+                    <span className="w-px h-3 bg-border" />
+                    {trip.actionItems.length > 0 && (
+                      <span className="inline-flex items-center gap-1 font-mono text-[0.7rem] text-warning font-500 whitespace-nowrap">
+                        {trip.actionItems.length} to-do{trip.actionItems.length !== 1 ? "s" : ""}
+                      </span>
+                    )}
                   </div>
                 </div>
               </Link>
-            </div>
-          ))}
+            );
+          })}
         </div>
-      </section>
+
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function AwardTools() {
   return (
     <div className="min-h-screen bg-bg">
       {/* Section 1: Search Tools */}
-      <section className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
+      <section className="mx-auto px-8 md:px-16 lg:px-24 py-16 md:py-24" style={{ maxWidth: '960px', marginLeft: 'auto', marginRight: 'auto' }}>
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <Search className="w-8 h-8 text-accent" />
@@ -25,7 +25,7 @@ export default function AwardTools() {
           {awardTools.map((tool, index) => (
             <div
               key={tool.name}
-              className="group bg-surface border border-border rounded-xl p-8 transition-all duration-200 hover:border-accent hover:shadow-lg hover:shadow-accent/10 hover:-translate-y-1"
+              className="group bg-surface border border-border/60 rounded-xl p-8 shadow-card transition-all duration-200 hover:border-border-strong hover:shadow-card-hover hover:-translate-y-0.5"
               style={{
                 animation: `slideInUp 0.5s ease-out ${index * 0.05}s both`,
               }}
@@ -36,7 +36,7 @@ export default function AwardTools() {
 
               {/* Best For Badge */}
               <div className="mb-4">
-                <span className="inline-block font-mono text-xs font-500 text-accent bg-accent/10 px-3 py-1 rounded-full">
+                <span className="inline-block font-mono text-xs font-500 text-accent bg-accent-soft px-3 py-1 rounded-full">
                   {tool.bestFor}
                 </span>
               </div>
@@ -62,7 +62,7 @@ export default function AwardTools() {
       </section>
 
       {/* Section 2: Sweet Spots */}
-      <section className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24 border-t border-border">
+      <section className="mx-auto px-8 md:px-16 lg:px-24 py-16 md:py-24 border-t border-border" style={{ maxWidth: '960px', marginLeft: 'auto', marginRight: 'auto' }}>
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <Sparkles className="w-8 h-8 text-accent" />
@@ -88,7 +88,7 @@ export default function AwardTools() {
               .map((spot, index) => (
                 <div
                   key={`${spot.program}-${spot.route}`}
-                  className="bg-surface border border-border rounded-xl p-6 md:p-8 border-l-4 border-l-accent transition-all duration-200 hover:border-border hover:shadow-lg hover:shadow-accent/10"
+                  className="bg-surface border border-border/60 rounded-xl p-6 md:p-8 border-l-4 border-l-accent shadow-card transition-all duration-200 hover:border-border-strong hover:shadow-card-hover"
                   style={{
                     animation: `slideInUp 0.5s ease-out ${(20 + index) * 0.05}s both`,
                   }}
@@ -109,7 +109,7 @@ export default function AwardTools() {
 
                   {/* Cabin Badge */}
                   <div className="mb-4">
-                    <span className="inline-block font-body text-xs font-500 text-accent bg-accent/10 px-2 py-1 rounded">
+                    <span className="inline-block font-body text-xs font-500 text-accent bg-accent-soft px-2 py-1 rounded">
                       {spot.cabin}
                     </span>
                   </div>
@@ -136,7 +136,7 @@ export default function AwardTools() {
               .map((spot, index) => (
                 <div
                   key={`${spot.program}-${spot.route}`}
-                  className="bg-surface border border-border rounded-xl p-6 md:p-8 border-l-4 border-l-accent transition-all duration-200 hover:border-border hover:shadow-lg hover:shadow-accent/10"
+                  className="bg-surface border border-border/60 rounded-xl p-6 md:p-8 border-l-4 border-l-accent shadow-card transition-all duration-200 hover:border-border-strong hover:shadow-card-hover"
                   style={{
                     animation: `slideInUp 0.5s ease-out ${(25 + index) * 0.05}s both`,
                   }}
@@ -157,7 +157,7 @@ export default function AwardTools() {
 
                   {/* Cabin Badge */}
                   <div className="mb-4">
-                    <span className="inline-block font-body text-xs font-500 text-accent bg-accent/10 px-2 py-1 rounded">
+                    <span className="inline-block font-body text-xs font-500 text-accent bg-accent-soft px-2 py-1 rounded">
                       {spot.cabin}
                     </span>
                   </div>
