@@ -80,19 +80,28 @@ export const trips: Trip[] = [
     subtitle: 'Timbavati & Klaserie Reserves',
     region: 'Southern Africa',
     country: 'South Africa',
-    dates: 'April 21–29, 2026',
+    dates: 'April 12–29, 2026',
     month: 'April',
     year: 2026,
     status: 'partially_booked',
     statusLabel: 'Partially Booked',
-    travelers: '4 adults (Terry, Janelle, Janelle\'s parents)',
+    travelers: '4 adults (Terry Lin, Janelle Tam, Dorothy Fong, Kam Chiu Tam)',
     heroImage: 'kruger-safari-lion',
     flights: [
-      { segment: 1, date: '2026-04-21', route: 'ORD → LHR', time: '9:15pm → 11:15am +1', airline: 'British Airways', cabin: 'Business', status: 'booked', notes: 'Overnight flight' },
-      { segment: 2, date: '2026-04-22', route: 'LHR → JNB', time: '7:00pm → 7:00am +1', airline: 'British Airways', cabin: 'Business', status: 'booked', notes: 'Arrive JNB April 23' },
+      // ── Terry & Janelle: Outbound ──
+      { segment: 1, date: '2026-04-21', route: 'ORD → LHR', time: '9:15pm → 11:15am +1', airline: 'British Airways', cabin: 'Business (Club World)', status: 'booked', notes: 'Terry seat 02K, Janelle seat 02A' },
+      { segment: 2, date: '2026-04-22', route: 'LHR → JNB', time: '19:00 → 06:00 +1', airline: 'British Airways (BA0055)', cabin: 'Business (Club World)', status: 'booked', notes: '11hr flight. Terry seat 59J, Janelle seat 59K. Arrive JNB April 23' },
+      // ── Everyone: Hoedspruit ──
       { segment: 3, date: '2026-04-23', route: 'JNB → HDS (Hoedspruit)', time: '10:30am → 11:30am', airline: 'Airlink', confirmation: 'XEB2ZT', status: 'booked', notes: 'Regional hop, transfer to Shindzela' },
-      { segment: 4, date: '2026-04-28', route: 'JNB → FRA', time: '6:35pm → 6:00am +1', airline: 'Condor', aircraft: 'A330-900neo', cabin: 'Business', confirmation: 'AFR58A', status: 'booked', notes: '8hr layover in Frankfurt' },
-      { segment: 5, date: '2026-04-29', route: 'FRA → YYZ', time: '2:15pm → 3:45pm', airline: 'Condor', aircraft: 'A330-900neo', cabin: 'Business', confirmation: 'AFR58A', status: 'booked' },
+      // ── Terry & Janelle: Return (to Seattle) ──
+      { segment: 4, date: '2026-04-28', route: 'JNB → FRA', time: '6:35pm → 6:00am +1', airline: 'Condor (DE 2289)', cabin: 'Business', confirmation: 'AFR58A', status: 'booked', notes: '8h 15min layover in Frankfurt' },
+      { segment: 5, date: '2026-04-29', route: 'FRA → SEA', time: '2:15pm → 3:40pm', airline: 'Condor (DE 2032)', cabin: 'Business', confirmation: 'AFR58A', status: 'booked', notes: 'Arrive Seattle' },
+      // ── Parents (Dorothy & Kam Chiu): Outbound (from Toronto) ──
+      { segment: 6, date: '2026-04-12', route: 'YYZ → FRA', time: '7:55pm → 9:40am +1', airline: 'Condor (DE 2403)', cabin: 'Business', confirmation: 'B7Z75E', status: 'booked', notes: 'Parents outbound. 10h 50min layover in FRA' },
+      { segment: 7, date: '2026-04-13', route: 'FRA → JNB', time: '8:30pm → 7:30am +1', airline: 'Condor (DE 2288)', cabin: 'Business', confirmation: 'B7Z75E', status: 'booked', notes: 'Parents arrive JNB April 14' },
+      // ── Parents: Return (to Toronto) ──
+      { segment: 8, date: '2026-04-28', route: 'JNB → FRA', time: '6:35pm → 6:00am +1', airline: 'Condor (DE 2289)', cabin: 'Business', confirmation: 'ARQAHJ', status: 'booked', notes: 'Parents return. 9h 15min layover in FRA' },
+      { segment: 9, date: '2026-04-29', route: 'FRA → YYZ', time: '3:15pm → 5:55pm', airline: 'Condor (DE 2402)', cabin: 'Business', confirmation: 'ARQAHJ', status: 'booked', notes: 'Parents arrive Toronto' },
     ],
     hotels: [
       { property: 'Shindzela Tented Camp', location: 'Timbavati Reserve', checkIn: '2026-04-23', checkOut: '2026-04-25', status: 'booked', cost: 'R47,310 ZAR (~$2,557 USD for 4 pax)', notes: 'Intimate bush camp, 5–8 guests per group' },
@@ -124,8 +133,8 @@ export const trips: Trip[] = [
       { date: 'April 25', label: 'Transfer to Klaserie', description: 'Final morning drive at Shindzela. Check out. Transfer to Last Word Kitara in Klaserie Reserve. Afternoon game drive in riverine forest — prime leopard territory.', type: 'activity' },
       { date: 'April 26', label: 'Full Day Safari — Klaserie', description: 'Early morning drive through dense Klaserie vegetation. High leopard density. Brunch at lodge. Spa or pool. Afternoon drive focused on elephant herds and buffalo. Exclusive-use vehicle.', type: 'activity' },
       { date: 'April 27', label: 'Full Day Safari — Klaserie', description: 'Final full day of game drives. Morning drive targeting remaining Big 5 sightings. Leisurely brunch. Afternoon photography-focused drive — golden hour light. Farewell bush dinner.', type: 'activity' },
-      { date: 'April 28', label: 'Fly Home — Leg 1', description: 'Morning check-out from Last Word Kitara. Transfer to JNB. Afternoon flight JNB → FRA on Condor (conf: AFR58A). Overnight flight.', type: 'travel' },
-      { date: 'April 29', label: 'Arrive Home', description: 'Arrive Frankfurt. Connect FRA → YYZ. Arrive Toronto. Trip complete.', type: 'travel' },
+      { date: 'April 28', label: 'Fly Home — Leg 1', description: 'Morning check-out from Last Word Kitara. Transfer to JNB. Afternoon flight JNB → FRA on Condor DE 2289 (conf: AFR58A). Overnight flight. Parents on same JNB→FRA leg (conf: ARQAHJ).', type: 'travel' },
+      { date: 'April 29', label: 'Arrive Home', description: 'Arrive Frankfurt 6:00am. Terry & Janelle: FRA → SEA on DE 2032 at 2:15pm, arrive 3:40pm. Parents: FRA → YYZ on DE 2402 at 3:15pm, arrive 5:55pm. Trip complete.', type: 'travel' },
     ],
   },
 
