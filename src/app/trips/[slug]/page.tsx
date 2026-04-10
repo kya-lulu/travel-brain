@@ -166,12 +166,7 @@ const tripImages: Record<string, {
 
 const fallbackHero = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1400&h=500&fit=crop&q=80';
 
-// Mask confirmation codes for security — show only last 3 characters
-function maskConfirmationCodes(text: string): string {
-  return text.replace(/\b(conf:\s*)([A-Z0-9]{4,})\b/gi, (_, prefix, code) => {
-    return `${prefix}•••${code.slice(-3)}`;
-  });
-}
+// Confirmation codes are now shown in full — site is password-protected
 
 // Match an ISO date (e.g. "2026-04-21") to an itinerary day label (e.g. "April 21", "Aug 7–11")
 function isoMatchesDay(isoDate: string, dayDate: string): boolean {
@@ -307,7 +302,7 @@ export default async function TripPage({
                           </span>
                         </div>
                         <p className="text-sm text-text-secondary font-body leading-relaxed">
-                          {maskConfirmationCodes(day.description)}
+                          {day.description}
                         </p>
 
                         {/* Inline flights for this day */}
@@ -324,7 +319,7 @@ export default async function TripPage({
                                 {flight.aircraft && <span className="text-xs text-text-muted">· {flight.aircraft}</span>}
                                 {flight.cabin && <span className="text-xs text-accent font-500">{flight.cabin}</span>}
                                 {flight.confirmation && (
-                                  <span className="font-mono text-xs text-text-muted">Conf: •••{flight.confirmation.slice(-3)}</span>
+                                  <span className="font-mono text-xs text-text-muted">Conf: {flight.confirmation}</span>
                                 )}
                                 <StatusBadge status={flight.status as TripStatus} label={flight.status} />
                               </div>
