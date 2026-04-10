@@ -173,6 +173,23 @@ function maskConfirmationCodes(text: string): string {
   });
 }
 
+// Match an ISO date (e.g. "2026-04-21") to an itinerary day label (e.g. "April 21", "Aug 7–11")
+function isoMatchesDay(isoDate: string, dayDate: string): boolean {
+  if (!isoDate || isoDate === 'TBD') return false;
+  const d = new Date(isoDate + 'T12:00:00');
+  const day = d.getUTCDate();
+  const mi = d.getUTCMonth();
+  const full = ['January','February','March','April','May','June','July','August','September','October','November','December'][mi];
+  const short = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'][mi];
+  for (const mn of [full, short]) {
+    const direct = new RegExp(`${mn}\\s+${day}(?!\\d)`);
+    if (direct.test(dayDate)) return true;
+    const range = dayDate.match(new RegExp(`${mn}\\s+(\\d+)[–\\-](\\d+)`));
+    if (range && day >= parseInt(range[1]) && day <= parseInt(range[2])) return true;
+  }
+  return false;
+}
+
 export const generateStaticParams = async () => {
   return trips.map((trip) => ({ slug: trip.slug }));
 };
@@ -264,6 +281,9 @@ export default async function TripPage({
               {trip.itinerary.map((day, idx) => {
                 const style = dayTypeStyles[day.type] || dayTypeStyles.flexible;
                 const DayIcon = style.icon;
+                const dayFlights = trip.flights.filter(f => isoMatchesDay(f.date, day.date));
+                const dayHotelCheckins = trip.hotels.filter(h => h.checkIn && isoMatchesDay(h.checkIn, day.date));
+                const dayHotelCheckouts = trip.hotels.filter(h => h.checkOut && isoMatchesDay(h.checkOut, day.date));
 
                 return (
                   <div
@@ -289,6 +309,62 @@ export default async function TripPage({
                         <p className="text-sm text-text-secondary font-body leading-relaxed">
                           {maskConfirmationCodes(day.description)}
                         </p>
+
+                        {/* Inline flights for this day */}
+                        {dayFlights.map((flight, fIdx) => (
+                          <div key={`f-${fIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
+                            <Plane size={14} className="text-accent flex-shrink-0 mt-1" />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-baseline gap-2 flex-wrap">
+                                <span className="font-mono text-sm font-600 text-text">{flight.route}</span>
+                                {flight.time && <span className="font-mono text-xs text-text-muted">{flight.time}</span>}
+                              </div>
+                              <div className="flex items-center gap-2 mt-1 flex-wrap">
+                                {flight.airline && <span className="text-xs text-text-muted">{flight.airline}</span>}
+                                {flight.aircraft && <span className="text-xs text-text-muted">· {flight.aircraft}</span>}
+                                {flight.cabin && <span className="text-xs text-accent font-500">{flight.cabin}</span>}
+                                {flight.confirmation && (
+                                  <span className="font-mono text-xs text-text-muted">Conf: •••{flight.confirmation.slice(-3)}</span>
+                                )}
+                                <StatusBadge status={flight.status as TripStatus} label={flight.status} />
+                              </div>
+                              {flight.notes && <p className="text-xs text-text-muted mt-1">{flight.notes}</p>}
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Inline hotel check-ins */}
+                        {dayHotelCheckins.map((hotel, hIdx) => (
+                          <div key={`hi-${hIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
+                            <Building2 size={14} className="text-accent flex-shrink-0 mt-1" />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-baseline gap-2 flex-wrap">
+                                <span className="font-display text-sm font-600 text-text">{hotel.property}</span>
+                                <span className="text-xs text-text-muted">{hotel.location}</span>
+                              </div>
+                              <div className="flex items-center gap-2 mt-1 flex-wrap">
+                                <span className="text-xs text-accent font-500">Check-in</span>
+                                {hotel.program && <span className="text-xs text-text-muted">· {hotel.program}</span>}
+                                {hotel.cost && <span className="font-mono text-xs text-text-muted">{hotel.cost}</span>}
+                                <StatusBadge status={hotel.status as TripStatus} label={hotel.status} />
+                              </div>
+                              {hotel.notes && <p className="text-xs text-text-muted mt-1">{hotel.notes}</p>}
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Inline hotel check-outs */}
+                        {dayHotelCheckouts.map((hotel, hIdx) => (
+                          <div key={`ho-${hIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
+                            <Building2 size={14} className="text-text-muted flex-shrink-0 mt-1" />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-baseline gap-2 flex-wrap">
+                                <span className="font-display text-sm font-500 text-text-muted">{hotel.property}</span>
+                              </div>
+                              <span className="text-xs text-text-muted">Check-out</span>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -369,123 +445,7 @@ export default async function TripPage({
           </section>
         )}
 
-        {/* ━━━ Flights ━━━ */}
-        {trip.flights.length > 0 && (
-          <section className="mb-14 md:mb-16 stagger-3">
-            <div className="flex items-center gap-3 mb-2">
-              <Plane size={20} className="text-accent" />
-              <h2 className="font-display text-[1.8rem] font-600 text-text">
-                Flights
-              </h2>
-            </div>
-            <p className="text-text-muted text-sm font-body mb-8">
-              All flight segments for this trip.
-            </p>
-
-            <div className="space-y-4">
-              {trip.flights.map((flight, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 md:p-6 rounded-xl bg-surface border border-border/60 shadow-card"
-                  style={{ animation: `fadeInUp 0.4s ease-out ${0.05 * (idx + 1)}s backwards` }}
-                >
-                  {/* Primary row: Route / Date / Time / Status */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Route</p>
-                      <p className="text-text font-display text-lg font-600 leading-snug">{flight.route}</p>
-                      {flight.airline && (
-                        <p className="text-text-muted text-xs font-body mt-1">
-                          {flight.airline}{flight.aircraft ? ` · ${flight.aircraft}` : ''}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Date</p>
-                      <p className="text-text font-mono text-sm">{flight.date}</p>
-                      {flight.cabin && (
-                        <p className="text-text-muted text-xs font-body mt-1">{flight.cabin}</p>
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Time</p>
-                      <p className="text-text font-mono text-sm font-500">{flight.time || '—'}</p>
-                    </div>
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Status</p>
-                      <StatusBadge status={flight.status as TripStatus} label={flight.status} />
-                    </div>
-                  </div>
-
-                  {/* Secondary row: Confirmation / Notes */}
-                  {(flight.confirmation || flight.notes) && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 mt-4 border-t border-border/40">
-                      {flight.confirmation && (
-                        <div>
-                          <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Confirmation</p>
-                          <p className="text-text-secondary text-sm font-mono">
-                            {'•••'}{flight.confirmation.slice(-3)}
-                          </p>
-                        </div>
-                      )}
-                      {flight.notes && (
-                        <div className="col-span-2 md:col-span-3">
-                          <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Notes</p>
-                          <p className="text-text-secondary text-sm font-body">{flight.notes}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ━━━ Hotels ━━━ */}
-        {trip.hotels.length > 0 && (
-          <section className="mb-14 md:mb-16 stagger-4">
-            <div className="flex items-center gap-3 mb-2">
-              <Building2 size={20} className="text-accent" />
-              <h2 className="font-display text-[1.8rem] font-600 text-text">Hotels</h2>
-            </div>
-            <p className="text-text-muted text-sm font-body mb-8">Where you&#39;re staying.</p>
-
-            <div className="space-y-4">
-              {trip.hotels.map((hotel, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 md:p-6 rounded-xl bg-surface border border-border/60 shadow-card"
-                  style={{ animation: `fadeInUp 0.4s ease-out ${0.05 * (idx + 1)}s backwards` }}
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Property</p>
-                      <p className="text-text font-display text-lg font-600">{hotel.property}</p>
-                    </div>
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Location</p>
-                      <p className="text-text-secondary text-sm font-body">{hotel.location}</p>
-                    </div>
-                    <div>
-                      <p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Status</p>
-                      <StatusBadge status={hotel.status as TripStatus} label={hotel.status} />
-                    </div>
-                  </div>
-                  {(hotel.checkIn || hotel.checkOut || hotel.program || hotel.cost) && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-border/40">
-                      {hotel.checkIn && <div><p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Check-in</p><p className="text-text-secondary text-sm font-mono">{hotel.checkIn}</p></div>}
-                      {hotel.checkOut && <div><p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Check-out</p><p className="text-text-secondary text-sm font-mono">{hotel.checkOut}</p></div>}
-                      {hotel.program && <div><p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Program</p><p className="text-text-secondary text-sm font-body">{hotel.program}</p></div>}
-                      {hotel.cost && <div><p className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-accent mb-1">Cost</p><p className="text-accent text-sm font-mono">{hotel.cost}</p></div>}
-                    </div>
-                  )}
-                  {hotel.notes && <p className="text-text-secondary text-sm font-body mt-4 pt-4 border-t border-border/40">{hotel.notes}</p>}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* Flights and Hotels are now integrated into the Day-by-Day Schedule above */}
 
         {/* ━━━ Second Cinematic Break (before Intel) ━━━ */}
         {amb[3] && (

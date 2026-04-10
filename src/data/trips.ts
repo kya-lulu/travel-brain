@@ -96,7 +96,7 @@ export const trips: Trip[] = [
     ],
     hotels: [
       { property: 'Shindzela Tented Camp', location: 'Timbavati Reserve', checkIn: '2026-04-23', checkOut: '2026-04-25', status: 'booked', cost: 'R47,310 ZAR (~$2,557 USD for 4 pax)', notes: 'Intimate bush camp, 5–8 guests per group' },
-      { property: 'Last Word Kitara', location: 'Klaserie Reserve', checkIn: '2026-04-25', checkOut: '2026-04-28', program: 'Booked on Points', status: 'booked', notes: 'Luxury private reserve, exclusive use available' },
+      { property: 'Last Word Kitara', location: 'Klaserie Reserve', checkIn: '2026-04-25', checkOut: '2026-04-28', program: 'Preferred Points', status: 'booked', notes: 'Luxury private reserve, exclusive use available' },
     ],
     actionItems: [
       { text: 'Confirm final payment for Shindzela Tented Camp', urgent: true },
@@ -113,8 +113,8 @@ export const trips: Trip[] = [
       { title: 'Packing, Tipping & Practical Notes', content: 'Pack neutral earth tones (khaki, olive, tan)—bright colors startle wildlife. Binoculars are essential. South African tipping: R50–100 ZAR per day for guides, R20–50 for general staff. Bring cash (USD or ZAR) for tips; cards often aren\'t practical in remote areas. Travel insurance is non-negotiable; ensure it covers medical evacuation. Internet and cell coverage are spotty in private reserves—expect to disconnect almost entirely for 5 days.' },
     ],
     awardTips: [
-      { program: 'Virgin Atlantic Flying Club', route: 'SEA–JNB via BA', cost: '~120K VS miles RT', note: 'Use BA Avios for London layover hotel if needed' },
-      { program: 'Hyatt Points', route: 'Last Word Kitara', cost: '~50K–75K per night (verify)', note: 'Last Word properties often available on points; confirm cat' },
+      { program: 'Alaska Mileage Plan', route: 'ORD–LHR–JNB via BA', cost: 'Booked', note: 'Booked through Alaska Mileage Plan on British Airways metal' },
+      { program: 'Preferred Points', route: 'Last Word Kitara', cost: 'Booked on preferred points', note: 'Kitara booked on preferred points — confirmed' },
     ],
     itinerary: [
       { date: 'April 21', label: 'Depart Chicago', description: 'Fly ORD → LHR. Overnight flight. Rest on the plane — long travel day ahead.', type: 'travel' },
