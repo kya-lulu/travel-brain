@@ -16,6 +16,7 @@ import {
   Compass,
   Camera,
   Sun,
+  DollarSign,
 } from 'lucide-react';
 
 type TripStatus =
@@ -134,20 +135,6 @@ const tripImages: Record<string, {
       'https://images.unsplash.com/photo-1546874177-9e664107314e?w=800&h=400&fit=crop&q=80',  // autumn palace
     ],
   },
-  'australia-nov-2026': {
-    hero: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1400&h=500&fit=crop&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=500&h=350&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?w=500&h=350&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?w=500&h=350&fit=crop&q=80',
-    ],
-    ambient: [
-      'https://images.unsplash.com/photo-1494233892892-84542a694e72?w=600&h=800&fit=crop&q=80',  // great barrier reef
-      'https://images.unsplash.com/photo-1524820197278-540916411e20?w=800&h=400&fit=crop&q=80',  // sydney harbor
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=800&fit=crop&q=80',  // outback
-      'https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a?w=800&h=400&fit=crop&q=80',  // beach sunrise
-    ],
-  },
   'singapore-maldives-dec-2026': {
     hero: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1400&h=500&fit=crop&q=80',
     gallery: [
@@ -160,6 +147,118 @@ const tripImages: Record<string, {
       'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&h=400&fit=crop&q=80',  // singapore marina bay
       'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&h=800&fit=crop&q=80',  // maldives water villa
       'https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=800&h=400&fit=crop&q=80',  // tropical sunset
+    ],
+  },
+  'croatia-nov-2026': {
+    hero: 'https://images.unsplash.com/photo-1555990538-1e7a4d75aa14?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1564594736624-def7a10ab047?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1555990538-1e7a4d75aa14?w=600&h=800&fit=crop&q=80',  // dubrovnik walls
+      'https://images.unsplash.com/photo-1558271736-cd043ef2e855?w=800&h=400&fit=crop&q=80',  // croatian coast
+      'https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=600&h=800&fit=crop&q=80',  // zagreb cathedral
+      'https://images.unsplash.com/photo-1504730030853-eff311f57d3c?w=800&h=400&fit=crop&q=80',  // adriatic sunset
+    ],
+  },
+  'nicaragua-nov-2026': {
+    hero: 'https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=600&h=800&fit=crop&q=80',  // caribbean island
+      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=400&fit=crop&q=80',  // turquoise water
+      'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=800&fit=crop&q=80',  // tropical beach
+      'https://images.unsplash.com/photo-1437719417032-8799f32df5ba?w=800&h=400&fit=crop&q=80',  // sunset beach
+    ],
+  },
+  'beaver-creek-jan-2027': {
+    hero: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1565992441121-4367c2967103?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=600&h=800&fit=crop&q=80',  // ski slope
+      'https://images.unsplash.com/photo-1520208422220-d12a3c588e6c?w=800&h=400&fit=crop&q=80',  // snow mountain
+      'https://images.unsplash.com/photo-1548777123-e216912df7d8?w=600&h=800&fit=crop&q=80',  // ski lodge
+      'https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=800&h=400&fit=crop&q=80',  // winter landscape
+    ],
+  },
+  'japan-feb-2027': {
+    hero: 'https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=600&h=800&fit=crop&q=80',  // japan snow
+      'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&h=400&fit=crop&q=80',  // mt fuji winter
+      'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=600&h=800&fit=crop&q=80',  // niseko powder
+      'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&h=400&fit=crop&q=80',  // winter temple
+    ],
+  },
+  'beaver-creek-feb-2027': {
+    hero: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1565992441121-4367c2967103?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=600&h=800&fit=crop&q=80',  // ski slope
+      'https://images.unsplash.com/photo-1520208422220-d12a3c588e6c?w=800&h=400&fit=crop&q=80',  // snow mountain
+      'https://images.unsplash.com/photo-1548777123-e216912df7d8?w=600&h=800&fit=crop&q=80',  // ski lodge
+      'https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=800&h=400&fit=crop&q=80',  // winter landscape
+    ],
+  },
+  'paris-mar-2027': {
+    hero: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1431274172761-fca41d930114?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=800&fit=crop&q=80',  // eiffel tower
+      'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&h=400&fit=crop&q=80',  // paris streets
+      'https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&h=800&fit=crop&q=80',  // louvre
+      'https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=800&h=400&fit=crop&q=80',  // seine river
+    ],
+  },
+  'seychelles-nov-2026': {
+    hero: 'https://images.unsplash.com/photo-1589179447559-26b2ea42f87c?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1589179447559-26b2ea42f87c?w=600&h=800&fit=crop&q=80',  // seychelles beach
+      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=400&fit=crop&q=80',  // turquoise water
+      'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=800&fit=crop&q=80',  // underwater
+      'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=400&fit=crop&q=80',  // tropical beach wide
+    ],
+  },
+  'french-polynesia-2027': {
+    hero: 'https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=1400&h=500&fit=crop&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1540202404-a2f29016b523?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=500&h=350&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&h=350&fit=crop&q=80',
+    ],
+    ambient: [
+      'https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=600&h=800&fit=crop&q=80',  // overwater bungalow
+      'https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=800&h=400&fit=crop&q=80',  // tropical sunset
+      'https://images.unsplash.com/photo-1540202404-a2f29016b523?w=600&h=800&fit=crop&q=80',     // overwater villa
+      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=400&fit=crop&q=80',  // ocean water
     ],
   },
 };
@@ -439,6 +538,115 @@ export default async function TripPage({
             </div>
           </section>
         )}
+
+        {/* ━━━ Trip Costs ━━━ */}
+        <section className="mb-14 md:mb-16 stagger-3">
+          <div className="flex items-center gap-3 mb-2">
+            <DollarSign size={20} className="text-accent" />
+            <h2 className="font-display text-[1.8rem] font-600 text-text">
+              Trip Costs
+            </h2>
+          </div>
+          <p className="text-text-muted text-sm font-body mb-8">
+            Points and cash committed to this trip.
+          </p>
+
+          {trip.costs.length === 0 ? (
+            <div className="p-6 rounded-xl bg-surface border border-border/60 shadow-card">
+              <p className="text-sm text-text-muted font-body italic">
+                No costs logged yet. Costs will appear here as bookings are captured.
+              </p>
+            </div>
+          ) : (
+            (() => {
+              const activeCosts = trip.costs.filter(c => !c.canceled);
+              const totalCash = activeCosts.reduce((sum, c) => sum + (c.cashUsd ?? 0), 0);
+              const pointsByProgram: Record<string, number> = {};
+              for (const c of activeCosts) {
+                if (c.points && c.program) {
+                  pointsByProgram[c.program] = (pointsByProgram[c.program] ?? 0) + c.points;
+                }
+              }
+              const programEntries = Object.entries(pointsByProgram).filter(([, v]) => v > 0);
+
+              return (
+                <div className="rounded-xl bg-surface border border-border/60 shadow-card overflow-hidden">
+                  <div className="hidden md:grid grid-cols-[1fr_auto_auto] gap-6 px-5 py-3 border-b border-border/60 bg-bg/60">
+                    <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-text-muted">Item</span>
+                    <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-text-muted text-right min-w-[140px]">Points</span>
+                    <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-text-muted text-right min-w-[80px]">Cash</span>
+                  </div>
+                  <div className="divide-y divide-border/40">
+                    {trip.costs.map((cost, idx) => {
+                      const isCanceled = cost.canceled;
+                      return (
+                        <div
+                          key={idx}
+                          className={`grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-2 md:gap-6 px-5 py-4 ${isCanceled ? 'opacity-50 line-through' : ''}`}
+                        >
+                          <div className="min-w-0">
+                            <div className="flex items-baseline gap-2 flex-wrap">
+                              <span className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-accent">{cost.category}</span>
+                              <span className="font-body text-sm text-text font-500">{cost.description}</span>
+                            </div>
+                            {cost.note && (
+                              <p className="text-xs text-text-muted font-body mt-1">{cost.note}</p>
+                            )}
+                          </div>
+                          <div className="text-left md:text-right min-w-[140px]">
+                            {cost.points && cost.points > 0 ? (
+                              <>
+                                <span className="font-mono text-sm text-text font-500">{cost.points.toLocaleString()}</span>
+                                {cost.program && (
+                                  <p className="text-[0.7rem] text-text-muted font-body mt-0.5">{cost.program}</p>
+                                )}
+                              </>
+                            ) : cost.program ? (
+                              <span className="font-mono text-xs text-text-muted">TBD · {cost.program}</span>
+                            ) : (
+                              <span className="font-mono text-xs text-text-muted">—</span>
+                            )}
+                          </div>
+                          <div className="text-left md:text-right min-w-[80px]">
+                            {cost.cashUsd && cost.cashUsd > 0 ? (
+                              <span className="font-mono text-sm text-text font-500">
+                                ${cost.cashUsd.toLocaleString()}
+                              </span>
+                            ) : (
+                              <span className="font-mono text-xs text-text-muted">—</span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {(totalCash > 0 || programEntries.length > 0) && (
+                    <div className="px-5 py-4 border-t border-border/60 bg-bg/60">
+                      <div className="flex items-baseline gap-3 flex-wrap">
+                        <span className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-accent font-500">Total</span>
+                        <span className="font-body text-sm text-text-secondary">
+                          {programEntries.map(([program, points], i) => (
+                            <span key={program}>
+                              <span className="font-mono text-text font-500">{points.toLocaleString()}</span>
+                              <span className="text-text-muted"> {program}</span>
+                              {(i < programEntries.length - 1 || totalCash > 0) && <span className="text-text-muted"> · </span>}
+                            </span>
+                          ))}
+                          {totalCash > 0 && (
+                            <>
+                              <span className="font-mono text-text font-500">${totalCash.toLocaleString()}</span>
+                              <span className="text-text-muted"> cash</span>
+                            </>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()
+          )}
+        </section>
 
         {/* Flights and Hotels are now integrated into the Day-by-Day Schedule above */}
 

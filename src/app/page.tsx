@@ -24,10 +24,22 @@ const destinationImages: Record<string, string> = {
     "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=530&fit=crop&q=80",
   "seoul-autumn":
     "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=800&h=530&fit=crop&q=80",
-  "tropical-island-nz-mountains":
-    "https://images.unsplash.com/photo-1469521669194-babb45599def?w=800&h=530&fit=crop&q=80",
   "singapore-gardens-night":
     "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=530&fit=crop&q=80",
+  "croatia-dubrovnik":
+    "https://images.unsplash.com/photo-1555990538-1e7a4d75aa14?w=800&h=530&fit=crop&q=80",
+  "nicaragua-island":
+    "https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=800&h=530&fit=crop&q=80",
+  "beaver-creek-ski":
+    "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&h=530&fit=crop&q=80",
+  "japan-winter-niseko":
+    "https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=800&h=530&fit=crop&q=80",
+  "paris-vendome":
+    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=530&fit=crop&q=80",
+  "seychelles-beach":
+    "https://images.unsplash.com/photo-1589179447559-26b2ea42f87c?w=800&h=530&fit=crop&q=80",
+  "french-polynesia-overwater":
+    "https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=800&h=530&fit=crop&q=80",
 };
 
 const fallbackImage =
@@ -61,10 +73,42 @@ export default function Home() {
         return { text: "text-accent", icon: Compass };
       case "decision_needed":
         return { text: "text-text-muted", icon: AlertCircle };
+      case "canceled":
+        return { text: "text-text-muted", icon: AlertCircle };
       default:
         return { text: "text-text-muted", icon: Clock };
     }
   };
+
+  // Aggregate costs by year for the Yearly Totals section
+  const years = Array.from(new Set(trips.map((t) => t.year))).sort();
+  type YearTotal = {
+    year: number;
+    cash: number;
+    pointsByProgram: Record<string, number>;
+  };
+  const yearTotals: YearTotal[] = years.map((year) => {
+    const tripsInYear = trips.filter((t) => t.year === year);
+    const pointsByProgram: Record<string, number> = {};
+    let cash = 0;
+    for (const t of tripsInYear) {
+      for (const c of t.costs) {
+        if (c.canceled) continue;
+        if (c.cashUsd) cash += c.cashUsd;
+        if (c.points && c.program) {
+          pointsByProgram[c.program] = (pointsByProgram[c.program] ?? 0) + c.points;
+        }
+      }
+    }
+    return { year, cash, pointsByProgram };
+  });
+  const grandCash = yearTotals.reduce((sum, y) => sum + y.cash, 0);
+  const grandPointsByProgram: Record<string, number> = {};
+  for (const y of yearTotals) {
+    for (const [program, points] of Object.entries(y.pointsByProgram)) {
+      grandPointsByProgram[program] = (grandPointsByProgram[program] ?? 0) + points;
+    }
+  }
 
   return (
     <div className="min-h-screen bg-bg">
@@ -108,7 +152,7 @@ export default function Home() {
         </div>
 
         {/* Trips Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+        <div id="trips-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {sortedTrips.map((trip, index) => {
             const status = getStatusStyle(trip.status);
             const StatusIcon = status.icon;
@@ -164,6 +208,116 @@ export default function Home() {
             );
           })}
         </div>
+
+        {/* ━━━ Year by the Numbers ━━━ */}
+        <section className="mt-24 md:mt-28 pt-14 border-t border-border/60">
+          <div className="text-center mb-12 md:mb-14">
+            <p className="font-mono text-xs tracking-[0.15em] uppercase text-accent mb-3">
+              Cash &amp; Points, Ledgered
+            </p>
+            <h2 className="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-700 text-text leading-[1.15] mb-3">
+              Year by the Numbers
+            </h2>
+            <p className="text-sm md:text-base text-text-secondary font-body mx-auto" style={{ maxWidth: '460px' }}>
+              What each year of travel actually costs — raw totals, no valuations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {yearTotals.map((yt) => {
+              const programEntries = Object.entries(yt.pointsByProgram).filter(
+                ([, v]) => v > 0
+              );
+              return (
+                <div
+                  key={yt.year}
+                  className="p-6 md:p-7 rounded-2xl bg-surface border border-border/60 shadow-card"
+                >
+                  <p className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-text-muted mb-3">
+                    {yt.year}
+                  </p>
+                  <p className="font-display text-[2rem] md:text-[2.4rem] font-700 text-accent leading-none mb-4">
+                    {yt.cash > 0 ? `$${yt.cash.toLocaleString()}` : '—'}
+                  </p>
+                  <p className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-text-muted mb-3">
+                    Cash committed
+                  </p>
+                  {programEntries.length > 0 ? (
+                    <div className="pt-4 border-t border-border/40 space-y-2">
+                      <p className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-text-muted mb-2">
+                        Points
+                      </p>
+                      {programEntries.map(([program, points]) => (
+                        <div
+                          key={program}
+                          className="flex items-baseline justify-between gap-3"
+                        >
+                          <span className="font-body text-xs text-text-secondary truncate">
+                            {program}
+                          </span>
+                          <span className="font-mono text-sm text-text font-500">
+                            {points.toLocaleString()}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="pt-4 border-t border-border/40">
+                      <p className="font-body text-xs text-text-muted italic">
+                        No points logged yet.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Grand Total */}
+            <div className="p-6 md:p-7 rounded-2xl bg-accent/5 border-2 border-accent/30 shadow-card">
+              <p className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-accent mb-3">
+                Grand Total
+              </p>
+              <p className="font-display text-[2rem] md:text-[2.4rem] font-700 text-accent leading-none mb-4">
+                {grandCash > 0 ? `$${grandCash.toLocaleString()}` : '—'}
+              </p>
+              <p className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-text-muted mb-3">
+                All years, cash
+              </p>
+              {Object.entries(grandPointsByProgram).filter(([, v]) => v > 0).length > 0 ? (
+                <div className="pt-4 border-t border-accent/20 space-y-2">
+                  <p className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-text-muted mb-2">
+                    Points across all programs
+                  </p>
+                  {Object.entries(grandPointsByProgram)
+                    .filter(([, v]) => v > 0)
+                    .map(([program, points]) => (
+                      <div
+                        key={program}
+                        className="flex items-baseline justify-between gap-3"
+                      >
+                        <span className="font-body text-xs text-text-secondary truncate">
+                          {program}
+                        </span>
+                        <span className="font-mono text-sm text-text font-600">
+                          {points.toLocaleString()}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              ) : (
+                <div className="pt-4 border-t border-accent/20">
+                  <p className="font-body text-xs text-text-muted italic">
+                    No points logged yet.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <p className="text-center text-xs text-text-muted font-body italic mt-10">
+            Tracked as raw numbers. No cents-per-point valuations applied.
+          </p>
+        </section>
 
       </div>
     </div>

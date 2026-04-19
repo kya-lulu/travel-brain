@@ -48,6 +48,14 @@ export default function RootLayout({
               </li>
               <li>
                 <Link
+                  href="/family"
+                  className="font-body text-sm px-4 py-2.5 rounded-full text-text-muted hover:text-text hover:bg-white transition-all duration-200"
+                >
+                  Family
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/award-tools"
                   className="font-body text-sm px-4 py-2.5 rounded-full text-text-muted hover:text-text hover:bg-white transition-all duration-200"
                 >
