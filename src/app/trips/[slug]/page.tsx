@@ -589,6 +589,30 @@ export default async function TripPage({
                               <span className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-accent">{cost.category}</span>
                               <span className="font-body text-sm text-text font-500">{cost.description}</span>
                             </div>
+                            {(cost.pnr || cost.seat || cost.changePenaltyUsd != null || cost.cancelPenaltyUsd != null) && (
+                              <div className="flex items-baseline gap-3 flex-wrap mt-1">
+                                {cost.pnr && (
+                                  <span className="font-mono text-[0.7rem] text-text-muted">
+                                    <span className="text-text-muted/70">PNR</span> <span className="text-text-secondary">{cost.pnr}</span>
+                                  </span>
+                                )}
+                                {cost.seat && (
+                                  <span className="font-mono text-[0.7rem] text-text-muted">
+                                    <span className="text-text-muted/70">Seat</span> <span className="text-text-secondary">{cost.seat}</span>
+                                  </span>
+                                )}
+                                {cost.changePenaltyUsd != null && cost.changePenaltyUsd > 0 && (
+                                  <span className="font-mono text-[0.7rem] text-text-muted">
+                                    <span className="text-text-muted/70">Change</span> <span className="text-text-secondary">${cost.changePenaltyUsd}</span>
+                                  </span>
+                                )}
+                                {cost.cancelPenaltyUsd != null && cost.cancelPenaltyUsd > 0 && (
+                                  <span className="font-mono text-[0.7rem] text-text-muted">
+                                    <span className="text-text-muted/70">Cancel</span> <span className="text-text-secondary">${cost.cancelPenaltyUsd}</span>
+                                  </span>
+                                )}
+                              </div>
+                            )}
                             {cost.note && (
                               <p className="text-xs text-text-muted font-body mt-1">{cost.note}</p>
                             )}

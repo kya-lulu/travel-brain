@@ -54,7 +54,13 @@ export interface TripCost {
   points?: number;   // raw count, NOT a cash equivalent
   program?: string;  // e.g., "Hyatt", "Hilton FNC", "Turkish Miles&Smiles", "AAdvantage"
   cashUsd?: number;
+  taxesUsd?: number; // taxes/fuel surcharges (informational; typically already included in cashUsd)
+  seat?: string;     // seat assignment if known (e.g., "02K", "14A/14B")
+  pnr?: string;      // confirmation code for easy reference
+  changePenaltyUsd?: number;
+  cancelPenaltyUsd?: number;
   note?: string;
+  source?: string;   // e.g., "Gmail: Delta receipt Apr 18 2026"
   canceled?: boolean; // cancelled items are shown but excluded from totals
 }
 
@@ -152,16 +158,28 @@ export const trips: Trip[] = [
       { date: 'April 29', label: 'Arrive Home', description: 'Arrive Frankfurt 6:00am. Terry & Janelle: FRA → SEA on DE 2032 at 2:15pm, arrive 3:40pm. Parents: FRA → YYZ on DE 2402 at 3:15pm, arrive 5:55pm. Trip complete.', type: 'travel' },
     ],
     costs: [
-      { category: 'hotel', description: 'Shindzela Tent 6 (Terry + Janelle, 2 nts)', cashUsd: 1170, note: 'ZAR 21,680 at booking FX' },
-      { category: 'hotel', description: 'Shindzela Tent 5 (parents, 1 nt)', cashUsd: 586, note: 'ZAR 10,840' },
-      { category: 'hotel', description: 'Shindzela Tent 1 (parents, 1 nt)', cashUsd: 586, note: 'ZAR 10,840' },
-      { category: 'other', description: 'Shindzela conservation levy + vehicle fee', cashUsd: 214, note: 'ZAR 3,950' },
-      { category: 'transfer', description: '3-leg ground transfers (third party)', cashUsd: 400 },
-      { category: 'hotel', description: 'Last Word Kitara (3 nts)', program: 'Preferred Points', points: 0, note: 'Points count TBD' },
-      { category: 'hotel', description: 'Park Hyatt Johannesburg (1 nt, PNR 56460504)', program: 'Hyatt', points: 0, note: 'Points TBD' },
-      { category: 'hotel', description: 'Waldorf Astoria Chicago (1 nt)', program: 'Hilton', points: 0, note: 'Points TBD' },
-      { category: 'hotel', description: 'Saxon Hotel JNB (1 nt)', cashUsd: 0, note: 'Cash TBD' },
-      { category: 'flight', description: 'Flights (BA/Condor/United/Airlink)', note: 'All documented in flights, cash/points not yet captured' },
+      // ─── Flights (Terry + Janelle) ───
+      { category: 'flight', description: 'SEA → ORD (Terry positioning, UA2101)', pnr: 'JT7CSG', note: 'United, booked Mar 24 2026', source: 'Gmail: United eTicket JT7CSG' },
+      { category: 'flight', description: 'SEA → ORD (Janelle positioning, Apr 19)', note: 'PNR lives in Janelle\'s inbox' },
+      { category: 'flight', description: 'ORD → LHR on BA296 (Club World)', pnr: 'EDGBNO', seat: 'Terry 02K · Janelle 02A', note: 'Alaska-ticketed partner award on British Airways', source: 'Gmail: Alaska confirmation EDGBNO' },
+      { category: 'flight', description: 'LHR → JNB on BA55 (Club World)', pnr: 'EDGBNO', seat: 'Terry 59J · Janelle 59K', note: 'Same PNR as ORD→LHR' },
+      { category: 'flight', description: 'JNB → Hoedspruit (Airlink)', pnr: 'XEB2ZT', note: 'Regional hop Apr 23, ~1hr' },
+      { category: 'flight', description: 'JNB → FRA → SEA on Condor (Business, return)', pnr: 'AFR58A', note: 'Apr 28–29 return for Terry + Janelle' },
+      // ─── Flights (Parents: Dorothy + Kam Chiu, out of YYZ) ───
+      { category: 'flight', description: 'YYZ → FRA → JNB on Condor (parents outbound)', pnr: 'LMVEXT', note: 'Apr 12–14 arrival, Alaska-ticketed', source: 'Gmail: Alaska confirmation LMVEXT' },
+      { category: 'flight', description: 'JNB → FRA → YYZ on Condor (parents return)', pnr: 'ARQAHJ', note: 'Apr 28–29 return' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Waldorf Astoria Chicago (1 nt, pre-departure)', program: 'Hilton', pnr: '9086634522999', note: 'Booked via Amex Travel (ZO-AX1039-76004) Mar 27 2026', source: 'Gmail: Amex Travel Chicago confirmation' },
+      { category: 'hotel', description: 'Saxon Hotel JNB (1 nt arrival, Apr 22)', pnr: '9074244467855', note: 'Cash — invoice in Gmail, USD not extractable from HTML' },
+      { category: 'hotel', description: 'Park Hyatt Johannesburg (1 nt, Apr 22)', program: 'Hyatt', pnr: '56460504', note: 'Second room for arrival night' },
+      { category: 'hotel', description: 'Shindzela Tent 6 (Terry + Janelle, 2 nts)', pnr: 'WB12488 / 6200479437', cashUsd: 1170, note: 'ZAR 21,680 @ ~18.5 FX', source: 'Booking.com / Shindzela invoice' },
+      { category: 'hotel', description: 'Shindzela Tent 5 (parents, 1 nt Apr 23)', pnr: 'WB12489 / 5983749295', cashUsd: 586, note: 'ZAR 10,840' },
+      { category: 'hotel', description: 'Shindzela Tent 1 (parents, 1 nt Apr 24)', pnr: 'WB12490 / 5413883735', cashUsd: 586, note: 'ZAR 10,840 — parents swap tents after night 1' },
+      { category: 'hotel', description: 'Last Word Kitara (3 nts, Apr 25–28)', program: 'Preferred Hotels', pnr: '9911SF004182 / 9911SF004183', note: 'Booked on Preferred Points, count not documented' },
+      // ─── Transfers / Fees ───
+      { category: 'other', description: 'Shindzela conservation levy (R450 × 4 pax × 2 nts) + vehicle fee (R350)', cashUsd: 214, note: 'ZAR 3,950' },
+      { category: 'transfer', description: 'Airport transfers via Swift Kruger — HDS → Shindzela → Kitara → HDS', cashUsd: 400, note: '3-leg ground, 3rd-party booked' },
+      { category: 'transfer', description: 'Shindzela → Kitara game-reserve transfer (R3,430 one-way × 2)', cashUsd: 370, note: 'ZAR 6,860 RT for 4 pax — per Shindzela email Apr 6' },
     ],
   },
 
@@ -266,9 +284,13 @@ export const trips: Trip[] = [
       { date: 'May 31', label: 'Fly Home', description: 'SJD 11:20am → SEA 3:56pm on Alaska (conf: IMDKIR). Home by evening.', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'SEA→SJD Delta DL1914 First (Terry, May 25, PNR GMSPZ9)', cashUsd: 380, note: '$380.02 cash + $498.96 eCredit applied' },
-      { category: 'hotel', description: 'Park Hyatt Cabo Del Sol 2 nts (PNR 66455641)', program: 'Hyatt', points: 0, note: 'Points TBD' },
-      { category: 'flight', description: 'Other flights (SFO→SJD, returns)', note: 'Costs not yet documented' },
+      { category: 'flight', description: 'SEA → SJD on Delta DL1914 (First, Z fare)', pnr: 'GMSPZ9', cashUsd: 380, taxesUsd: 88.52, note: '$380.02 paid + $498.96 eCredit applied. Includes $5.60 9/11 + $23.40 US transport tax + $55.52 MX tourism tax + $4.50 PFC.', source: 'Gmail: Delta receipt Apr 18 2026' },
+      { category: 'flight', description: 'SFO → SJD on Alaska (Janelle)', pnr: 'K3NPTC', note: 'Cash not documented' },
+      { category: 'flight', description: 'SJD → SEA on Alaska AS1401 (Terry return)', pnr: 'IMDKIR', note: 'Cash not documented' },
+      { category: 'flight', description: 'SJD → SEA on Delta DL1837 (Janelle return)', pnr: 'JQDOIY', note: 'Cash not documented' },
+      { category: 'hotel', description: 'Park Hyatt Cabo Del Sol (2 nts, May 25–27)', program: 'Hyatt', pnr: '66455641', note: 'Booked on points, count not documented' },
+      { category: 'hotel', description: 'La Paz accommodation (3 nts, May 27–30)', note: 'Not yet booked' },
+      { category: 'transfer', description: 'Cabo → La Paz transfer', note: 'Not yet booked (~$200–300 private)' },
     ],
   },
 
@@ -329,8 +351,14 @@ export const trips: Trip[] = [
       { date: 'August 12', label: 'Fly Home', description: 'ALA 9:00am → IST 13:25. Connect IST → SEA (need to book). Home by evening.', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'IST→FRU Turkish Business (2 pax, PNR RP7MM5)', points: 35000, program: 'Turkish Miles&Smiles', cashUsd: 242, note: '$121/pp × 2' },
-      { category: 'flight', description: 'Other Turkish segments (SEA→IST, ALA→IST, IST→SEA)', note: 'Cash/points not yet documented' },
+      { category: 'flight', description: 'SEA → IST on Turkish Business (Jul 31)', pnr: 'S3BPNY', seat: 'Terry 4A · Janelle 6A', note: 'Cash/points not yet captured' },
+      { category: 'flight', description: 'IST → FRU on Turkish Business A321 (Aug 1, 2 pax)', pnr: 'RP7MM5', points: 35000, program: 'Turkish Miles&Smiles', cashUsd: 242, note: '35K miles + $121/pp × 2' },
+      { category: 'flight', description: 'ALA → IST on Turkish TK0353 Business (Aug 12)', pnr: 'VT8IUE' },
+      { category: 'flight', description: 'IST → SEA on Turkish TK203 Business (Aug 12)', pnr: 'TD67GM' },
+      { category: 'flight', description: 'HEL → SEA on Finnair AY33 (backup)', pnr: 'DFMG2R / 96MPQQ', canceled: true, note: 'Qantas-ticketed, being cancelled per action item' },
+      { category: 'hotel', description: 'Bishkek pre-trek acclimatization (1 nt, Aug 2)', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Yurt stays at Song-Kol Lake (trek)', note: 'Included with trek operator; trek not yet booked' },
+      { category: 'hotel', description: 'Almaty post-trek (Aug 6–12)', note: 'Not yet booked' },
     ],
   },
 
@@ -394,7 +422,17 @@ export const trips: Trip[] = [
       { date: 'Oct 13', label: 'Fly Home', description: 'TPE 15:15 → SEA 21:00 (conf: FA6F6L). Home by evening. Trip complete — 19 days.', type: 'travel' },
     ],
     costs: [
-      { category: 'activity', description: 'Alor dive operator 12 nts all-inclusive', cashUsd: 5500, note: '€4,900 approx' },
+      { category: 'flight', description: 'SEA → SIN on Singapore Airlines Business', pnr: 'F6MWR7', note: 'Booked on points; count not documented' },
+      { category: 'flight', description: 'SIN → CGK on Singapore Airlines Economy', pnr: 'DISMSE' },
+      { category: 'flight', description: 'CGK → KOE on Garuda Indonesia', pnr: 'AENN85' },
+      { category: 'flight', description: 'KOE → ARD on TransNusa', pnr: 'HKSRAV' },
+      { category: 'flight', description: 'AMQ → CGK on Garuda Indonesia', pnr: 'DOSB8U' },
+      { category: 'flight', description: 'CGK → TPE on Air France Business', pnr: 'YRIBKT' },
+      { category: 'flight', description: 'TPE → SEA on EVA Air Business', pnr: 'FA6F6L' },
+      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Sept 25 transit)', program: 'Hyatt', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Oct 9 transit)', program: 'Hyatt', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Taipei hotel (3 nts, Oct 10–13)', note: 'Not yet booked' },
+      { category: 'activity', description: 'Alor dive operator (12 nts all-inclusive liveaboard/resort)', cashUsd: 5500, note: '€4,900 approx at ~1.12 FX' },
     ],
   },
 
@@ -514,7 +552,16 @@ export const trips: Trip[] = [
       { date: 'Jan 4', label: 'Arrive Home', description: 'DOH 7:55am → SEA 11:40am on Qatar QR719 Business (conf: 9BHJHH / 9YPE29). Home by lunch. 12-day, 3-country holiday season trip complete.', type: 'travel' },
     ],
     costs: [
-      { category: 'hotel', description: 'Andaz Singapore + Park Hyatt Maldives (Hyatt points)', program: 'Hyatt', points: 0, note: 'Points counts TBD — confirmations in hand' },
+      { category: 'flight', description: 'SEA → SIN on Singapore SQ027 Business', pnr: 'F6MWR7', note: 'Dec 24, 17hr direct. Cash/points not documented.' },
+      { category: 'flight', description: 'SIN → MLE', note: 'Not yet booked' },
+      { category: 'flight', description: 'MLE → CMB (Maldives → Sri Lanka)', note: 'Not yet booked (~$170 SriLankan)' },
+      { category: 'flight', description: 'CMB → DOH on Qatar QR665 Business', pnr: '9YPE29', note: 'Jan 3, 5hr' },
+      { category: 'flight', description: 'DOH → SEA on Qatar QR719 Business (Qsuites if avail)', pnr: '9BHJHH', note: 'Jan 4; also tied to PNR 9YPE29' },
+      { category: 'hotel', description: 'Andaz Singapore (3 nts, Dec 25–28)', program: 'Hyatt', pnr: '30914538', note: 'Hyatt points — count TBD' },
+      { category: 'hotel', description: 'Park Hyatt Maldives Hadahaa (4 nts, Dec 28–Jan 1, NYE)', program: 'Hyatt', pnr: '25671158', note: 'Hyatt points — count TBD' },
+      { category: 'hotel', description: 'Sri Lanka (2 nts, Jan 1–3)', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Doha layover (Jan 3–4)', note: 'Not yet booked — option to stay at Park Hyatt Doha or use Al Mourjan lounge' },
+      { category: 'transfer', description: 'MLE → Kooddoo domestic flight + speedboat RT to Hadahaa', note: 'Resort arranges, ~$500pp RT typical' },
     ],
   },
   // HAWAII — May 2026
@@ -623,7 +670,14 @@ export const trips: Trip[] = [
       { date: 'Nov 28', label: 'Island Day 3', description: 'Final full day. Morning diving or deep-water snorkeling. Explore the mangroves by kayak. Afternoon spa or total relaxation. Farewell dinner under the stars. Pack for early departure.', type: 'rest' },
       { date: 'Nov 29', label: 'Depart Calala', description: 'Early 6am checkout. Charter flight back to Managua. Connect to return flights MGA → SEA (needs booking).', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      { category: 'flight', description: 'SEA → MIA on Alaska AS311', pnr: 'WUBULX', note: 'Nov 23, booked Apr 7 2026' },
+      { category: 'flight', description: 'MIA → MGA on American AA1369', pnr: 'KLKSII', program: 'AAdvantage', note: 'Award booking — points count not documented' },
+      { category: 'flight', description: 'MGA → SEA return', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Managua hotel (1–2 nts, Nov 23–25)', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Calala Island (4 nts, Nov 25–29, all-inclusive)', pnr: '1000415272', note: 'Private island, cost not documented — typically $1,500–2,500/nt all-in' },
+      { category: 'transfer', description: 'Managua ↔ Calala charter (Cessna, ~45 min)', note: 'Included with resort (confirm)' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
@@ -864,7 +918,10 @@ export const trips: Trip[] = [
     ],
     itinerary: [],
     costs: [
-      { category: 'flight', description: 'SEA→IST Turkish TK204 Business (Terry only, PNR S46R5Q)', points: 65000, program: 'Turkish Miles&Smiles', cashUsd: 219, note: '$190 fuel + $29 tax' },
+      { category: 'flight', description: 'SEA → IST on Turkish TK204 (Business, I fare)', pnr: 'S46R5Q', seat: 'Terry 03K', points: 65000, program: 'Turkish Miles&Smiles', cashUsd: 219, taxesUsd: 29, changePenaltyUsd: 70, cancelPenaltyUsd: 170, note: '$190 fuel + $29 tax. Terry only on PNR — Janelle not on this ticket.', source: 'Gmail: Turkish Airlines S46R5Q Apr 17 2026' },
+      { category: 'flight', description: 'IST → SEZ (connecting leg)', note: 'Not yet booked — needs separate Turkish award (~20K Miles&Smiles in J)' },
+      { category: 'flight', description: 'SEZ → IST → SEA (return)', note: 'Not yet booked' },
+      { category: 'hotel', description: 'Waldorf Astoria Platte Island (5–7 nts, planned)', program: 'Hilton FNC', note: 'Not yet booked — will use Hilton free-night certificates' },
     ],
   },
 
