@@ -1,4 +1,4 @@
-export type TripStatus = 'booked' | 'partially_booked' | 'needs_action' | 'planning' | 'decision_needed' | 'canceled';
+export type TripStatus = 'booked' | 'partially_booked' | 'needs_action' | 'planning' | 'decision_needed' | 'canceled' | 'complete';
 
 export interface Flight {
   segment: number;
@@ -100,8 +100,8 @@ export const trips: Trip[] = [
     dates: 'April 12–29, 2026',
     month: 'April',
     year: 2026,
-    status: 'partially_booked',
-    statusLabel: 'Partially Booked',
+    status: 'complete',
+    statusLabel: 'Complete',
     travelers: '4 adults (Terry Lin, Janelle Tam, Dorothy Fong, Kam Chiu Tam)',
     heroImage: 'kruger-safari-lion',
     flights: [
@@ -111,6 +111,7 @@ export const trips: Trip[] = [
       { segment: 3, date: '2026-04-22', route: 'LHR → JNB', time: '19:00 → 06:00 +1', airline: 'British Airways (BA55)', cabin: 'Business (Club World)', confirmation: 'EDGBNO', status: 'booked', notes: '11hr flight. Terry seat 59J, Janelle seat 59K. Arrive JNB April 23. Ticketed as Alaska.' },
       // ── Everyone: Hoedspruit ──
       { segment: 4, date: '2026-04-23', route: 'JNB → HDS (Hoedspruit)', time: '10:30am → 11:30am', airline: 'Airlink', confirmation: 'XEB2ZT', status: 'booked', notes: 'Regional hop, transfer to Shindzela' },
+      { segment: 4.5, date: '2026-04-28', route: 'HDS (Hoedspruit) → JNB', airline: 'Airlink', status: 'booked', notes: 'Return hop after Kitara checkout — connects to international departure same day' },
       // ── Terry & Janelle: Return (to Seattle) ──
       { segment: 5, date: '2026-04-28', route: 'JNB → FRA', time: '6:35pm → 6:00am +1', airline: 'Condor (DE 2289)', cabin: 'Business', confirmation: 'AFR58A', status: 'booked', notes: '8h 15min layover in Frankfurt' },
       { segment: 6, date: '2026-04-29', route: 'FRA → SEA', time: '2:15pm → 3:40pm', airline: 'Condor (DE 2032)', cabin: 'Business', confirmation: 'AFR58A', status: 'booked', notes: 'Arrive Seattle' },
@@ -122,7 +123,6 @@ export const trips: Trip[] = [
       { segment: 10, date: '2026-04-29', route: 'FRA → YYZ', time: '3:15pm → 5:55pm', airline: 'Condor (DE 2402)', cabin: 'Business', confirmation: 'ARQAHJ', status: 'booked', notes: 'Parents arrive Toronto' },
     ],
     hotels: [
-      { property: 'Waldorf Astoria Chicago', location: 'Chicago, IL', checkIn: '2026-04-20', checkOut: '2026-04-21', program: 'Hilton', status: 'booked', notes: 'Conf: 9086634522999. Pre-departure stopover.' },
       { property: 'Saxon Hotel, Villas and Spa', location: 'Johannesburg, South Africa', checkIn: '2026-04-22', checkOut: '2026-04-23', status: 'booked', notes: 'Conf: 9074244467855. Arrival night JNB.' },
       { property: 'Park Hyatt Johannesburg', location: 'Johannesburg, South Africa', checkIn: '2026-04-22', checkOut: '2026-04-23', program: 'Hyatt', status: 'booked', notes: 'Conf: 56460504. Second room JNB arrival night.' },
       { property: 'Shindzela Tented Camp', location: 'Timbavati Reserve', checkIn: '2026-04-23', checkOut: '2026-04-25', status: 'booked', cost: 'R47,310 ZAR (~$2,557 USD for 4 pax)', notes: 'Conf: 6200479437 / 5983749295 / 5413883735. Intimate bush camp, 5–8 guests per group.' },
@@ -159,27 +159,26 @@ export const trips: Trip[] = [
     ],
     costs: [
       // ─── Flights (Terry + Janelle) ───
-      { category: 'flight', description: 'SEA → ORD (Terry positioning, UA2101)', pnr: 'JT7CSG', note: 'United, booked Mar 24 2026', source: 'Gmail: United eTicket JT7CSG' },
-      { category: 'flight', description: 'SEA → ORD (Janelle positioning, Apr 19)', note: 'PNR lives in Janelle\'s inbox' },
-      { category: 'flight', description: 'ORD → LHR on BA296 (Club World)', pnr: 'EDGBNO', seat: 'Terry 02K · Janelle 02A', note: 'Alaska-ticketed partner award on British Airways', source: 'Gmail: Alaska confirmation EDGBNO' },
-      { category: 'flight', description: 'LHR → JNB on BA55 (Club World)', pnr: 'EDGBNO', seat: 'Terry 59J · Janelle 59K', note: 'Same PNR as ORD→LHR' },
-      { category: 'flight', description: 'JNB → Hoedspruit (Airlink)', pnr: 'XEB2ZT', note: 'Regional hop Apr 23, ~1hr' },
-      { category: 'flight', description: 'JNB → FRA → SEA on Condor (Business, return)', pnr: 'AFR58A', note: 'Apr 28–29 return for Terry + Janelle' },
+      { category: 'flight', description: 'SEA → ORD (Terry positioning, UA2101)', pnr: 'JT7CSG', cashUsd: 500, note: 'United, booked Mar 24 2026. Cash: ~$500.', source: 'Gmail: United eTicket JT7CSG' },
+      { category: 'flight', description: 'SEA → ORD (Janelle positioning, Apr 19)', cashUsd: 500, note: 'PNR lives in Janelle\'s inbox. Cash: ~$500.' },
+      { category: 'flight', description: 'ORD → LHR → JNB on BA296 + BA55 (Club World, Terry + Janelle)', pnr: 'EDGBNO', points: 260000, program: 'Alaska Mileage Plan', cashUsd: 900, seat: 'Terry 02K/59J · Janelle 02A/59K', note: '130K AS + $450 taxes per person × 2 pax. Single PNR for both ORD-LHR + LHR-JNB legs.', source: 'Gmail: Alaska confirmation EDGBNO' },
+      { category: 'flight', description: 'JNB → Hoedspruit roundtrip (Airlink, 4 pax — outbound Apr 23 + return Apr 28)', pnr: 'XEB2ZT', cashUsd: 400, note: 'Regional hop both directions, ~1hr each way. Family roundtrip total cash; per-person breakdown not captured.' },
+      { category: 'flight', description: 'JNB → FRA → SEA on Condor (Business, Terry + Janelle return)', pnr: 'AFR58A', points: 220000, program: 'Alaska Mileage Plan', cashUsd: 600, note: '110K AS + $300 taxes per person × 2 pax. Apr 28–29.' },
       // ─── Flights (Parents: Dorothy + Kam Chiu, out of YYZ) ───
-      { category: 'flight', description: 'YYZ → FRA → JNB on Condor (parents outbound)', pnr: 'LMVEXT', note: 'Apr 12–14 arrival, Alaska-ticketed', source: 'Gmail: Alaska confirmation LMVEXT' },
-      { category: 'flight', description: 'JNB → FRA → YYZ on Condor (parents return)', pnr: 'ARQAHJ', note: 'Apr 28–29 return' },
+      { category: 'flight', description: 'YYZ → FRA → JNB on Condor (parents outbound)', pnr: 'LMVEXT', note: 'Apr 12–14 arrival, Alaska-ticketed. Points/cash TBD — likely similar to return (~180K AS + ~$600 cash).', source: 'Gmail: Alaska confirmation LMVEXT' },
+      { category: 'flight', description: 'JNB → FRA → YYZ on Condor (parents return)', pnr: 'ARQAHJ', points: 180000, program: 'Alaska Mileage Plan', cashUsd: 600, note: '90K AS + $300 taxes per person × 2 pax. Apr 28–29.' },
       // ─── Lodging ───
-      { category: 'hotel', description: 'Waldorf Astoria Chicago (1 nt, pre-departure)', program: 'Hilton', pnr: '9086634522999', note: 'Booked via Amex Travel (ZO-AX1039-76004) Mar 27 2026', source: 'Gmail: Amex Travel Chicago confirmation' },
-      { category: 'hotel', description: 'Saxon Hotel JNB (1 nt arrival, Apr 22)', pnr: '9074244467855', note: 'Cash — invoice in Gmail, USD not extractable from HTML' },
-      { category: 'hotel', description: 'Park Hyatt Johannesburg (1 nt, Apr 22)', program: 'Hyatt', pnr: '56460504', note: 'Second room for arrival night' },
+      { category: 'hotel', description: 'Saxon Hotel JNB (1 nt arrival, Apr 22)', pnr: '9074244467855', note: 'Cash — invoice in Gmail, USD not extractable from HTML. Pending verification.' },
+      { category: 'hotel', description: 'Park Hyatt Johannesburg (1 nt, Apr 22)', program: 'Hyatt', pnr: '56460504', note: 'Second room for arrival night. Hyatt points count pending verification.' },
       { category: 'hotel', description: 'Shindzela Tent 6 (Terry + Janelle, 2 nts)', pnr: 'WB12488 / 6200479437', cashUsd: 1170, note: 'ZAR 21,680 @ ~18.5 FX', source: 'Booking.com / Shindzela invoice' },
       { category: 'hotel', description: 'Shindzela Tent 5 (parents, 1 nt Apr 23)', pnr: 'WB12489 / 5983749295', cashUsd: 586, note: 'ZAR 10,840' },
       { category: 'hotel', description: 'Shindzela Tent 1 (parents, 1 nt Apr 24)', pnr: 'WB12490 / 5413883735', cashUsd: 586, note: 'ZAR 10,840 — parents swap tents after night 1' },
       { category: 'hotel', description: 'Last Word Kitara (3 nts, Apr 25–28)', program: 'Preferred Hotels', pnr: '9911SF004182 / 9911SF004183', note: 'Booked on Preferred Points, count not documented' },
-      // ─── Transfers / Fees ───
+      // ─── Transfers / Fees / Tips ───
       { category: 'other', description: 'Shindzela conservation levy (R450 × 4 pax × 2 nts) + vehicle fee (R350)', cashUsd: 214, note: 'ZAR 3,950' },
       { category: 'transfer', description: 'Airport transfers via Swift Kruger — HDS → Shindzela → Kitara → HDS', cashUsd: 400, note: '3-leg ground, 3rd-party booked' },
       { category: 'transfer', description: 'Shindzela → Kitara game-reserve transfer (R3,430 one-way × 2)', cashUsd: 370, note: 'ZAR 6,860 RT for 4 pax — per Shindzela email Apr 6' },
+      { category: 'other', description: 'Tips at Shindzela + Last Word Kitara (4 pax across 5 lodge nights)', cashUsd: 600, note: 'Combined gratuities for guides + general staff at both lodges' },
     ],
   },
 
@@ -229,7 +228,19 @@ export const trips: Trip[] = [
       { date: 'May 25', label: 'Half Moon Bay', description: 'Check into Ritz-Carlton Half Moon Bay (tentative). Relax day before flying to Cabo.', type: 'rest' },
       { date: 'May 26', label: 'Fly to Cabo', description: 'Check out Ritz-Carlton. Drive to SFO, return rental car. SFO → SJD 10:50am → 2:02pm on Alaska (conf: K3NPTC). Meet Terry in Cabo for Mobulas trip.', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → SFO (Janelle outbound, May 20)', note: 'BOOKED — confirmation lives in janelle.tam@gmail.com (not in Terry\'s inbox). PNR + airline + cabin + cash TBD until Janelle\'s Gmail is accessible. Cash purchase, amount TBD.' },
+      { category: 'flight', description: 'SFO → SJD (Janelle, Alaska Airlines, May 26)', pnr: 'K3NPTC', note: 'Booked Economy on cash. Amount lives in janelle.tam@gmail.com — TBD until accessible.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Sycamore (AoA retreat venue, 4 nts May 20–24)', note: 'Booked as part of AoA retreat package. Lodging cost may be bundled with program fee — verify.' },
+      { category: 'hotel', description: 'Ritz-Carlton Half Moon Bay (1 nt May 25–26)', program: 'Marriott Bonvoy', note: 'Pending — not yet booked. Bonvoy points or cash TBD; cash rate ~$400–600/night.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Art of the Accomplishment retreat program fee', note: 'Program tuition separate from lodging. Cost TBD.' },
+      // ─── Transfers / Rental ───
+      { category: 'transfer', description: 'National rental car (6 days, SFO pickup May 20 → return May 26)', note: 'Booking pending — ~$300–450 expected for compact/mid-size.' },
+      { category: 'other', description: 'Fuel + meals + incidentals (rough buffer)', note: 'Estimate ~$200–400 across the 6 days; many meals included in retreat package.' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
@@ -249,10 +260,10 @@ export const trips: Trip[] = [
     travelers: '2 adults',
     heroImage: 'mobula-rays-jumping',
     flights: [
-      { segment: 1, date: '2026-05-26', route: 'SEA → SJD', time: '9:25am → 2:00pm', airline: 'Delta Air Lines (DL1914)', cabin: 'Economy', confirmation: 'GMSPZ9', status: 'booked', notes: 'Terry flight' },
-      { segment: 2, date: '2026-05-26', route: 'SFO → SJD', time: '10:50am → 2:02pm', airline: 'Alaska Airlines', cabin: 'Economy', confirmation: 'K3NPTC', status: 'booked', notes: 'Janelle flight' },
+      { segment: 1, date: '2026-05-25', route: 'SEA → SJD', time: '9:45am → 2:09pm', airline: 'Delta Air Lines (DL1914)', cabin: 'First (Z fare)', confirmation: 'GMSPZ9', status: 'booked', notes: 'Terry flight — rebooked & upgraded from May 26 Economy to May 25 First Class. Ticket 0062423684425.' },
+      { segment: 2, date: '2026-05-26', route: 'SFO → SJD', time: '10:50am → 2:02pm', airline: 'Alaska Airlines', cabin: 'Economy', confirmation: 'K3NPTC', status: 'booked', notes: 'Janelle flight (also in Janelle SF trip)' },
       { segment: 3, date: '2026-05-31', route: 'SJD → SEA', time: '3:30pm → 8:00pm', airline: 'Alaska Airlines (AS1401)', cabin: 'Economy', confirmation: 'IMDKIR', status: 'booked', notes: 'Terry return' },
-      { segment: 4, date: '2026-05-31', route: 'SJD → SEA', time: '3:14pm → 7:53pm', airline: 'Delta Air Lines (DL1837)', confirmation: 'JQDOIY', status: 'booked', notes: 'Alternative return flight' },
+      { segment: 4, date: '2026-05-31', route: 'SJD → SEA', time: '3:14pm → 7:53pm', airline: 'Delta Air Lines (DL1837)', confirmation: 'JQDOIY', status: 'booked', notes: 'Janelle return' },
     ],
     hotels: [
       { property: 'Park Hyatt Cabo Del Sol', location: 'Cabo San Lucas', checkIn: '2026-05-25', checkOut: '2026-05-27', program: 'Hyatt', status: 'booked', notes: 'Conf: 66455641. Arrives day before flights.' },
@@ -276,21 +287,30 @@ export const trips: Trip[] = [
       { program: 'Alaska Mileage Plan', route: 'SFO–SJD + SJD–SEA', note: 'Janelle\'s flights on Alaska. Consider Alaska companion fare for future Cabo trips.' },
     ],
     itinerary: [
-      { date: 'May 26', label: 'Fly to Cabo', description: 'Terry: SEA 9:45am → SJD 2:10pm. Janelle: SFO 10:50am → SJD 2:02pm (conf: K3NPTC). Meet at Park Hyatt Los Cabos. Check in. Dinner and early night before expedition.', type: 'travel' },
+      { date: 'May 25', label: 'Terry arrives Cabo (solo)', description: 'Terry: SEA 9:45am → SJD 2:09pm on Delta DL1914 First Class (rebooked from May 26 Economy). Check in at Park Hyatt Los Cabos. Solo evening — adjust to Baja time before Janelle arrives.', type: 'travel' },
+      { date: 'May 26', label: 'Janelle arrives Cabo', description: 'Janelle: SFO 10:50am → SJD 2:02pm (conf: K3NPTC). Reunite at Park Hyatt Los Cabos. Dinner and early night before expedition.', type: 'travel' },
       { date: 'May 27', label: 'Transfer to La Paz & Prep', description: 'Check out Park Hyatt. Transfer Cabo → La Paz (~2.5 hours). Check into La Paz accommodations. Afternoon briefing with expedition operator. Gear check and safety orientation. Explore the Malecón. Early dinner.', type: 'travel' },
       { date: 'May 28', label: 'Expedition Day 1', description: 'Early 5am departure by boat into the Sea of Cortez. 6–8 hours on the water searching for mobula ray aggregations. Snorkeling with rays when schools are located. Possible whale shark or sea lion encounters. Return to port by afternoon.', type: 'activity' },
       { date: 'May 29', label: 'Expedition Day 2', description: 'Second day on the water. Different location based on spotter reports. Peak breaching activity often mid-morning. Underwater photography opportunities. Marine biologist guide context on ray behavior.', type: 'activity' },
       { date: 'May 30', label: 'Expedition Day 3 or Rest', description: 'Optional third expedition day or rest/explore day. La Paz markets, seafood restaurants, sunset on the Malecón. Transfer back to Cabo area if needed for morning flight.', type: 'flexible' },
-      { date: 'May 31', label: 'Fly Home', description: 'SJD 11:20am → SEA 3:56pm on Alaska (conf: IMDKIR). Home by evening.', type: 'travel' },
+      { date: 'May 31', label: 'Fly Home', description: 'Terry: SJD 3:30pm → SEA 8:00pm on Alaska AS1401 (conf: IMDKIR). Janelle: SJD 3:14pm → SEA 7:53pm on Delta DL1837 (conf: JQDOIY). Home by evening.', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'SEA → SJD on Delta DL1914 (First, Z fare)', pnr: 'GMSPZ9', cashUsd: 380, taxesUsd: 88.52, note: '$380.02 paid + $498.96 eCredit applied. Includes $5.60 9/11 + $23.40 US transport tax + $55.52 MX tourism tax + $4.50 PFC.', source: 'Gmail: Delta receipt Apr 18 2026' },
-      { category: 'flight', description: 'SFO → SJD on Alaska (Janelle)', pnr: 'K3NPTC', note: 'Cash not documented' },
-      { category: 'flight', description: 'SJD → SEA on Alaska AS1401 (Terry return)', pnr: 'IMDKIR', note: 'Cash not documented' },
-      { category: 'flight', description: 'SJD → SEA on Delta DL1837 (Janelle return)', pnr: 'JQDOIY', note: 'Cash not documented' },
-      { category: 'hotel', description: 'Park Hyatt Cabo Del Sol (2 nts, May 25–27)', program: 'Hyatt', pnr: '66455641', note: 'Booked on points, count not documented' },
-      { category: 'hotel', description: 'La Paz accommodation (3 nts, May 27–30)', note: 'Not yet booked' },
-      { category: 'transfer', description: 'Cabo → La Paz transfer', note: 'Not yet booked (~$200–300 private)' },
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → SJD on Delta DL1914 (First, Z fare, Terry)', pnr: 'GMSPZ9', cashUsd: 380, taxesUsd: 88.52, note: '$380.02 paid + $498.96 eCredit applied. Includes $5.60 9/11 + $23.40 US transport tax + $55.52 MX tourism tax + $4.50 PFC. Rebooked from May 26 Economy to May 25 First. Remaining eCredit $118.94 on #0060540847087 (verify expiry).', source: 'Gmail: Delta receipt Apr 18 2026' },
+      { category: 'flight', description: 'SFO → SJD on Alaska (Janelle, May 26)', pnr: 'K3NPTC', note: 'Cash purchase. Amount lives in janelle.tam@gmail.com — TBD until accessible.' },
+      { category: 'flight', description: 'SJD → SEA on Alaska AS1401 (Terry return)', pnr: 'IMDKIR', points: 18000, program: 'Alaska Mileage Plan', note: '~18K AS award per Terry\'s recall. Exact points + cash taxes lives in janelle.tam@gmail.com — verify when accessible.' },
+      { category: 'flight', description: 'SJD → SEA on Delta DL1837 (Janelle return)', pnr: 'JQDOIY', points: 18000, note: '~18K points per Terry\'s recall. Program (likely Delta SkyMiles or AS partner) + exact points + cash taxes lives in janelle.tam@gmail.com — verify when accessible.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Park Hyatt Cabo Del Sol (2 nts, May 25–27)', program: 'Hyatt', pnr: '66455641', points: 35000, note: '~35K Hyatt points per Terry\'s recall — VERIFY against current chart (PH Cabo is Cat 7: 30K standard, 25K off-peak, 40K peak per night, so 2 nts likely 60–80K total — 35K may be per-night not total).' },
+      // ─── Activities (includes lodging via operator) ───
+      { category: 'activity', description: 'Dive Ninja mobula expedition (incl. La Paz lodging, May 27–30)', note: 'BOOKED with Dive Ninja Expeditions. Package includes 3 nights La Paz accommodation + expedition days. Cost details TBD — confirm cash total + days included.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'SJD airport → Park Hyatt Cabo (Terry May 25, Janelle May 26)', note: 'Hyatt arranges or Uber. ~$50–80 each direction.' },
+      { category: 'transfer', description: 'Cabo → La Paz transfer (May 27)', note: 'May be included in Dive Ninja package — verify. Otherwise ~$200–300 private car, $50–80 shuttle.' },
+      { category: 'transfer', description: 'La Paz → SJD return transfer (May 31 morning)', note: 'May be included in Dive Ninja package — verify. Otherwise ~$200–250 private, $50–75 shuttle.' },
+      // ─── Other ───
+      { category: 'other', description: 'Meals + drinks + dive gear rental + reef-safe sunscreen + tips', note: 'Estimate ~$400–600 for 6 days (2 pax). Some meals may be included in Dive Ninja package.' },
     ],
   },
 
@@ -323,13 +343,12 @@ export const trips: Trip[] = [
       { property: 'TBD — Almaty', location: 'Almaty, Kazakhstan', status: 'not_booked', notes: 'Post-trek recovery nights before Aug 12 departure' },
     ],
     actionItems: [
-      { text: 'Book IST → SEA return flight for Aug 12 (FinnAir cancelled — need replacement)', urgent: true },
-      { text: 'Cancel Janelle\'s Qantas booking DFMG2R (90K + €68.82)', urgent: true },
-      { text: 'Book Bishkek hotel for Aug 2 arrival night', urgent: true },
+      { text: 'Confirm Janelle\'s Qantas/Finnair DFMG2R cancellation completed (90K refund?)', urgent: true },
+      { text: 'Book Bishkek hotel for Aug 2 arrival night (4:30am — request early check-in)', urgent: true },
       { text: 'Book Almaty hotel for Aug 6–12 (post-trek recovery)', urgent: true },
-      { text: 'Research and confirm horse trekking operator', urgent: true },
-      { text: 'Verify Kyrgyzstan e-Visa process', urgent: false },
-      { text: 'Confirm Kazakhstan visa-free entry', urgent: false },
+      { text: 'Confirm Gusary Stables trek details: dates, cost, transfers in/out', urgent: false },
+      { text: 'Obtain Kyrgyzstan e-Visa (online, 24–48 hrs; do by mid-July)', urgent: false },
+      { text: 'Confirm Kazakhstan visa-free entry (US passport, 30-day stay)', urgent: false },
     ],
     intel: [
       { title: 'The Horse in Kyrgyz Culture', content: 'In Kyrgyzstan, the horse is central to identity, spirituality, and survival on the high Tian Shan mountains. Kyrgyz nomadic herders have lived on horseback for over 1,000 years. The phrase "Kyrgyz without a horse is not Kyrgyz" encapsulates the cultural weight. Traditional games like buzkashi remain central to festivals. Staying in a yurt community and learning to ride in Kyrgyz tradition—eating fermented horse milk (kumis) with herders, sleeping in a felt home—is an immersive cultural experience. August is peak trekking season.' },
@@ -337,7 +356,10 @@ export const trips: Trip[] = [
       { title: 'Bishkek & Almaty', content: 'Bishkek (2,600 ft) is your acclimatization point. Osh Bazaar is the city\'s soul: spices, textiles, dried fruits, leather goods, street food. Almaty, Kazakhstan\'s former capital, has strong coffee culture, hiking access, and Green Bazaar which rivals Osh Bazaar for sensory overload. Both cities offer great post-trek recovery.' },
     ],
     awardTips: [
-      { program: 'Turkish Airlines', route: 'SEA–IST–FRU', cost: '35K + $121/person', note: 'Already booked outbound. Return IST–SEA needs booking.' },
+      { program: 'Turkish Miles&Smiles', route: 'SEA → IST', cost: '65K + ~$300/pp', note: 'Outbound long-haul. 130K miles + $600 cash for 2 pax.' },
+      { program: 'Turkish Miles&Smiles', route: 'IST → FRU (Bishkek)', cost: '35K + $121/pp', note: 'Outbound regional. 70K miles + $242 cash for 2 pax.' },
+      { program: 'Turkish Miles&Smiles', route: 'ALA → IST', cost: '35K + $180/pp', note: 'Return regional. 70K miles + $360 cash for 2 pax.' },
+      { program: 'Turkish Miles&Smiles', route: 'IST → SEA', cost: '135K + ~$300/pp', note: 'Return long-haul. 270K miles + $600 cash for 2 pax. Total Turkish miles trip-wide: ~540K for 2 pax.' },
     ],
     itinerary: [
       { date: 'July 31', label: 'Depart Seattle', description: 'SEA 19:10 → IST 17:00 next day (conf: S3BPNY). Seats 4A & 6A. Overnight flight.', type: 'travel' },
@@ -351,14 +373,27 @@ export const trips: Trip[] = [
       { date: 'August 12', label: 'Fly Home', description: 'ALA 9:00am → IST 13:25. Connect IST → SEA (need to book). Home by evening.', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'SEA → IST on Turkish Business (Jul 31)', pnr: 'S3BPNY', seat: 'Terry 4A · Janelle 6A', note: 'Cash/points not yet captured' },
-      { category: 'flight', description: 'IST → FRU on Turkish Business A321 (Aug 1, 2 pax)', pnr: 'RP7MM5', points: 35000, program: 'Turkish Miles&Smiles', cashUsd: 242, note: '35K miles + $121/pp × 2' },
-      { category: 'flight', description: 'ALA → IST on Turkish TK0353 Business (Aug 12)', pnr: 'VT8IUE' },
-      { category: 'flight', description: 'IST → SEA on Turkish TK203 Business (Aug 12)', pnr: 'TD67GM' },
-      { category: 'flight', description: 'HEL → SEA on Finnair AY33 (backup)', pnr: 'DFMG2R / 96MPQQ', canceled: true, note: 'Qantas-ticketed, being cancelled per action item' },
-      { category: 'hotel', description: 'Bishkek pre-trek acclimatization (1 nt, Aug 2)', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Yurt stays at Song-Kol Lake (trek)', note: 'Included with trek operator; trek not yet booked' },
-      { category: 'hotel', description: 'Almaty post-trek (Aug 6–12)', note: 'Not yet booked' },
+      // ─── Flights — Outbound ───
+      { category: 'flight', description: 'SEA → IST on Turkish Business (Jul 31, 2 pax)', pnr: 'S3BPNY', seat: 'Terry 4A · Janelle 6A', points: 130000, program: 'Turkish Miles&Smiles', cashUsd: 600, note: '65K miles + $300 cash per person × 2 pax = 130K miles + $600 cash.' },
+      { category: 'flight', description: 'IST → FRU on Turkish Business A321 (Aug 1, 2 pax)', pnr: 'RP7MM5', points: 70000, program: 'Turkish Miles&Smiles', cashUsd: 242, note: '35K miles + $121 cash per person × 2 pax = 70K miles + $242 cash.' },
+      // ─── Flights — Return ───
+      { category: 'flight', description: 'ALA → IST on Turkish TK0353 Business (Aug 12, 2 pax)', pnr: 'VT8IUE', points: 70000, program: 'Turkish Miles&Smiles', cashUsd: 360, note: '35K miles + $180 cash per person × 2 pax = 70K miles + $360 cash.' },
+      { category: 'flight', description: 'IST → SEA on Turkish TK203 Business (Aug 12, 2 pax)', pnr: 'TD67GM', points: 270000, program: 'Turkish Miles&Smiles', cashUsd: 600, note: '135K miles + $300 cash per person × 2 pax = 270K miles + $600 cash. Replaced cancelled Finnair AY33 backup.' },
+      { category: 'flight', description: 'HEL → SEA on Finnair AY33 (backup, cancelled)', pnr: 'DFMG2R / 96MPQQ', canceled: true, note: 'Qantas-ticketed alternative return — confirm cancellation processed and 90K Janelle refund received.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Bishkek hotel (1–2 nts, Aug 2)', note: 'Not yet booked. Target boutique/mid-range; ~$80–150/night for 2 pax. Recommendations: Ak-Keme Hotel, Granite Bishkek.' },
+      { category: 'hotel', description: 'Yurt stays at Song-Kol Lake (3 nts trek, Aug 3–6)', note: 'Bundled with Gusary Stables trek operator — see Activities below.' },
+      { category: 'hotel', description: 'Almaty hotel (6 nts, Aug 6–12)', note: 'Not yet booked. Recovery base — Ritz-Carlton (luxury w/ spa) or Hilton Garden Inn (mid-range). $150–500/night × 6 = $900–3,000.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Gusary Stables horse trek — Song-Kol Lake (Aug 3–6)', note: 'BOOKED with Gusary Stables. Includes horses, guides, all meals, yurt accommodation. Cost details TBD — confirm trek days, total cash, what\'s included (transfers in/out).' },
+      { category: 'activity', description: 'Trek guide gratuities (~$10–20/pp/day × 2 pax × 4 days)', note: 'Cash for herder guides at end of trek — ~$80–160 USD or KGS equivalent.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'Bishkek airport → hotel (Aug 2, 4:30am arrival)', note: 'Yandex Taxi / Uber. ~$10–20.' },
+      { category: 'transfer', description: 'Trek-end → Almaty transfer (Aug 6)', note: 'Verify if Gusary Stables includes Almaty drop-off. Otherwise private car (~$200) or shared transfer (~$80–150).' },
+      { category: 'transfer', description: 'Almaty hotel → airport (Aug 12)', note: 'Yandex Taxi / Uber. ~$10–20.' },
+      // ─── Other ───
+      { category: 'other', description: 'Kyrgyzstan e-Visa (~$60/person × 2)', cashUsd: 120, note: 'Apply 24–48 hrs in advance at evisa.e-gov.kg.' },
+      { category: 'other', description: 'Meals (Bishkek + Almaty) + market shopping + drinks', note: 'Estimate ~$400–800 across 13 days for 2 pax. Trek meals included.' },
     ],
   },
 
@@ -367,72 +402,86 @@ export const trips: Trip[] = [
   // ═══════════════════════════════════════════════════════
   {
     slug: 'iop-sep-2026',
-    title: 'IOP — Indonesia & Taipei',
-    subtitle: 'Alor Diving + Taipei Stopover',
+    title: 'IOP — Indo Ocean Project',
+    subtitle: 'Alor Diving Expedition + Taipei Stopover',
     region: 'Southeast Asia',
     country: 'Indonesia & Taiwan',
-    dates: 'September 24 – October 13, 2026',
+    dates: 'September 24 – October 12, 2026',
     month: 'September',
     year: 2026,
     status: 'partially_booked',
     statusLabel: 'Partially Booked',
     travelers: 'Terry',
     flights: [
-      { segment: 1, date: '2026-09-24', route: 'SEA → SIN', time: '10:15am → 17:35 +1', airline: 'Singapore Airlines', cabin: 'Business', confirmation: 'F6MWR7', status: 'booked', notes: 'Arrive Singapore Sept 25' },
-      { segment: 2, date: '2026-09-25', route: 'SIN → CGK', time: '18:30 → 19:20', airline: 'Singapore Airlines', cabin: 'Economy', confirmation: 'DISMSE', status: 'booked', notes: 'Same evening connection' },
-      { segment: 3, date: '2026-09-26', route: 'CGK → KOE', time: '7:05am → 11:05am', airline: 'Garuda Indonesia', cabin: 'Economy', confirmation: 'AENN85', status: 'booked', notes: 'Jakarta to Kupang' },
-      { segment: 4, date: '2026-09-27', route: 'KOE → ARD', time: '8:30am → 9:30am', airline: 'TransNusa', cabin: 'Economy', confirmation: 'HKSRAV', status: 'booked', notes: 'Kupang to Alor' },
-      { segment: 5, date: '2026-10-09', route: 'AMQ → CGK', time: '4:15pm → 5:40pm', airline: 'Garuda Indonesia', cabin: 'Economy', confirmation: 'DOSB8U', status: 'booked', notes: 'Ambon to Jakarta' },
-      { segment: 6, date: '2026-10-10', route: 'CGK → TPE', time: '2:40pm → 9:10pm', airline: 'Air France', cabin: 'Business', confirmation: 'YRIBKT', status: 'booked', notes: 'Jakarta to Taipei' },
-      { segment: 7, date: '2026-10-13', route: 'TPE → SEA', time: '15:15 → 21:00', airline: 'EVA Air', cabin: 'Business', confirmation: 'FA6F6L', status: 'booked', notes: 'Alt: 21:50 LAX + connection, or 8:45am departure' },
+      { segment: 1, date: '2026-09-24', route: 'SEA → SIN', time: '10:15 → 17:35 +1', airline: 'Singapore Airlines SQ 027 (A350-900)', cabin: 'Business', confirmation: 'DISMSE', status: 'booked', notes: 'Seat 15A. 107K KrisFlyer + $17.20. Arrive Singapore Sept 25.' },
+      { segment: 2, date: '2026-09-25', route: 'SIN → CGK', time: '18:30 → 19:20', airline: 'Singapore Airlines SQ 966 (A350-900)', cabin: 'Business', confirmation: 'DISMSE', status: 'booked', notes: 'Seat 15K. Same PNR as SEA-SIN — combined SQ KrisFlyer Business redemption.' },
+      { segment: 3, date: '2026-09-26', route: 'CGK → KOE', time: '06:45 → 10:45', airline: 'Garuda Indonesia GA456', cabin: 'Business', confirmation: 'DOUUN7', status: 'booked', notes: '21.5K Virgin Atlantic Flying Club + $10.40. Early start — leave Jakarta hotel by 04:30.' },
+      { segment: 4, date: '2026-09-27', route: 'KOE → ARD', time: '08:40 → 09:40', airline: 'Wings Air IW1943', cabin: 'Economy', confirmation: 'HKSRAV', status: 'booked', notes: 'ATR turboprop. Baggage: 1 personal + 1 carry-on 7kg + 1 checked 10kg — tight for dive gear.' },
+      { segment: 5, date: '2026-10-09', route: 'AMQ → CGK', time: '16:10 → 17:40', airline: 'Garuda Indonesia GA647', cabin: 'Business', confirmation: 'DOSB8U', status: 'booked', notes: '21.5K Virgin Atlantic Flying Club + $4.50. Ambon to Jakarta after Banda Sea expedition.' },
+      { segment: 6, date: '2026-10-10', route: 'CGK → TPE', time: '14:40 → 21:10', airline: 'China Airlines CI 0762', cabin: 'Business', confirmation: 'YRIBKT', status: 'booked', notes: 'Jakarta T3 to Taipei T1. Operating + marketing carrier is China Airlines. Confirm ticket stock (CI vs AF codeshare).' },
+      { segment: 7, date: '2026-10-12', route: 'TPE → SEA', time: '23:40 → 19:30 PT (same day)', airline: 'EVA Air BR26', cabin: 'Business', confirmation: 'FA6F6L', status: 'booked', notes: '75K Star Alliance + ~TWD 4,010 (~$130). 10h 50m. Date-line magic: arrives Seattle evening of same calendar day.' },
     ],
     hotels: [
-      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'not_booked', notes: 'Overnight transit — needs booking' },
-      { property: 'Dive Operator Accommodation', location: 'Alor & surrounds, Indonesia', checkIn: '2026-09-27', checkOut: '2026-10-09', status: 'booked', notes: '12 nights, 4,900 euros. Liveaboard or dive resort.' },
-      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-10-09', checkOut: '2026-10-10', program: 'Hyatt', status: 'not_booked', notes: 'Overnight before Taipei flight — needs booking' },
-      { property: 'TBD — Taipei', location: 'Taipei, Taiwan', checkIn: '2026-10-10', checkOut: '2026-10-13', status: 'not_booked', notes: '3 nights in Taipei' },
+      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'not_booked', notes: 'Overnight transit before 06:45 GA456 — needs booking. Cat 4 ~25K/night.' },
+      { property: 'Indo Ocean Project — Alor Expedition', location: 'Alor & Banda Sea, Indonesia', checkIn: '2026-09-27', checkOut: '2026-10-09', status: 'booked', notes: '12 nights, €4,900. Shore-based / liveaboard — citizen-science dive expedition (indooceanproject.org).' },
+      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-10-09', checkOut: '2026-10-10', program: 'Hyatt', status: 'not_booked', notes: 'Recovery night after dive expedition — needs booking. Cat 4 ~25K/night.' },
+      { property: 'TBD — Taipei', location: 'Taipei, Taiwan', checkIn: '2026-10-10', checkOut: '2026-10-12', status: 'not_booked', notes: '2 nights (Oct 10 + Oct 11) plus late checkout / day room Oct 12 for the 23:40 BR26 flight. Grand Hyatt Taipei (~25K Hyatt) or Hotel Proverbs (cash, design hotel) are top picks.' },
     ],
     actionItems: [
-      { text: 'Book Park Hyatt Jakarta for Sept 25 overnight', urgent: true },
-      { text: 'Book Park Hyatt Jakarta for Oct 9 overnight', urgent: true },
-      { text: 'Book Taipei hotel for Oct 10–13 (3 nights)', urgent: true },
-      { text: 'Confirm dive operator details and departure from Alor Sept 27', urgent: false },
-      { text: 'Decide TPE → SEA routing: direct 15:15 or via LAX', urgent: false },
+      { text: 'Book Park Hyatt Jakarta for Sept 25 overnight (Hyatt points)', urgent: true },
+      { text: 'Book Park Hyatt Jakarta for Oct 9 overnight (Hyatt points)', urgent: true },
+      { text: 'Book Taipei hotel for Oct 10–12 (2 nts + late checkout Oct 12)', urgent: true },
+      { text: 'Contact Indo Ocean Project to confirm Sept 27 ARD arrival logistics + gear list', urgent: false },
+      { text: 'Confirm CI 0762 ticket stock (CI direct vs AF codeshare) — affects seat management', urgent: false },
+      { text: 'Address Wings Air 10kg checked baggage limit (ship dive gear ahead or pay extra)', urgent: false },
+      { text: 'Indonesia e-Visa application (apply 30+ days before)', urgent: false },
+      { text: 'Travel insurance with diving + remote location + medical evac coverage', urgent: false },
     ],
     intel: [
-      { title: 'Alor — World-Class Diving', content: 'Alor is one of Indonesia\'s most remote and pristine diving destinations, located in the Lesser Sunda Islands east of Flores. The waters around Alor are known for extraordinary biodiversity, strong currents bringing pelagic species, and macro diving that rivals Lembeh Strait. Expect manta rays, hammerhead sharks, pygmy seahorses, and vibrant coral walls. The 12-night expedition covers multiple dive sites across the Alor archipelago. Water temperatures are 75–82°F; visibility is typically 60–100+ feet.' },
-      { title: 'Getting to Alor', content: 'The route is complex: SEA → SIN → CGK (Jakarta) overnight → KOE (Kupang) → ARD (Alor). Each leg is a step deeper into eastern Indonesia. Kupang is the capital of East Nusa Tenggara province and serves as the gateway to Alor. The KOE → ARD flight is a small regional hop. Return route goes through Ambon (AMQ), suggesting the dive expedition moves through the Banda Sea.' },
-      { title: 'Taipei Stopover', content: 'Three nights in Taipei (Oct 10–13) is a perfect decompression stop. Night markets (Shilin, Raohe), Din Tai Fung original location, tea houses in Jiufen, and world-class coffee culture. October weather is pleasant (75–85°F). Taipei is walkable with excellent MRT transit.' },
+      { title: 'Indo Ocean Project — The Operator', content: 'IOP (indooceanproject.org) is a marine conservation organization running citizen-science dive expeditions in Indonesia (Nusa Penida, Komodo, Alor). The 4,900 EUR / 12-night Alor program is research-focused — daily 3–4 dives with data collection (manta ID, reef monitoring, megafauna surveys). Small group (6–12), shore-based or liveaboard rotation. Down-to-earth and scientific rather than white-glove luxury — ideal for solo divers who want depth (literal and figurative).' },
+      { title: 'Alor — World-Class Diving', content: 'Alor is one of Indonesia\'s most remote and pristine diving destinations, located in the Lesser Sunda Islands east of Flores. The waters around Alor are known for extraordinary biodiversity, strong currents bringing pelagic species, and macro diving that rivals Lembeh Strait. Expect manta rays, hammerhead sharks, pygmy seahorses, and vibrant coral walls. Water temperatures are 75–82°F; visibility is typically 60–100+ feet.' },
+      { title: 'Getting to Alor', content: 'The route is complex: SEA → SIN → CGK (Jakarta) overnight → KOE (Kupang) → ARD (Alor). Each leg is a step deeper into eastern Indonesia. Kupang is the capital of East Nusa Tenggara province and serves as the gateway to Alor. The KOE → ARD flight on Wings Air is a small ATR turboprop hop. Return route goes through Ambon (AMQ), reflecting the dive expedition moving through the Banda Sea.' },
+      { title: 'Taipei Stopover', content: 'Two paid nights in Taipei (Oct 10 + 11) plus a late checkout or day room on Oct 12 for the 23:40 BR26 flight. Night markets (Shilin, Raohe), Din Tai Fung original location, tea houses in Jiufen, and world-class coffee culture. October weather is pleasant (75–85°F). Taipei is walkable with excellent MRT transit.' },
     ],
     awardTips: [
-      { program: 'Singapore Airlines KrisFlyer', route: 'SEA–SIN', cost: 'Booked', note: 'SQ Business outbound — world-class product. Conf: F6MWR7.' },
-      { program: 'Air France Flying Blue', route: 'CGK–TPE', cost: 'Booked', note: 'AF Business Jakarta to Taipei. Conf: YRIBKT.' },
-      { program: 'EVA Air', route: 'TPE–SEA', cost: 'Booked', note: 'EVA Business return. Conf: FA6F6L.' },
-      { program: 'Hyatt Points', route: 'Park Hyatt Jakarta (x2)', cost: '~15–20K per night', note: 'Two overnight transits in Jakarta. Good value redemption.' },
+      { program: 'Singapore Airlines KrisFlyer', route: 'SEA → SIN → CGK (both legs Business)', cost: '107K KrisFlyer + $17.20', note: 'Single combined Business award — SEA-SIN on SQ 027 + SIN-CGK on SQ 966, both A350-900. Confirmation DISMSE. World-class long-haul product. Seats 15A and 15K.' },
+      { program: 'Virgin Atlantic Flying Club', route: 'CGK → KOE on Garuda GA456 Business', cost: '21,500 VS + $10.40', note: 'Sweet spot: Garuda intra-Indonesia Business via Virgin Atlantic partner award. Confirmation DOUUN7.' },
+      { program: 'Virgin Atlantic Flying Club', route: 'AMQ → CGK on Garuda GA647 Business', cost: '21,500 VS + $4.50', note: 'Second VS partner redemption for the return Garuda leg. Confirmation DOSB8U.' },
+      { program: 'TBD (Star Alliance / Flying Blue)', route: 'CGK → TPE on China Airlines CI 0762 Business', cost: 'Award booking', note: 'Operating + marketing carrier is China Airlines (CI). Confirmation YRIBKT. Confirm which program issued the ticket.' },
+      { program: 'Star Alliance partner award', route: 'TPE → SEA on EVA BR26 Business', cost: '75K + ~TWD 4,010 (~$130)', note: 'EVA Business return. Confirmation FA6F6L. 75K is consistent with Aeroplan or United Saver — confirm exact program for any future changes.' },
+      { program: 'Hyatt Points', route: 'Park Hyatt Jakarta (x2)', cost: '~25K Hyatt/night (Cat 4)', note: 'Two overnight transits in Jakarta planned on Hyatt points. Booking pending.' },
+      { program: 'Hyatt Points', route: 'Grand Hyatt Taipei (2 nts)', cost: '~25K Hyatt/night', note: 'Cat 4 Hyatt in Xinyi. Alternative to cash boutique like Hotel Proverbs. Booking pending.' },
     ],
     itinerary: [
-      { date: 'Sept 24', label: 'Depart Seattle', description: 'SEA 10:15am → SIN, arriving Sept 25 at 17:35. Long-haul flight.', type: 'travel' },
-      { date: 'Sept 25', label: 'Singapore → Jakarta', description: 'Arrive SIN 17:35. Connect SIN 18:30 → CGK 19:20. Check into Park Hyatt Jakarta (needs booking). Quick overnight.', type: 'travel' },
-      { date: 'Sept 26', label: 'Jakarta → Kupang', description: 'Early morning Garuda CGK 7:05am → KOE 11:05am (conf: AENN85). Arrive Kupang. Overnight or connect depending on schedule.', type: 'travel' },
-      { date: 'Sept 27', label: 'Kupang → Alor — Diving Begins', description: 'KOE 8:30am → ARD 9:30am (conf: HKSRAV). Arrive Alor. Check in with dive operator. Orientation dive. 12-night expedition begins. 4,900 euros all-in.', type: 'activity' },
-      { date: 'Sept 28 – Oct 8', label: '11 Days of Diving', description: 'Daily diving across Alor archipelago and Banda Sea. Manta rays, hammerheads, pygmy seahorses, vibrant coral walls. Multiple dive sites. Moving through eastern Indonesian waters toward Ambon.', type: 'activity' },
-      { date: 'Oct 9', label: 'Diving Ends — Fly to Jakarta', description: 'Expedition complete. Garuda AMQ 4:15pm → CGK 5:40pm (conf: DOSB8U). Check into Park Hyatt Jakarta (needs booking). Decompress.', type: 'travel' },
-      { date: 'Oct 10', label: 'Jakarta → Taipei', description: 'Air France CGK 2:40pm → TPE 9:10pm (conf: YRIBKT). Arrive Taipei. Check into hotel. Late-night street food at Raohe Night Market.', type: 'travel' },
-      { date: 'Oct 11–12', label: 'Explore Taipei', description: 'Night markets, Din Tai Fung, tea houses in Jiufen, coffee shops. MRT everywhere. Decompress from 12 days of diving. Eat everything.', type: 'activity' },
-      { date: 'Oct 13', label: 'Fly Home', description: 'TPE 15:15 → SEA 21:00 (conf: FA6F6L). Home by evening. Trip complete — 19 days.', type: 'travel' },
+      { date: 'Sept 24', label: 'Depart Seattle', description: 'SQ 027 SEA 10:15 → SIN 17:35 +1 (Business, seat 15A). 16h 20m long-haul. PNR DISMSE.', type: 'travel' },
+      { date: 'Sept 25', label: 'Singapore → Jakarta', description: 'SQ 966 SIN 18:30 → CGK 19:20 (Business, seat 15K). Check into Park Hyatt Jakarta (needs booking). Sleep early — 04:30 wake-up.', type: 'travel' },
+      { date: 'Sept 26', label: 'Jakarta → Kupang', description: 'Garuda GA456 CGK 06:45 → KOE 10:45 (Business, PNR DOUUN7 via Virgin Atlantic). Arrive Kupang. Overnight or connect depending on schedule.', type: 'travel' },
+      { date: 'Sept 27', label: 'Kupang → Alor — IOP Expedition Begins', description: 'Wings Air IW1943 KOE 08:40 → ARD 09:40 (PNR HKSRAV). Meet Indo Ocean Project crew. Orientation dive. 12-night expedition begins (€4,900 all-in).', type: 'activity' },
+      { date: 'Sept 28 – Oct 8', label: '11 Days of Diving', description: 'Daily 3–4 dives across Alor archipelago and Banda Sea with the IOP team. Manta rays, hammerheads, pygmy seahorses, vibrant coral walls. Citizen-science data collection. Boat moves through eastern Indonesian waters toward Ambon.', type: 'activity' },
+      { date: 'Oct 9', label: 'Diving Ends — Fly to Jakarta', description: 'Expedition complete. Garuda GA647 AMQ 16:10 → CGK 17:40 (Business, PNR DOSB8U via Virgin Atlantic). Check into Park Hyatt Jakarta (needs booking). Decompress.', type: 'travel' },
+      { date: 'Oct 10', label: 'Jakarta → Taipei', description: 'China Airlines CI 0762 CGK 14:40 → TPE 21:10 (Business, PNR YRIBKT). Arrive Taipei T1. Late-night street food at Raohe Night Market.', type: 'travel' },
+      { date: 'Oct 11', label: 'Explore Taipei — Markets & Food', description: 'Raohe and Shilin night markets. Din Tai Fung original location. Bubble tea, xiaolongbao, mango shaved ice. MRT everywhere.', type: 'activity' },
+      { date: 'Oct 12', label: 'Taipei → Late-Night Flight Home', description: 'Coffee at Cafe Junkissa or Funicello. Jiufen tea houses or Taipei 101. Late checkout / day room. Transfer to TPE T2 at 20:30. EVA BR26 TPE 23:40 → SEA 19:30 PT *same day* (Business, PNR FA6F6L). Home by 21:00 Oct 12 — trip complete, 19 days.', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'SEA → SIN on Singapore Airlines Business', pnr: 'F6MWR7', note: 'Booked on points; count not documented' },
-      { category: 'flight', description: 'SIN → CGK on Singapore Airlines Economy', pnr: 'DISMSE' },
-      { category: 'flight', description: 'CGK → KOE on Garuda Indonesia', pnr: 'AENN85' },
-      { category: 'flight', description: 'KOE → ARD on TransNusa', pnr: 'HKSRAV' },
-      { category: 'flight', description: 'AMQ → CGK on Garuda Indonesia', pnr: 'DOSB8U' },
-      { category: 'flight', description: 'CGK → TPE on Air France Business', pnr: 'YRIBKT' },
-      { category: 'flight', description: 'TPE → SEA on EVA Air Business', pnr: 'FA6F6L' },
-      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Sept 25 transit)', program: 'Hyatt', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Oct 9 transit)', program: 'Hyatt', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Taipei hotel (3 nts, Oct 10–13)', note: 'Not yet booked' },
-      { category: 'activity', description: 'Alor dive operator (12 nts all-inclusive liveaboard/resort)', cashUsd: 5500, note: '€4,900 approx at ~1.12 FX' },
+      // ─── Flights — Outbound (SEA → Alor) ───
+      { category: 'flight', description: 'SEA → SIN → CGK on Singapore Airlines SQ 027 + SQ 966 (both Business)', pnr: 'DISMSE', points: 107000, program: 'Singapore KrisFlyer', cashUsd: 17.20, note: 'Single combined KrisFlyer Business redemption — both A350-900 legs. Seats 15A and 15K.' },
+      { category: 'flight', description: 'CGK → KOE on Garuda GA456 Business (Sept 26)', pnr: 'DOUUN7', points: 21500, program: 'Virgin Atlantic Flying Club', cashUsd: 10.40, note: 'Sweet spot — Garuda intra-Indonesia Business via Virgin Atlantic partner award.' },
+      { category: 'flight', description: 'KOE → ARD on Wings Air IW1943 Economy (Sept 27)', pnr: 'HKSRAV', note: 'Cash purchase. ATR turboprop. 10kg checked baggage limit — tight for dive gear.' },
+      // ─── Flights — Return (Alor → Home) ───
+      { category: 'flight', description: 'AMQ → CGK on Garuda GA647 Business (Oct 9)', pnr: 'DOSB8U', points: 21500, program: 'Virgin Atlantic Flying Club', cashUsd: 4.50, note: 'Second VS partner redemption for return Garuda leg.' },
+      { category: 'flight', description: 'CGK → TPE on China Airlines CI 0762 Business (Oct 10)', pnr: 'YRIBKT', program: 'TBD (Star Alliance / Flying Blue)', note: 'Operating + marketing carrier is China Airlines (CI). Confirm ticket stock for change/cancel handling.' },
+      { category: 'flight', description: 'TPE → SEA on EVA BR26 Business (Oct 12, 23:40 departure)', pnr: 'FA6F6L', points: 75000, program: 'Star Alliance partner award', cashUsd: 130, note: '75K + ~TWD 4,010 (~$130). Arrives Seattle same calendar day (Oct 12 19:30 PT). Confirm exact award program for future changes.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Sept 25 transit)', program: 'Hyatt', note: 'Cat 4 = ~25K Hyatt/night. Booking pending.' },
+      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Oct 9 transit)', program: 'Hyatt', note: 'Same Cat 4 = ~25K Hyatt/night. Booking pending.' },
+      { category: 'hotel', description: 'Taipei hotel (2 nts + late checkout Oct 10–12)', note: 'Top pick: Grand Hyatt Taipei (~25K Hyatt/night, Xinyi). Alternatives: Hotel Proverbs (Daan, design hotel, cash), Four Seasons (luxury cash).' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Alor dive operator (12 nts all-inclusive liveaboard/resort, Sept 27 – Oct 9)', cashUsd: 5500, note: '€4,900 booked, approx $5,500 USD at ~1.12 FX. Includes 4–5 dives/day, accommodation, all meals, gear, guides.' },
+      { category: 'activity', description: 'Dive crew gratuities (~$10–15/day × 12 days)', note: 'Cash for dive crew at end — ~$120–180 USD.' },
+      // ─── Other ───
+      { category: 'other', description: 'Indonesia visa-on-arrival or e-Visa', cashUsd: 35, note: '~$35 USD on arrival or via online e-VOA.' },
+      { category: 'other', description: 'Meals + drinks + snacks in Jakarta + Taipei', note: 'Estimate ~$300–500 across the non-dive days. Most meals included on dive expedition.' },
     ],
   },
 
@@ -448,21 +497,23 @@ export const trips: Trip[] = [
     dates: 'October 2026',
     month: 'October',
     year: 2026,
-    status: 'planning',
-    statusLabel: 'Planning',
+    status: 'partially_booked',
+    statusLabel: 'Partially Booked',
     travelers: 'Janelle (solo)',
     heroImage: 'seoul-autumn',
     flights: [
-      { segment: 1, date: 'TBD', route: 'SEA → ICN', status: 'pending', notes: 'Award booking via Aeroplan, ANA, or Korean Air SkyPass' },
+      { segment: 1, date: 'TBD October 2026', route: 'SEA → ICN', cabin: 'Business', status: 'booked', notes: 'Janelle outbound, 75K points award. Program (Aeroplan / ANA / Korean Air) + dates + PNR live in janelle.tam@gmail.com.' },
+      { segment: 2, date: 'TBD October 2026', route: 'ICN → SEA', cabin: 'Business', status: 'booked', notes: 'Janelle return, 75K points award. Same booking as outbound likely.' },
     ],
     hotels: [
       { property: 'Park Hyatt Seoul or Boutique Alternative', location: 'Hannam-dong, Seoul', status: 'not_booked', notes: 'Hannam-dong is the design/dining hub' },
     ],
     actionItems: [
-      { text: 'Confirm travel dates', urgent: false },
-      { text: 'Search award availability: Aeroplan, ANA, Korean Air SkyPass', urgent: false },
-      { text: 'Book hotel in Hannam-dong', urgent: false },
+      { text: 'Pull flight booking details from Janelle\'s Gmail (program, exact dates, PNR, cash taxes)', urgent: true },
+      { text: 'Lock travel dates based on flight booking', urgent: true },
+      { text: 'Book hotel in Hannam-dong (Park Hyatt Seoul or boutique alternative)', urgent: false },
       { text: 'Research K-beauty shopping and café scene', urgent: false },
+      { text: 'Make reservations: Jungsik / Mingles for Michelin dinner', urgent: false },
     ],
     intel: [
       { title: 'Seoul Neighborhoods', content: 'Hannam-dong is Seoul\'s creative heart — design studios, galleries, elevated dining, and the Blue Bottle flagship. Ikseon-dong is the hanok café district: narrow lanes, 100-year-old wood houses converted into specialty coffee shops and wine bars. Yeonnam-dong is the indie food and music neighborhood with Gyeongui Line Forest Park running through it. Seongsu-dong is Seoul\'s Brooklyn — converted warehouses, craft breweries, concept stores. October is perfection: 55–65°F, crisp mornings, autumn foliage peaks mid-to-late October. Namsan and Bukhansan are spectacular for fall colors.' },
@@ -483,7 +534,17 @@ export const trips: Trip[] = [
       { date: 'Day 6', label: 'Flexible Day', description: 'Day trip to DMZ or Bukchon Hanok Village. Or slow café morning and street food crawl.', type: 'flexible' },
       { date: 'Day 7', label: 'Depart Seoul', description: 'Final morning shopping. AREX to Incheon. Fly ICN → SEA.', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → ICN (Janelle outbound, Business)', points: 75000, note: '75K points one-way per Terry. Program (likely Aeroplan, ANA, or Korean Air SkyPass) + cash taxes + exact dates + PNR live in janelle.tam@gmail.com.' },
+      { category: 'flight', description: 'ICN → SEA (Janelle return, Business)', points: 75000, note: '75K points one-way per Terry. Same booking as outbound likely. Details in janelle.tam@gmail.com.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Park Hyatt Seoul or boutique alternative (~7 nts, Hannam-dong)', program: 'Hyatt', note: 'Not yet booked. Park Hyatt Seoul Cat 5 = 25K Hyatt/night. ~$400–600/night cash.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'AREX (Incheon Express) airport ↔ Seoul Station', cashUsd: 20, note: '~$10 each direction. Faster + cheaper than taxi.' },
+      // ─── Other ───
+      { category: 'other', description: 'Meals + cafés + K-beauty shopping + activities', note: 'Estimate ~$800–1,500 across 7 days solo. Includes Michelin meals (Jungsik/Mingles), market food, café crawl, Leeum, Changdeokgung, hanbok rental.' },
+    ],
   },
   // AUSTRALIA — November 2026
 
@@ -504,7 +565,7 @@ export const trips: Trip[] = [
     travelers: 'TBD (likely 2–4)',
     heroImage: 'singapore-gardens-night',
     flights: [
-      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', time: '8:45am → 5:45pm +1', airline: 'Singapore Airlines (SQ027)', cabin: 'Business', confirmation: 'F6MWR7', status: 'booked', notes: 'Christmas Eve departure. 17hr flight. SQ Business is world-class — 1-2-1 layout.' },
+      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', time: '8:45am → 5:45pm +1', airline: 'Singapore Airlines (SQ027)', cabin: 'Business', confirmation: 'TBD-FIX (was wrongly F6MWR7)', status: 'booked', notes: 'Christmas Eve departure. 17hr flight. SQ Business is world-class — 1-2-1 layout. PNR needs correction — F6MWR7 is the Sept 2026 IOP trip\'s PNR; this Dec booking has a different one (pull from Gmail).' },
       { segment: 2, date: '2026-12-28', route: 'SIN → MLE', status: 'needs_action', notes: 'Need to book Singapore to Malé. Check SQ or budget carriers (Scoot). ~4.5hr flight.' },
       { segment: 3, date: '2027-01-01', route: 'MLE → CMB', status: 'needs_action', notes: 'Need to book Malé to Colombo for Sri Lanka leg. ~1.5hr flight. SriLankan Airlines or Maldivian.' },
       { segment: 4, date: '2027-01-03', route: 'CMB → DOH', time: '10:15am → 12:45pm', airline: 'Qatar Airways (QR665)', cabin: 'Business', confirmation: '9YPE29', status: 'booked', notes: '5hr flight. 19hr layover in Doha — explore or Al Mourjan lounge.' },
@@ -533,10 +594,10 @@ export const trips: Trip[] = [
       { title: 'Doha Layover — 19 Hours', content: 'With 19 hours in Doha (arrive 12:45pm, depart 7:55am next day), you can explore the city. Souq Waqif is the atmospheric old market — spice stalls, falcon sellers, alley restaurants serving machboos (Qatari rice dish). The Museum of Islamic Art (I.M. Pei designed) is world-class and free. The Pearl-Qatar is the modern waterfront district. Qatar Airways Business passengers have access to Al Mourjan Lounge (recently expanded — spa, quiet rooms, à la carte dining). If staying overnight: Park Hyatt Doha is excellent.' },
     ],
     awardTips: [
-      { program: 'Hyatt Points', route: 'Andaz SIN + Park Hyatt MLE', cost: '12–15K (Andaz) + 25–30K (PH Maldives) per night', note: '~100–120K total for all Hyatt nights. Peak holiday pricing. Book confirmations already in hand.' },
-      { program: 'Singapore Airlines KrisFlyer', route: 'SEA–SIN', cost: 'Booked', note: 'SQ Business outbound confirmed. World-class product.' },
-      { program: 'Qatar Airways Avios', route: 'CMB–DOH–SEA', cost: 'Booked', note: 'Return on Qatar Business. Qsuites if lucky — check seat map closer to departure.' },
-      { program: 'Hyatt Points', route: 'Park Hyatt Doha', cost: '~20–25K per night', note: 'For the Doha layover. Alternative: skip hotel and use Al Mourjan lounge for 19 hours.' },
+      { program: 'Hyatt Points', route: 'Andaz SIN + Park Hyatt MLE', cost: '~45K (Andaz 3 nts) + ~120–160K (PH Maldives 4 nts)', note: '~165–205K total Hyatt for all booked nights. Peak holiday pricing on PH Hadahaa. Verify exact counts from confirmations 30914538 + 25671158.' },
+      { program: 'Singapore Airlines KrisFlyer', route: 'SEA–SIN (Dec 24)', cost: 'KrisFlyer award (miles count TBD)', note: 'SQ Business outbound. PNR needs correction (currently incorrectly stored as F6MWR7).' },
+      { program: 'Qatar Avios', route: 'CMB–DOH–SEA', cost: '140K Avios + $300/pp = 280K Avios + $600 cash for 2 pax', note: 'Return on Qatar Business. Qsuites if lucky — check seat map closer to departure.' },
+      { program: 'Hyatt Points', route: 'Park Hyatt Doha (alternative)', cost: '~20–25K per night', note: 'For the 19hr Doha layover. Alternative: skip hotel and use Al Mourjan lounge.' },
     ],
     itinerary: [
       { date: 'Dec 24', label: 'Fly to Singapore', description: 'SEA 8:45am → SIN 5:45pm +1 on Singapore Airlines SQ027 Business (conf: F6MWR7). Christmas Eve in the air with SQ\'s legendary service. Book of Wonders menu. Arrive Christmas Day evening.', type: 'travel' },
@@ -552,16 +613,25 @@ export const trips: Trip[] = [
       { date: 'Jan 4', label: 'Arrive Home', description: 'DOH 7:55am → SEA 11:40am on Qatar QR719 Business (conf: 9BHJHH / 9YPE29). Home by lunch. 12-day, 3-country holiday season trip complete.', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'SEA → SIN on Singapore SQ027 Business', pnr: 'F6MWR7', note: 'Dec 24, 17hr direct. Cash/points not documented.' },
-      { category: 'flight', description: 'SIN → MLE', note: 'Not yet booked' },
-      { category: 'flight', description: 'MLE → CMB (Maldives → Sri Lanka)', note: 'Not yet booked (~$170 SriLankan)' },
-      { category: 'flight', description: 'CMB → DOH on Qatar QR665 Business', pnr: '9YPE29', note: 'Jan 3, 5hr' },
-      { category: 'flight', description: 'DOH → SEA on Qatar QR719 Business (Qsuites if avail)', pnr: '9BHJHH', note: 'Jan 4; also tied to PNR 9YPE29' },
-      { category: 'hotel', description: 'Andaz Singapore (3 nts, Dec 25–28)', program: 'Hyatt', pnr: '30914538', note: 'Hyatt points — count TBD' },
-      { category: 'hotel', description: 'Park Hyatt Maldives Hadahaa (4 nts, Dec 28–Jan 1, NYE)', program: 'Hyatt', pnr: '25671158', note: 'Hyatt points — count TBD' },
-      { category: 'hotel', description: 'Sri Lanka (2 nts, Jan 1–3)', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Doha layover (Jan 3–4)', note: 'Not yet booked — option to stay at Park Hyatt Doha or use Al Mourjan lounge' },
-      { category: 'transfer', description: 'MLE → Kooddoo domestic flight + speedboat RT to Hadahaa', note: 'Resort arranges, ~$500pp RT typical' },
+      // ─── Flights — Outbound ───
+      { category: 'flight', description: 'SEA → SIN on Singapore SQ027 Business (Dec 24)', pnr: 'TBD (different from F6MWR7)', program: 'Singapore KrisFlyer', note: 'PNR FIX NEEDED: trips.ts incorrectly shows F6MWR7 (which is actually the Sept 24 IOP trip\'s PNR). Dec 24 is a separate booking — pull correct PNR from Terry\'s Gmail. Booked on KrisFlyer award; miles count + cash taxes TBD.' },
+      { category: 'flight', description: 'SIN → MLE (Dec 28)', note: 'Not yet booked. SQ direct ~$300–600 cash, or Scoot budget ~$150–250.' },
+      // ─── Flights — Inter-region ───
+      { category: 'flight', description: 'MLE → CMB (Maldives → Sri Lanka, Jan 1)', note: 'Not yet booked. SriLankan ~$170 cash, ~1.5hr.' },
+      // ─── Flights — Return ───
+      { category: 'flight', description: 'CMB → DOH → SEA on Qatar Business (Jan 3 + Jan 4, both pax)', pnr: '9YPE29 / 9BHJHH', program: 'Qatar Avios', points: 280000, cashUsd: 600, note: '140K Avios + $300 cash per person × 2 pax = 280K Avios + $600 cash. CMB-DOH on QR665 (5hr), DOH-SEA on QR719 (Qsuites if available). 19hr Doha layover between.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Andaz Singapore (3 nts, Dec 25–28)', program: 'Hyatt', pnr: '30914538', note: 'Booked on Hyatt points. Cat 4 = ~15K/nt × 3 = ~45K Hyatt estimated. Verify exact count.' },
+      { category: 'hotel', description: 'Park Hyatt Maldives Hadahaa (4 nts, Dec 28–Jan 1, NYE)', program: 'Hyatt', pnr: '25671158', note: 'Booked on Hyatt points. Cat 7 = 30K standard / 40K peak per night × 4 = 120K–160K Hyatt estimated. Verify exact count. NYE gala dinner mandatory ~$2,200/couple.' },
+      { category: 'hotel', description: 'Sri Lanka south coast (2 nts, Jan 1–3)', note: 'Not yet booked. Galle (Amangalla / Fort Bazaar / Cape Weligama) or Weligama. ~$300–800/nt depending on property.' },
+      { category: 'hotel', description: 'Doha layover (1 nt, Jan 3–4)', program: 'Hyatt', note: 'Not yet booked. Park Hyatt Doha ~20–25K Hyatt/nt or skip hotel and use Al Mourjan Business Lounge for the 19hr layover.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'MLE → Kooddoo domestic flight + speedboat RT to Hadahaa', note: 'Resort arranges. ~$500/pp RT typical for the seaplane/domestic combo.' },
+      { category: 'transfer', description: 'CMB → Galle / Weligama → CMB (private car + driver)', note: 'Hire private driver ~$50–70/day for 2 days = ~$100–150 cash.' },
+      // ─── Activities / Other ───
+      { category: 'other', description: 'Park Hyatt Maldives NYE gala dinner (mandatory)', cashUsd: 2200, note: '~$1,100/adult with alcohol = ~$2,200/couple. Mandatory at PH Hadahaa for NYE Dec 31.' },
+      { category: 'other', description: 'Diving + spa + meals + drinks (Maldives + Singapore + Sri Lanka)', note: 'Estimate ~$1,500–3,000 across the trip. Includes ~$150/dive at PH Hadahaa, hawker meals in SG, Aman/Resplendent dining in Sri Lanka.' },
+      { category: 'other', description: 'Sri Lanka ETA visa (~$50/pp)', note: 'Apply online at eta.gov.lk before travel. ~$50–100 for 2 pax.' },
     ],
   },
   // HAWAII — May 2026
@@ -591,18 +661,14 @@ export const trips: Trip[] = [
     travelers: 'TBD',
     heroImage: 'croatia-dubrovnik',
     flights: [
-      { segment: 1, date: '2026-11-21', route: 'SEA → IST', time: '7:00pm → 6:00pm +1', airline: 'Turkish Airlines (TK204)', cabin: 'Business', confirmation: 'UG8BHN', status: 'booked', notes: '12hr flight. TK Business lounge at IST is world-class — use the 14hr layover.' },
-      { segment: 2, date: '2026-11-23', route: 'IST → ZAG', time: '8:20am → 8:30am', airline: 'Turkish Airlines (TK1053)', confirmation: 'UG8BHN', status: 'booked', notes: '2hr 10min flight to Zagreb. Local time same (CET).' },
+      { segment: 1, date: '2026-11-21', route: 'SEA → IST', time: '7:00pm → 6:00pm +1', airline: 'Turkish Airlines (TK204)', cabin: 'Business', confirmation: 'UG8BHN', status: 'canceled', notes: 'Cancelled by Turkish Airlines following their April 2026 mistake-fare reversal.' },
+      { segment: 2, date: '2026-11-23', route: 'IST → ZAG', time: '8:20am → 8:30am', airline: 'Turkish Airlines (TK1053)', confirmation: 'UG8BHN', status: 'canceled', notes: 'Cancelled with PNR UG8BHN.' },
     ],
     hotels: [
-      { property: 'TBD — Zagreb', location: 'Zagreb, Croatia', status: 'not_booked', notes: 'Look at Esplanade Zagreb Hotel (historic Art Deco, near train station) or boutique options in Upper Town (Gornji Grad). November is Advent Market season — book central.' },
+      { property: 'TBD — Zagreb (never booked)', location: 'Zagreb, Croatia', status: 'not_booked', notes: 'Trip was cancelled before any hotel was booked.' },
     ],
     actionItems: [
-      { text: 'Book Zagreb hotel — Advent Market season fills fast', urgent: true },
-      { text: 'Book return flights ZAG → SEA (or extend to Dubrovnik/Split)', urgent: true },
-      { text: 'Decide trip duration — currently only shows arrival day', urgent: true },
-      { text: 'Plan Istanbul layover activities (14hrs = enough for Sultanahmet)', urgent: false },
-      { text: 'Research Zagreb Advent Market dates and events (typically late Nov through Jan)', urgent: false },
+      { text: 'Trip cancelled — no further action needed', urgent: false },
     ],
     intel: [
       { title: 'Zagreb Advent & Christmas Markets', content: 'Zagreb\'s Advent market has been voted Europe\'s best Christmas market multiple years running — and late November is the opening weekend. Ban Jelačić Square transforms into a winter wonderland with mulled wine (kuhano vino), štrukli (cheese pastry), and artisan crafts. Zrinjevac Park gets a light tunnel. The ice rink at King Tomislav Square is magical. Upper Town (Gornji Grad) has intimate smaller markets with better food and fewer crowds. This timing is perfect.' },
@@ -619,7 +685,9 @@ export const trips: Trip[] = [
       { date: 'Nov 22', label: 'Istanbul Layover', description: '14hr layover at IST. Options: (1) Turkish Airlines Business Lounge — spa, sleep rooms, restaurant, or (2) Sultanahmet tour — Hagia Sophia, Blue Mosque, Grand Bazaar. Touristanbul free tour available for TK Business. Return to airport by evening.', type: 'flexible' },
       { date: 'Nov 23', label: 'Arrive Zagreb — Advent Opens', description: 'IST 8:20am → ZAG 8:30am on TK1053 (conf: UG8BHN). Check into hotel. Walk to Ban Jelačić Square for Advent Market opening. Mulled wine and štrukli at the stalls. Evening: Tkalčićeva Street for dinner and bar hopping. Upper Town lights at night.', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      { category: 'flight', description: 'SEA → IST → ZAG on Turkish Business (round-trip mistake fare)', pnr: 'UG8BHN', canceled: true, note: 'Cancelled by Turkish Airlines following their April 2026 mistake-fare reversal. Any cash/points charged should have been refunded — verify if Terry paid anything that wasn\'t.' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
@@ -628,14 +696,14 @@ export const trips: Trip[] = [
   {
     slug: 'nicaragua-nov-2026',
     title: 'Nicaragua',
-    subtitle: 'Calala Island — Private Island (conflicts with Seychelles Nov 23: only one happens)',
+    subtitle: 'Calala Island — Private Island (conflicts with Seychelles Nov 23: leaning Seychelles, not confirmed)',
     region: 'Central America',
     country: 'Nicaragua',
     dates: 'November 23–29, 2026',
     month: 'November',
     year: 2026,
     status: 'decision_needed',
-    statusLabel: 'Decision Needed',
+    statusLabel: 'Decision Needed (vs Seychelles)',
     travelers: 'TBD',
     heroImage: 'nicaragua-island',
     flights: [
@@ -660,6 +728,7 @@ export const trips: Trip[] = [
     ],
     awardTips: [
       { program: 'Alaska Mileage Plan', route: 'SEA–MIA on AS', note: 'Outbound booked on Alaska. Return: check AS or AA award space MGA–MIA–SEA.' },
+      { program: 'Hilton Honors', route: 'Calala Island (4 nts)', cost: '4 Hilton Free Night Certificates + $2K bonus credit', note: 'Major sweet spot — ultra-luxury private island redeemed entirely on FNCs. Hilton also providing $2K bonus (resort credit or card benefit — verify). One of the highest-value FNC redemptions possible.' },
     ],
     itinerary: [
       { date: 'Nov 23', label: 'Travel to Managua', description: 'SEA 8:05am → MIA 5:06pm on Alaska AS311 (conf: WUBULX). Connect MIA 7:10pm → MGA 8:56pm on American AA1369 (conf: KLKSII). Late arrival — check into Managua hotel. Rest.', type: 'travel' },
@@ -671,12 +740,17 @@ export const trips: Trip[] = [
       { date: 'Nov 29', label: 'Depart Calala', description: 'Early 6am checkout. Charter flight back to Managua. Connect to return flights MGA → SEA (needs booking).', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'SEA → MIA on Alaska AS311', pnr: 'WUBULX', note: 'Nov 23, booked Apr 7 2026' },
-      { category: 'flight', description: 'MIA → MGA on American AA1369', pnr: 'KLKSII', program: 'AAdvantage', note: 'Award booking — points count not documented' },
-      { category: 'flight', description: 'MGA → SEA return', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Managua hotel (1–2 nts, Nov 23–25)', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Calala Island (4 nts, Nov 25–29, all-inclusive)', pnr: '1000415272', note: 'Private island, cost not documented — typically $1,500–2,500/nt all-in' },
-      { category: 'transfer', description: 'Managua ↔ Calala charter (Cessna, ~45 min)', note: 'Included with resort (confirm)' },
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → MIA on Alaska AS311 (Nov 23)', pnr: 'WUBULX', note: 'Booked Apr 7 2026. Cash/points TBD.' },
+      { category: 'flight', description: 'MIA → MGA on American AA1369 (Nov 23)', pnr: 'KLKSII', program: 'AAdvantage', note: 'AAdvantage award booking — exact miles + cash taxes TBD.' },
+      { category: 'flight', description: 'MGA → SEA return (Nov 29)', note: 'Not yet booked. Target AS or AA partner award; ~$300–600 cash if not on points.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Managua hotel (1–2 nts, Nov 23–25 pre-island)', note: 'Not yet booked. Hotel Contempo or Los Cardones near MGA airport — ~$80–150/nt.' },
+      { category: 'hotel', description: 'Calala Island (4 nts, Nov 25–29, all-inclusive)', program: 'Hilton Honors', pnr: '1000415272', note: 'BOOKED on 4 Hilton Free Night Certificates (FNCs). Hilton also providing $2,000 bonus credit (resort credit or card benefit — verify exact form). Outstanding FNC redemption value — Calala typically $1,500–2,500/nt cash = $6K–10K cash equivalent for the stay.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'Managua ↔ Calala charter flight (Cessna, ~30–45 min each way)', note: 'Confirm if included with Calala booking or extra ($500–800/pp RT typical).' },
+      // ─── Other ───
+      { category: 'other', description: 'Tips for Calala staff + meals in Managua', note: 'Estimate ~$200–400. Calala all-inclusive covers meals/drinks; tips on top.' },
     ],
   },
 
@@ -697,7 +771,8 @@ export const trips: Trip[] = [
     travelers: 'TBD',
     heroImage: 'beaver-creek-ski',
     flights: [
-      { segment: 1, date: '2027-01-21', route: 'SEA → DEN or EGE', status: 'needs_action', notes: 'Need to book. DEN = 2hr drive to Beaver Creek via I-70. EGE (Eagle County) = 30 min drive but limited flights and often pricier. Consider United SEA→DEN nonstop.' },
+      { segment: 1, date: '2027-01-21', route: 'SEA → DEN or EGE (one leg booked on JetBlue)', airline: 'JetBlue (direction TBD)', status: 'booked', notes: 'JetBlue booking — one of outbound/return is locked in. PNR + exact direction TBD.' },
+      { segment: 2, date: '2027-01-24', route: 'DEN or EGE → SEA (other direction)', status: 'needs_action', notes: 'Match to direction not covered by JetBlue. United SEA-DEN nonstop or similar.' },
     ],
     hotels: [
       { property: 'Park Hyatt Beaver Creek Resort and Spa', location: 'Beaver Creek, CO', checkIn: '2027-01-21', checkOut: '2027-01-24', program: 'Hyatt', status: 'booked', notes: 'Conf: 58037120. Ski-in/ski-out access. Allegria Spa. Altitude 8,100 ft — hydrate.' },
@@ -725,7 +800,21 @@ export const trips: Trip[] = [
       { date: 'Jan 23', label: 'Ski Day 2', description: 'Second full day. Morning: hit the back bowls early for fresh tracks. Consider a shuttle to Vail for variety (15 min, same lift ticket). Afternoon: Allegria Spa post-ski — hot stone massage and hydrotherapy. Evening: dinner at Toscanini or venture to Vail Village for Sweet Basil.', type: 'activity' },
       { date: 'Jan 24', label: 'Depart', description: 'Optional early morning run (lifts open 9am). Check out by 11am. Ground transfer to airport. Fly home.', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      // ─── Flights ───
+      { category: 'flight', description: 'JetBlue flight (one direction, Jan 2027)', program: 'JetBlue TrueBlue', note: 'BOOKED on JetBlue (one of the two legs — direction TBD). PNR + cost + cabin TBD. Other direction still needs booking.' },
+      { category: 'flight', description: 'Other-direction flight (DEN/EGE ↔ SEA)', note: 'Not yet booked. United nonstop SEA→DEN ~12.5K UR/MP each way or ~$200–400 cash. Match to whichever direction the JetBlue covers.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Park Hyatt Beaver Creek (3 nts, Jan 21–24)', program: 'Hyatt', pnr: '58037120', points: 135000, note: 'BOOKED on 45K Hyatt points/night × 3 nts = 135K Hyatt total. (Peak Jan rate above standard Cat 6 25K.)' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'Airport → Beaver Creek (2hr from DEN via I-70 or 30min from EGE)', note: 'Epic Mountain Express shuttle ~$80–120/pp from DEN. Or rent AWD ~$80–120/day for 3 days = ~$300 total. Chains may be required.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Lift tickets (3 days × 2 pax)', note: 'Beaver Creek single-day lift ~$300/day in peak Jan. Consider Epic Pass (~$1,000/season) if doing both Beaver Creek trips. Ikon doesn\'t cover Vail Resorts.' },
+      { category: 'activity', description: 'Allegria Spa treatments (optional)', note: 'Post-ski massage ~$200–300 each. Hot stone or hydrotherapy recommended.' },
+      // ─── Other ───
+      { category: 'other', description: 'Ski rentals (if not bringing own)', note: '~$50–100/day × 3 days × 2 pax = $300–600 if renting. Skip if bringing own gear.' },
+      { category: 'other', description: 'Dinners (Splendido, Toscanini, Sweet Basil) + après-ski', note: 'Estimate ~$600–1,200 across 3 evenings for 2 pax. Splendido is the splurge ($150–250/pp).' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
@@ -742,7 +831,7 @@ export const trips: Trip[] = [
     year: 2027,
     status: 'booked',
     statusLabel: 'Booked',
-    travelers: 'TBD (likely 2–4, overlapping dates suggest multi-party)',
+    travelers: '2 adults (Terry + Janelle)',
     heroImage: 'japan-winter-niseko',
     flights: [
       { segment: 1, date: '2027-02-04', route: 'SEA → NRT', time: '11:55am → 3:05pm +1', airline: 'JAL (JL67)', cabin: 'Business', confirmation: 'EH6NYK', status: 'booked', notes: 'Ticketed as Cathay Pacific award. Arrive Narita Feb 5 afternoon.' },
@@ -757,9 +846,9 @@ export const trips: Trip[] = [
       { property: 'Park Hyatt Tokyo', location: 'Shinjuku, Tokyo', checkIn: '2027-02-14', checkOut: '2027-02-18', program: 'Hyatt', status: 'booked', notes: 'Conf: 50440509. Return to Tokyo. 4 nights. Farewell block.' },
     ],
     actionItems: [
-      { text: 'Clarify traveler breakdown — who is in Niseko vs Kyoto during Feb 10–13 overlap', urgent: true },
+      { text: 'CRITICAL: Reconcile 6 hotel bookings vs 2 travelers — Niseko 2 (Feb 13–18) overlaps Kyoto (Feb 10–15) AND Tokyo final (Feb 14–18). Some bookings likely need cancellation.', urgent: true },
       { text: 'Book internal flights: NRT → CTS (Hokkaido) and CTS → KIX/ITM (Kyoto)', urgent: true },
-      { text: 'Book NRT → TPE flight for Feb 15–16 (connects to EVA return)', urgent: true },
+      { text: 'Book NRT/KIX → TPE flight for Feb 15–16 (connects to EVA return)', urgent: true },
       { text: 'Reserve kaiseki dinner in Kyoto (Kikunoi, Gion Sasaki, or Hyotei)', urgent: false },
       { text: 'Research JR Pass vs. point-to-point Shinkansen tickets', urgent: false },
       { text: 'Book onsen ryokan day trip from Niseko if desired', urgent: false },
@@ -771,9 +860,9 @@ export const trips: Trip[] = [
       { title: 'Getting Between Cities', content: 'Tokyo → Niseko: Fly NRT/HND → New Chitose (CTS), then 2.5hr bus or car to Niseko. Niseko → Kyoto: Fly CTS → KIX (Kansai) or ITM (Itami/Osaka), then train to Kyoto (75 min from KIX, 15 min from ITM). Kyoto → Tokyo: Shinkansen Nozomi, 2hr 15min, runs every 10 minutes. Tokyo → Taipei: Multiple carriers (Peach, JAL, ANA, EVA). JR Pass may be worth it if doing Shinkansen segments, but calculate against point-to-point tickets for the specific legs.' },
     ],
     awardTips: [
-      { program: 'Cathay Pacific Asia Miles', route: 'SEA–NRT via JAL', cost: 'Booked', note: 'Outbound booked via Cathay miles on JAL metal. Strong sweet spot.' },
-      { program: 'Hyatt Points', route: 'Park Hyatt Tokyo/Niseko/Kyoto', cost: '25–40K per night', note: '6 bookings across 3 properties. Globalist suite upgrades most likely at Tokyo and Kyoto in February. Niseko is peak — upgrades less likely.' },
-      { program: 'EVA Air', route: 'TPE–SEA', cost: 'Booked', note: 'Royal Laurel Class return. Top-tier J product.' },
+      { program: 'Cathay Pacific Asia Miles', route: 'SEA–NRT via JAL', cost: '63K + $200 per pax = 126K + $400 total', note: 'Booked via Cathay miles on JAL metal. Classic oneworld sweet spot.' },
+      { program: 'EVA Infinity MileageLands', route: 'TPE–SEA', cost: '75K + $100 per pax = 150K + $200 total', note: 'Royal Laurel Class return. Same 75K rate as the iop-sep TPE-SEA leg.' },
+      { program: 'Hyatt Points', route: 'Park Hyatt Tokyo/Niseko/Kyoto', cost: '45K per night across all properties', note: 'TOTAL: 1,125K Hyatt points across 6 bookings (Tokyo 1+4 = 5 nts, Niseko 5+5 = 10 nts, Kyoto 5+5 = 10 room-nts) at 45K/nt. WARNING: Niseko 2 + Kyoto Room 2 overlap and only 2 travelers — likely cancellable bookings, real burn could be ~675K–900K.' },
     ],
     itinerary: [
       { date: 'Feb 4', label: 'Fly to Tokyo', description: 'SEA 11:55am → NRT 3:05pm +1 on JAL JL67 (conf: EH6NYK, Cathay award). Cross the date line — arrive Feb 5 afternoon. Narita Express to Shinjuku (90 min).', type: 'travel' },
@@ -785,7 +874,31 @@ export const trips: Trip[] = [
       { date: 'Feb 15', label: 'Kyoto → Tokyo or Taipei', description: 'Shinkansen Kyoto → Tokyo (2hr 15min) for final Tokyo nights, OR fly to Taipei for the return connection. Depends on traveler routing. Some may return to Niseko (conf: 2552461).', type: 'travel' },
       { date: 'Feb 16', label: 'Fly Home via Taipei', description: 'TPE 11:00pm → SEA 5:30pm on EVA Air BR24 Royal Laurel Class (conf: FK5O97). Taipei stopover possible if arriving early. Home same day (date line gain).', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      // ─── International Flights ───
+      { category: 'flight', description: 'SEA → NRT on JAL JL67 Business (Feb 4, 2 pax)', pnr: 'EH6NYK', program: 'Cathay Pacific Asia Miles', points: 126000, cashUsd: 400, note: '63K Cathay Asia Miles + $200 cash per person × 2 pax = 126K Asia Miles + $400 cash. Booked via Cathay on JAL metal — classic Star Alliance/oneworld sweet spot.' },
+      { category: 'flight', description: 'TPE → SEA on EVA BR24 Royal Laurel (Feb 16, 2 pax)', pnr: 'FK5O97', program: 'EVA Infinity MileageLands', points: 150000, cashUsd: 200, note: '75K EVA Infinity miles + $100 cash per person × 2 pax = 150K miles + $200 cash. Royal Laurel top-tier J product.' },
+      // ─── Internal Flights (TBD) ───
+      { category: 'flight', description: 'NRT/HND → CTS (Tokyo → Hokkaido, ~Feb 6)', note: 'Not yet booked. JAL/ANA ~$150–250 Y, ~$400–600 J one-way.' },
+      { category: 'flight', description: 'CTS → KIX/ITM (Hokkaido → Kansai, ~Feb 11)', note: 'Not yet booked. JAL/ANA ~$200–350 Y, ~$500–700 J one-way.' },
+      { category: 'flight', description: 'NRT or KIX → TPE (Japan → Taipei, ~Feb 15–16)', note: 'Not yet booked. Multiple carriers (Peach budget, JAL/ANA full-service, EVA). $100–300 Y typical.' },
+      { category: 'flight', description: 'Possible return Niseko trip (Feb 13–14)', note: 'Some travelers return to Niseko per overlapping bookings. Internal flights TBD.' },
+      // ─── Lodging — Park Hyatt Tokyo ───
+      { category: 'hotel', description: 'Park Hyatt Tokyo — Arrival night (1 nt, Feb 5–6)', program: 'Hyatt', pnr: '32906849', points: 45000, note: '45K Hyatt points (1 nt × 45K).' },
+      { category: 'hotel', description: 'Park Hyatt Tokyo — Farewell block (4 nts, Feb 14–18)', program: 'Hyatt', pnr: '50440509', points: 180000, note: '180K Hyatt points (4 nts × 45K).' },
+      // ─── Lodging — Park Hyatt Niseko Hanazono ───
+      { category: 'hotel', description: 'Park Hyatt Niseko Hanazono — First stay (5 nts, Feb 6–11)', program: 'Hyatt', pnr: '19374554', points: 225000, note: '225K Hyatt points (5 nts × 45K).' },
+      { category: 'hotel', description: 'Park Hyatt Niseko Hanazono — Second stay (5 nts, Feb 13–18) ⚠️ OVERLAP', program: 'Hyatt', pnr: '2552461', points: 225000, note: '225K Hyatt points (5 nts × 45K). OVERLAPS with Kyoto (Feb 10–15) AND Tokyo final (Feb 14–18) — only 2 travelers, can\'t be in 2 places. Likely candidate for cancellation/restructure.' },
+      // ─── Lodging — Park Hyatt Kyoto ───
+      { category: 'hotel', description: 'Park Hyatt Kyoto — Room 1 (5 nts, Feb 10–15)', program: 'Hyatt', pnr: '35675427', points: 225000, note: '225K Hyatt points (5 nts × 45K).' },
+      { category: 'hotel', description: 'Park Hyatt Kyoto — Room 2 (5 nts, Feb 10–15) ⚠️ EXTRA ROOM', program: 'Hyatt', pnr: '47489247', points: 225000, note: '225K Hyatt points (5 nts × 45K). Two rooms in Kyoto for just 2 travelers — confirm purpose (more space?) or cancel one.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Niseko lift tickets + ski rentals (5–10 days)', note: 'Niseko All-Mountain pass ~¥7,500/day (~$50). Total estimate $250–500/pp depending on day count.' },
+      { category: 'activity', description: 'Kaiseki dinners in Kyoto (Kikunoi / Gion Sasaki / Hyotei)', note: 'Top-tier kaiseki ~$200–500/pp. Estimate 2–3 dinners across the Kyoto stay.' },
+      // ─── Other ───
+      { category: 'other', description: 'JR Pass or point-to-point Shinkansen tickets', note: '14-day JR Pass ~$435/pp; point-to-point Tokyo-Kyoto round-trip ~$200/pp. Calculate which is better given internal flights.' },
+      { category: 'other', description: 'Meals + drinks + Tokyo/Niseko/Kyoto incidentals', note: 'Big trip — estimate ~$2,000–4,000 across 14 days for the full party. Sushi, izakaya, ramen, onsen entry fees.' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
@@ -830,7 +943,21 @@ export const trips: Trip[] = [
       { date: 'Feb 27', label: 'Ski Day 2', description: 'Second full day. Morning: Vail Back Bowls via the shuttle (15 min) — Sun Up Bowl and China Bowl for wide-open terrain. Afternoon return to Beaver Creek for spa at Allegria. Farewell dinner at 8100 Mountainside or Splendido.', type: 'activity' },
       { date: 'Feb 28', label: 'Depart', description: 'Optional sunrise run on Centennial. Check out by 11am. Transfer to airport. Fly home.', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → DEN or EGE (Feb 25)', note: 'Not yet booked. Same routing as Jan trip — United nonstop SEA→DEN ~12.5K UR/MP each way.' },
+      { category: 'flight', description: 'DEN or EGE → SEA return (Feb 28)', note: 'Not yet booked.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Park Hyatt Beaver Creek (3 nts, Feb 25–28)', program: 'Hyatt', pnr: '28563350', note: 'BOOKED on Hyatt points. Late Feb post-Presidents Day, may be lower than Jan peak — possibly ~30–40K/nt × 3 = ~90–120K. Verify exact count.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'Airport → Beaver Creek (2hr from DEN or 30min from EGE)', note: 'Same options as Jan trip — Epic Mountain Express shuttle ~$80–120/pp or AWD rental.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Lift tickets (3 days × 2 pax)', note: 'If Epic Pass purchased for Jan trip, no additional cost. Otherwise ~$280/day late Feb (slightly cheaper than Jan peak).' },
+      { category: 'activity', description: 'Allegria Spa treatments (optional)', note: '~$200–300 each. Same options as Jan visit.' },
+      // ─── Other ───
+      { category: 'other', description: 'Ski rentals (if not bringing own)', note: '~$50–100/day × 3 days × 2 pax = $300–600.' },
+      { category: 'other', description: 'Dinners (try restaurants missed in Jan) + après-ski', note: 'Estimate ~$600–1,200 for 3 evenings. Grouse Mountain Grill, 8100 Mountainside.' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
@@ -879,19 +1006,32 @@ export const trips: Trip[] = [
       { date: 'Mar 27', label: 'Montmartre & Indulgence', description: 'Morning: Sacré-Cœur and Montmartre village — explore the artists\' quarter, coffee at La Maison Rose. Pastry at Cédric Grolet Opéra (near hotel). Afternoon: Galeries Lafayette rooftop for city views, or spa at the hotel. Final evening: Seine river walk at golden hour, farewell dinner at a restaurant of choice.', type: 'activity' },
       { date: 'Mar 28', label: 'Depart Paris', description: 'Final morning — croissant and café crème at a neighborhood spot. Check out by noon. Taxi or RER to CDG. Fly home.', type: 'travel' },
     ],
-    costs: [],
+    costs: [
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → CDG (Mar 24/25)', note: 'Not yet booked. Air France nonstop SEA→CDG ~55–80K Flying Blue RT in J, or ~$2,000–3,500 cash Business.' },
+      { category: 'flight', description: 'CDG → SEA return (Mar 28)', note: 'Not yet booked. Same target as outbound.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Park Hyatt Paris-Vendôme (3 nts, Mar 25–28)', program: 'Hyatt', pnr: '36693055', note: 'BOOKED on Hyatt points. Cat 7 = ~30K standard / 40K peak per night × 3 = ~90K–120K estimated. Verify exact count. Globalist suite upgrade highly possible in March.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'CDG → Paris (RER B or taxi)', cashUsd: 80, note: 'RER B ~€12/pp = ~$30 for 2 pax round-trip; or taxi ~€55 each way = ~$120 round-trip.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Louvre + Musée d\'Orsay timed tickets', cashUsd: 50, note: '~€22/pp Louvre, ~€16/pp d\'Orsay. ~$50–80 for both museums for 2 pax.' },
+      // ─── Other ───
+      { category: 'other', description: 'Dinners (Pur\' + Frenchie + Le Grand Véfour + bouillon)', note: 'Estimate ~$800–1,500 across 3 evenings for 2 pax. Pur\' tasting menu ~€200/pp.' },
+      { category: 'other', description: 'Pastry + cafés + Marché lunch + neighborhood meals', note: 'Estimate ~$300–500. Cédric Grolet ~€20/pastry.' },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════
-  // SEYCHELLES DIVING — November 2026
+  // SEYCHELLES + MADAGASCAR — November 2026 (Option B combined trip)
   // ═══════════════════════════════════════════════════════
   {
-    slug: 'seychelles-nov-2026',
-    title: 'Seychelles Diving',
-    subtitle: 'Waldorf Astoria Platte Island + Indian Ocean granite reefs',
-    region: 'Indian Ocean',
-    country: 'Seychelles',
-    dates: 'November 23, 2026 – TBD',
+    slug: 'seychelles-madagascar-nov-2026',
+    title: 'Seychelles + Madagascar',
+    subtitle: 'Platte Island granite reefs + Andasibe lemur immersion',
+    region: 'Indian Ocean & Madagascar',
+    country: 'Seychelles & Madagascar',
+    dates: 'November 23 – December 3, 2026',
     month: 'November',
     year: 2026,
     status: 'partially_booked',
@@ -899,29 +1039,83 @@ export const trips: Trip[] = [
     travelers: 'Terry Lin + Janelle Tam (Janelle not on outbound PNR yet)',
     heroImage: 'seychelles-beach',
     flights: [
-      { segment: 1, date: '2026-11-23', route: 'SEA → IST', time: '7:00pm PT → 6:00pm local +1', airline: 'Turkish Airlines (TK204)', cabin: 'Business (I)', confirmation: 'S46R5Q', status: 'booked', notes: '12h direct. Seat 03K. Only Terry on PNR — Janelle status TBD.' },
+      // ─── Seychelles outbound ───
+      { segment: 1, date: '2026-11-23', route: 'SEA → IST', time: '7:00pm PT → 6:00pm local +1', airline: 'Turkish Airlines (TK204)', cabin: 'Business (I)', confirmation: 'S46R5Q', status: 'booked', notes: '12h direct. Seat 03K. Terry on this PNR.' },
+      { segment: 2, date: '2026-11-23', route: 'SEA → IST (Janelle, separate PNR)', airline: 'Turkish Airlines (TK204)', cabin: 'Business', status: 'booked', notes: 'Janelle on separate PNR. Same flight as Terry.' },
+      { segment: 3, date: '2026-11-24', route: 'IST → SEZ (Mahé)', airline: 'Turkish Airlines', cabin: 'Business (TBD)', status: 'booked', notes: 'Booked by friend on Terry\'s behalf. 150K Turkish miles + $400 cash for 2 pax. Full PNR pending from friend.' },
+      // ─── Seychelles → Madagascar ───
+      { segment: 4, date: '2026-11-28', route: 'SEZ → TNR (Mahé → Antananarivo)', airline: 'Emirates (777, direct)', cabin: 'TBD', status: 'needs_action', notes: 'Daily flight, ~2hr 45min. ~$280–400/pp cash. Book for 2 pax.' },
+      // ─── Madagascar → Home ───
+      { segment: 5, date: '2026-12-03', route: 'TNR → DOH → SEA (Qatar Airways)', status: 'needs_action', notes: 'Target Qatar routing via Doha — Qsuites if available DOH-SEA. Date flexible across early Dec; verify TNR→DOH schedule + sweet seat availability.' },
     ],
     hotels: [
-      { property: 'Waldorf Astoria Seychelles Platte Island', location: 'Platte Island, Seychelles', program: 'Hilton FNC', status: 'not_booked', notes: 'Planning — target redemption with Hilton Free Night Certificates.' },
+      { property: 'Mahé arrival night (optional, depending on SEZ arrival time)', location: 'Mahé, Seychelles', checkIn: '2026-11-24', checkOut: '2026-11-25', status: 'not_booked', notes: 'May or may not be needed depending on SEZ arrival timing and Platte transfer schedule.' },
+      { property: 'Waldorf Astoria Seychelles Platte Island', location: 'Platte Island, Outer Seychelles', checkIn: '2026-11-25', checkOut: '2026-11-28', program: 'Hilton FNC', status: 'not_booked', notes: '3 Hilton Free Night Certificates planned (reduced from 5–7 to make room for Madagascar leg). Cash equivalent ~$4,500–9,000 for 3 nts. PADI 5-Star Dive Resort on-site.' },
+      { property: 'TNR transit night (Nov 28)', location: 'Antananarivo, Madagascar', checkIn: '2026-11-28', checkOut: '2026-11-29', status: 'not_booked', notes: 'Optional — depending on whether driving straight to Andasibe (~3hr) is feasible after late SEZ→TNR arrival.' },
+      { property: 'Mantadia Lodge (or alternative)', location: 'Andasibe, Madagascar', checkIn: '2026-11-29', checkOut: '2026-12-02', status: 'not_booked', notes: '3 nts at Andasibe for lemur immersion. Options: Mantadia Lodge ($300–400/nt, boutique luxury), Vakôna Forest Lodge ($200/nt, classic), Andasibe Hotel ($150/nt, boutique-local). Recommendation: Mantadia.' },
+      { property: 'TNR departure night (Dec 2)', location: 'Antananarivo, Madagascar', checkIn: '2026-12-02', checkOut: '2026-12-03', status: 'not_booked', notes: 'Pre-departure night before Dec 3 return flight.' },
     ],
     actionItems: [
-      { text: 'Verify Janelle on PNR or book her separately', urgent: true },
-      { text: 'Book IST→SEZ on separate Turkish award', urgent: true },
-      { text: 'Decide Seychelles vs. Calala (both Nov 23)', urgent: true },
-      { text: 'Book Waldorf Astoria Platte Island with Hilton FNCs', urgent: false },
+      { text: 'Book Janelle\'s SEA→IST outbound Turkish award (~65K + $219)', urgent: true },
+      { text: 'Book SEZ → TNR Emirates direct for Nov 28 (2 pax)', urgent: true },
+      { text: 'Book TNR → SEA return routing for Dec 3 (compare AF / EK / TK)', urgent: true },
+      { text: 'Book Waldorf Astoria Platte Island Nov 25–28 (3 Hilton FNCs)', urgent: true },
+      { text: 'Book Mantadia Lodge (or alternative) Nov 29 – Dec 2', urgent: true },
+      { text: 'Arrange Madagascar driver + guide (Cortez Expeditions / Mada Tours)', urgent: true },
+      { text: 'Verify yellow fever vaccination requirement (Seychelles transit may trigger)', urgent: true },
+      { text: 'Start malaria prophylaxis 1–2 weeks before departure', urgent: false },
+      { text: 'Travel insurance covering diving + Madagascar medical evacuation', urgent: false },
     ],
     intel: [
-      { title: 'Why Seychelles, Why November', content: 'November is one of the two best diving windows in Seychelles. Southwest monsoon ends, water temp hits 29°C, visibility reaches 30 meters. Tail end of whale shark season.\nSeychelles has granite reef formations found nowhere else on earth.' },
+      { title: 'Why this combination', content: 'Seychelles and Madagascar are both Indian Ocean destinations accessible in one trip window — but they deliver completely different experiences. Seychelles Platte Island gives you granite-reef topography (unique on Earth), tail-end whale shark season, and Outer Islands access in calm-sea November. Madagascar Andasibe gives you endemic-primate immersion — lemurs split from other primates 60M years ago, evolved in isolation, with 90% of Madagascar wildlife endemic. Per Terry\'s "don\'t repeat the ecosystem" rule, Madagascar fits as a different category from both the African Big Five (done at Kruger) and the upcoming Coral Triangle biodiversity hotspot at Alor (Sept 2026).' },
+      { title: 'Why November works for both', content: 'Seychelles: November is one of the two peak dive windows (SW monsoon ends, calm seas, 30m visibility, 29°C water, tail end of whale shark season Sept–Nov). Madagascar: November is the FIRST month of wet season but it\'s also BABY LEMUR SEASON (October–November birthing) — a real seasonal advantage. Eastern rainforests (Andasibe) get afternoon showers but mornings are often clear; western Madagascar (Kirindy) stays drier. Andasibe in November = active wildlife, baby lemurs, fewer tourists than peak July–Sept.' },
+      { title: 'Waldorf Astoria Platte Island', content: 'Private-island Hilton-portfolio resort on Platte Island, ~130km south of Mahé. 50 villas, private pools, beach access. PADI 5-Star Dive Resort on-site (Big Blue Divers / Blue Safari Seychelles operate). 13km barrier reef provides the local dive territory — granite swim-throughs, walls, drops to 30m. Reef sharks, eagle rays, turtles, schools of jacks. Cannot reach Aldabra / Cosmoledo / Astove from Platte (those are liveaboard-only). Cash rates $1,500–3,000/nt make Hilton FNC redemption exceptional value here.' },
+      { title: 'Andasibe-Mantadia National Park', content: 'Two reserves: Analamazaotra (small, dense indri population, easier access) + Mantadia (larger, deeper rainforest, diademed sifaka, more strenuous trekking). ~155km east of Antananarivo, ~3hr drive. Montane rainforest at 1,000m+ elevation, cooler than coastal (15–22°C in November). Headline experience: INDRI lemurs at dawn — they sing/call across the canopy at sunrise, the loudest land animal call after the howler monkey. Other lemurs: diademed sifaka, common brown, bamboo lemurs. Night walks for mouse lemurs, leaf-tailed geckos, chameleons. Photography in dense canopy is low-light — bring fast lens + tripod for night walks.' },
+      { title: 'Coral reality at Platte', content: 'Per Terry\'s marine trip lens: the 4th global coral bleaching event (2024–2025) hit Western Indian Ocean. BUT outer islands like Platte and Aldabra recovered faster from the 2016 bleaching than inner Seychelles. Expect reasonable coral + healthy fish life — not pristine Coral Triangle reef. Frame expectations as "spectacular topography + decent coral + great pelagic encounters." For pristine reef, that\'s a separate future dedicated Outer Atolls liveaboard (Aldabra Expeditions / MY Basilisk).' },
     ],
     awardTips: [
-      { program: 'Turkish Miles&Smiles', route: 'SEA→IST one-way', cost: '65K miles + $219', note: 'Classic Star Alliance sweet spot, transferable from Capital One' },
+      { program: 'Turkish Miles&Smiles', route: 'SEA→IST', cost: '65K + $219/pp', note: 'Terry outbound booked. Janelle needs same booking.' },
+      { program: 'Turkish Miles&Smiles', route: 'IST→SEZ', cost: '75K + $200/pp = 150K + $400 for 2 pax', note: 'Booked by friend. Higher than expected — verify cabin when PNR available.' },
+      { program: 'Emirates Skywards / cash', route: 'SEZ→TNR (Mahé→Antananarivo)', cost: '~$280–400/pp cash on Emirates direct', note: 'Daily 777 service, 2hr 45min. Cheap enough that cash is fine; Skywards rate likely not better.' },
+      { program: 'Hilton Honors', route: 'Waldorf Astoria Platte (3 nts)', cost: '3 Hilton FNCs', note: 'Cash rates $1,500–3,000/nt → ~$4,500–9,000 in cash equivalent. Major FNC value. 2–4 unused FNCs remain for future ultra-luxury Hilton redemption.' },
     ],
-    itinerary: [],
+    itinerary: [
+      { date: 'Nov 23', label: 'Depart Seattle', description: 'SEA 7:00pm → IST 6:00pm +1 on Turkish TK204 Business (Terry on conf S46R5Q, seat 03K; Janelle on separate PNR TBD). 12hr direct overnight flight.', type: 'travel' },
+      { date: 'Nov 24', label: 'Istanbul → Seychelles', description: 'Arrive IST, layover (TK Business lounge). Continue IST → SEZ on Turkish (booked by friend). Arrive Mahé, possibly 1 night Mahé hotel depending on arrival time.', type: 'travel' },
+      { date: 'Nov 25', label: 'Transfer to Platte Island', description: 'Mahé → Platte by seaplane charter (~45min) or boat (~3hr). Resort arranges. Check into Waldorf Astoria villa. House reef snorkel; settle in. Sunset cocktails on the deck.', type: 'travel' },
+      { date: 'Nov 26', label: 'Platte Dive Day 1', description: '2-tank morning dive (granite topography, outer wall) + 1-tank afternoon. Lunch + sunset at the resort.', type: 'activity' },
+      { date: 'Nov 27', label: 'Platte Dive Day 2', description: '2-tank dive — focus on whale shark hot zones if plankton conditions allow. Afternoon: spa, fishing, or house reef snorkeling.', type: 'activity' },
+      { date: 'Nov 28', label: 'Platte → Mahé → TNR (long travel day)', description: 'Morning: optional final dive. Late morning: speedboat/seaplane Platte → Mahé. Afternoon: SEZ → TNR on Emirates direct (~2hr 45min). Evening: drive ~3hr east to Andasibe area, or 1 night TNR if late arrival.', type: 'travel' },
+      { date: 'Nov 29', label: 'Andasibe Day 1 — arrival + night walk', description: 'Arrive Andasibe area. Orientation walk through forest reserve. Evening NIGHT WALK in Analamazaotra — mouse lemurs, chameleons, leaf-tailed geckos, frogs. Best Madagascar wildlife photography hours.', type: 'activity' },
+      { date: 'Nov 30', label: 'Andasibe Day 2 — Indri at dawn', description: '5:30am hike to find INDRI lemurs at dawn — world\'s largest lemur, ear-splitting territorial calls echo across the canopy at sunrise. Also see diademed sifaka, brown lemurs, bamboo lemurs. Chameleon walk mid-morning. Afternoon: second forest walk OR Vakôna\'s lemur island for close encounters. Optional second night walk.', type: 'activity' },
+      { date: 'Dec 1', label: 'Andasibe Day 3 — Deeper trek', description: 'Morning: deeper hike into Mantadia National Park (more strenuous, fewer visitors, diademed sifaka territory). Lunch at lodge. Afternoon: bird watching (Madagascar has 280+ species, ~50% endemic). Optional third night walk or rest if field-tired.', type: 'activity' },
+      { date: 'Dec 2', label: 'Andasibe → TNR (return prep)', description: 'Morning: final park walk or relaxed breakfast. Late morning: drive back to TNR (~3hr). Afternoon/evening: rest at TNR hotel.', type: 'travel' },
+      { date: 'Dec 3', label: 'Fly home', description: 'TNR → onward home routing (AF via CDG, EK via DXB, or TK via IST). Arrive SEA same calendar day or next depending on routing.', type: 'travel' },
+    ],
     costs: [
-      { category: 'flight', description: 'SEA → IST on Turkish TK204 (Business, I fare)', pnr: 'S46R5Q', seat: 'Terry 03K', points: 65000, program: 'Turkish Miles&Smiles', cashUsd: 219, taxesUsd: 29, changePenaltyUsd: 70, cancelPenaltyUsd: 170, note: '$190 fuel + $29 tax. Terry only on PNR — Janelle not on this ticket.', source: 'Gmail: Turkish Airlines S46R5Q Apr 17 2026' },
-      { category: 'flight', description: 'IST → SEZ (connecting leg)', note: 'Not yet booked — needs separate Turkish award (~20K Miles&Smiles in J)' },
-      { category: 'flight', description: 'SEZ → IST → SEA (return)', note: 'Not yet booked' },
-      { category: 'hotel', description: 'Waldorf Astoria Platte Island (5–7 nts, planned)', program: 'Hilton FNC', note: 'Not yet booked — will use Hilton free-night certificates' },
+      // ─── Flights — Booked ───
+      { category: 'flight', description: 'SEA → IST on Turkish TK204 (Business I, Terry only)', pnr: 'S46R5Q', seat: 'Terry 03K', points: 65000, program: 'Turkish Miles&Smiles', cashUsd: 219, taxesUsd: 29, changePenaltyUsd: 70, cancelPenaltyUsd: 170, note: '$190 fuel + $29 tax. Terry only — Janelle needs separate booking.', source: 'Gmail: Turkish Airlines S46R5Q Apr 17 2026' },
+      { category: 'flight', description: 'IST → SEZ (Mahé, both pax)', points: 150000, program: 'Turkish Miles&Smiles (booked by friend)', cashUsd: 400, note: 'BOOKED by friend. 75K + $200/pp × 2 pax = 150K + $400. Higher than expected rate; verify cabin when PNR available.' },
+      // ─── Flights — To Book ───
+      { category: 'flight', description: 'SEA → IST (Janelle, separate booking needed)', note: 'Target ~65K Turkish + $219, matching Terry\'s booking.' },
+      { category: 'flight', description: 'SEZ → TNR on Emirates (Mahé → Antananarivo, Nov 28, 2 pax)', cashUsd: 700, note: 'Daily direct flight on Emirates 777, 2hr 45min. ~$280–400/pp cash. Not yet booked.' },
+      { category: 'flight', description: 'TNR → SEA return (Dec 3, 2 pax, routing TBD)', note: 'Not yet booked. Options: AF via CDG (best business class), EK via DXB (efficient), TK via IST (uses Turkish miles?). Cash $1,500–3,500/pp typical for Business.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Mahé arrival night (optional, Nov 24)', note: 'Not yet booked. $200–400 if needed.' },
+      { category: 'hotel', description: 'Waldorf Astoria Platte Island (3 nts, Nov 25–28)', program: 'Hilton FNC', note: 'Not yet booked. 3 Hilton Free Night Certificates planned. Cash equivalent ~$4,500–9,000. Major FNC value.' },
+      { category: 'hotel', description: 'TNR transit night (Nov 28, optional)', note: 'Depends on whether driving straight to Andasibe is feasible after late SEZ→TNR arrival. ~$150 if needed.' },
+      { category: 'hotel', description: 'Andasibe lodge (3 nts, Nov 29 – Dec 2)', cashUsd: 1050, note: 'Mantadia Lodge recommended (~$350/nt × 3). Alternatives: Vakôna Forest Lodge ($200/nt), Andasibe Hotel ($150/nt).' },
+      { category: 'hotel', description: 'TNR departure night (Dec 2)', cashUsd: 150, note: 'Pre-departure rest before Dec 3 morning flight. Hôtel Sakamanga / La Varangue / boutique TBD.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'Mahé → Platte seaplane/boat RT (2 pax)', cashUsd: 1500, note: 'Resort arranges. ~$500–1,000/pp RT typical for Outer Islands transfer.' },
+      { category: 'transfer', description: 'Madagascar driver + guide (5 days, Nov 28 – Dec 3)', cashUsd: 625, note: '$100–150/day × 5 days with private vehicle. Operators: Cortez Expeditions, Madagascar Classic Camping, Mada Tours.' },
+      // ─── Activities ───
+      { category: 'activity', description: 'Diving at Platte (~6–8 dives, 2 pax)', cashUsd: 1600, note: '$80–120/dive × 6–8 dives × 2 pax. Booked through Big Blue Divers or Blue Safari Seychelles on-site.' },
+      { category: 'activity', description: 'Andasibe park entry + local guides (3 days, 2 pax)', cashUsd: 250, note: '~$25 park entry + $15/pp/day local guide × 3 days.' },
+      // ─── Other ───
+      { category: 'other', description: 'Madagascar visa-on-arrival (2 pax)', cashUsd: 70, note: '$35/pp on arrival at TNR.' },
+      { category: 'other', description: 'Yellow fever + malaria prophylaxis (2 pax)', cashUsd: 200, note: 'Confirm whether transiting SEZ triggers yellow fever requirement for Madagascar entry.' },
+      { category: 'other', description: 'Tips + meals + drinks + incidentals', cashUsd: 800, note: 'Tips for dive crew, lodge staff, drivers, park guides. Plus meals not included at lodges + drinks.' },
     ],
   },
 
@@ -958,7 +1152,23 @@ export const trips: Trip[] = [
     awardTips: [
       { program: 'Qantas Points', route: 'LAX→PPT one-way', cost: 'TBD (points not yet verified)', note: 'Booked April 16, 2026. Open Qantas app with PNR ERJ75I to see actual points cost.' },
     ],
-    itinerary: [],
-    costs: [],
+    itinerary: [
+      { date: 'TBD pre-Apr 4', label: 'Position SEA → LAX', description: 'Need to book a positioning flight (likely Alaska or Delta) to connect to LAX → PPT departure on Apr 4.', type: 'travel' },
+      { date: 'Apr 4', label: 'LAX → Papeete', description: 'LAX → PPT (likely Air Tahiti Nui TN 102) on Qantas-ticketed booking, conf ERJ75I. Overnight flight (~8hr).', type: 'travel' },
+      { date: 'Apr 5+', label: 'Tahiti / Bora Bora / Moorea — TBD', description: 'Itinerary pending — decide island(s). Bora Bora for overwater bungalows, Moorea for hiking + diving, Tikehau for atoll life.', type: 'flexible' },
+      { date: 'TBD', label: 'Return PPT → SEA', description: 'Return flight not yet booked. Same Qantas/oneworld routing or alternative.', type: 'travel' },
+    ],
+    costs: [
+      // ─── Flights ───
+      { category: 'flight', description: 'SEA → LAX positioning (TBD pre-Apr 4)', note: 'Not yet booked. Alaska MVP target ~$80–150 cash or ~5K AS miles.' },
+      { category: 'flight', description: 'LAX → PPT on Air Tahiti Nui (likely TN 102)', pnr: 'ERJ75I', program: 'Qantas Points', note: 'BOOKED via Qantas Points (oneworld partner award). Booked Apr 16 2026. Open Qantas app with PNR ERJ75I to verify exact points + cabin + flight #.' },
+      { category: 'flight', description: 'PPT → SEA return', note: 'Not yet booked. Mirror Qantas/Air Tahiti Nui or alternative.' },
+      // ─── Lodging ───
+      { category: 'hotel', description: 'Tahiti / Bora Bora / Moorea — island lodging TBD', note: 'No bookings yet. Options: Conrad Bora Bora Nui (Hilton FNCs!), Four Seasons Bora Bora, InterContinental Moorea (IHG points). Cash rates $700–2,500/nt typical.' },
+      // ─── Transfers ───
+      { category: 'transfer', description: 'PPT inter-island flights (Air Tahiti)', note: 'Inter-island hops $100–300 RT depending on island. Book separately on Air Tahiti.' },
+      // ─── Other ───
+      { category: 'other', description: 'Diving + meals + activities', note: 'Estimate heavily depends on islands chosen + duration. Plan post-itinerary lock.' },
+    ],
   },
 ];
