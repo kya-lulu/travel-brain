@@ -422,15 +422,13 @@ export const trips: Trip[] = [
       { segment: 7, date: '2026-10-12', route: 'TPE → SEA', time: '23:40 → 19:30 PT (same day)', airline: 'EVA Air BR26', cabin: 'Business', confirmation: 'FA6F6L', status: 'booked', notes: '75K Star Alliance + ~TWD 4,010 (~$130). 10h 50m. Date-line magic: arrives Seattle evening of same calendar day.' },
     ],
     hotels: [
-      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'not_booked', notes: 'Overnight transit before 06:45 GA456 — needs booking. Cat 4 ~25K/night.' },
+      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'booked', notes: '20K Hyatt points. Overnight transit before 06:45 GA456.' },
       { property: 'Indo Ocean Project — Alor Expedition', location: 'Alor & Banda Sea, Indonesia', checkIn: '2026-09-27', checkOut: '2026-10-09', status: 'booked', notes: '12 nights, €4,900. Shore-based / liveaboard — citizen-science dive expedition (indooceanproject.org).' },
-      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-10-09', checkOut: '2026-10-10', program: 'Hyatt', status: 'not_booked', notes: 'Recovery night after dive expedition — needs booking. Cat 4 ~25K/night.' },
-      { property: 'TBD — Taipei', location: 'Taipei, Taiwan', checkIn: '2026-10-10', checkOut: '2026-10-12', status: 'not_booked', notes: '2 nights (Oct 10 + Oct 11) plus late checkout / day room Oct 12 for the 23:40 BR26 flight. Grand Hyatt Taipei (~25K Hyatt) or Hotel Proverbs (cash, design hotel) are top picks.' },
+      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-10-09', checkOut: '2026-10-10', program: 'Hyatt', status: 'booked', notes: '20K Hyatt points. Recovery night after dive expedition.' },
+      { property: 'Grand Hyatt Taipei', location: 'Taipei, Taiwan', checkIn: '2026-10-10', checkOut: '2026-10-12', program: 'Hyatt', status: 'booked', notes: '34K Hyatt points (17K × 2 nights), Oct 10 + Oct 11 in Xinyi. Request late checkout / day-use Oct 12 to cover the 23:40 BR26 flight.' },
     ],
     actionItems: [
-      { text: 'Book Park Hyatt Jakarta for Sept 25 overnight (Hyatt points)', urgent: true },
-      { text: 'Book Park Hyatt Jakarta for Oct 9 overnight (Hyatt points)', urgent: true },
-      { text: 'Book Taipei hotel for Oct 10–12 (2 nts + late checkout Oct 12)', urgent: true },
+      { text: 'Request late checkout / day-use room at Grand Hyatt Taipei for Oct 12 (BR26 departs 23:40)', urgent: false },
       { text: 'Contact Indo Ocean Project to confirm Sept 27 ARD arrival logistics + gear list', urgent: false },
       { text: 'Confirm CI 0762 ticket stock (CI direct vs AF codeshare) — affects seat management', urgent: false },
       { text: 'Address Wings Air 10kg checked baggage limit (ship dive gear ahead or pay extra)', urgent: false },
@@ -449,8 +447,8 @@ export const trips: Trip[] = [
       { program: 'Virgin Atlantic Flying Club', route: 'AMQ → CGK on Garuda GA647 Business', cost: '21,500 VS + $4.50', note: 'Second VS partner redemption for the return Garuda leg. Confirmation DOSB8U.' },
       { program: 'TBD (Star Alliance / Flying Blue)', route: 'CGK → TPE on China Airlines CI 0762 Business', cost: 'Award booking', note: 'Operating + marketing carrier is China Airlines (CI). Confirmation YRIBKT. Confirm which program issued the ticket.' },
       { program: 'Star Alliance partner award', route: 'TPE → SEA on EVA BR26 Business', cost: '75K + ~TWD 4,010 (~$130)', note: 'EVA Business return. Confirmation FA6F6L. 75K is consistent with Aeroplan or United Saver — confirm exact program for any future changes.' },
-      { program: 'Hyatt Points', route: 'Park Hyatt Jakarta (x2)', cost: '~25K Hyatt/night (Cat 4)', note: 'Two overnight transits in Jakarta planned on Hyatt points. Booking pending.' },
-      { program: 'Hyatt Points', route: 'Grand Hyatt Taipei (2 nts)', cost: '~25K Hyatt/night', note: 'Cat 4 Hyatt in Xinyi. Alternative to cash boutique like Hotel Proverbs. Booking pending.' },
+      { program: 'World of Hyatt', route: 'Park Hyatt Jakarta (Sept 25 + Oct 9)', cost: '40K total (20K × 2 nts)', note: 'Booked. 20K/night — solid redemption for both transit nights.' },
+      { program: 'World of Hyatt', route: 'Grand Hyatt Taipei (Oct 10–12, 2 nts)', cost: '34K total (17K × 2 nts)', note: 'Booked. Cat 4 standard rate in Xinyi. Need late checkout / day-use Oct 12 for the 23:40 BR26 flight.' },
     ],
     itinerary: [
       { date: 'Sept 24', label: 'Depart Seattle', description: 'SQ 027 SEA 10:15 → SIN 17:35 +1 (Business, seat 15A). 16h 20m long-haul. PNR DISMSE.', type: 'travel' },
@@ -473,9 +471,9 @@ export const trips: Trip[] = [
       { category: 'flight', description: 'CGK → TPE on China Airlines CI 0762 Business (Oct 10)', pnr: 'YRIBKT', program: 'TBD (Star Alliance / Flying Blue)', note: 'Operating + marketing carrier is China Airlines (CI). Confirm ticket stock for change/cancel handling.' },
       { category: 'flight', description: 'TPE → SEA on EVA BR26 Business (Oct 12, 23:40 departure)', pnr: 'FA6F6L', points: 75000, program: 'Star Alliance partner award', cashUsd: 130, note: '75K + ~TWD 4,010 (~$130). Arrives Seattle same calendar day (Oct 12 19:30 PT). Confirm exact award program for future changes.' },
       // ─── Lodging ───
-      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Sept 25 transit)', program: 'Hyatt', note: 'Cat 4 = ~25K Hyatt/night. Booking pending.' },
-      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Oct 9 transit)', program: 'Hyatt', note: 'Same Cat 4 = ~25K Hyatt/night. Booking pending.' },
-      { category: 'hotel', description: 'Taipei hotel (2 nts + late checkout Oct 10–12)', note: 'Top pick: Grand Hyatt Taipei (~25K Hyatt/night, Xinyi). Alternatives: Hotel Proverbs (Daan, design hotel, cash), Four Seasons (luxury cash).' },
+      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Sept 25 transit)', pnr: 'TBD', points: 20000, program: 'World of Hyatt', note: 'Booked at 20K Hyatt points.' },
+      { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Oct 9 transit)', pnr: 'TBD', points: 20000, program: 'World of Hyatt', note: 'Booked at 20K Hyatt points.' },
+      { category: 'hotel', description: 'Grand Hyatt Taipei (2 nts, Oct 10–12)', pnr: 'TBD', points: 34000, program: 'World of Hyatt', note: 'Booked at 17K × 2 = 34K Hyatt points. Late checkout / day-use needed Oct 12 (BR26 departs 23:40).' },
       // ─── Activities ───
       { category: 'activity', description: 'Alor dive operator (12 nts all-inclusive liveaboard/resort, Sept 27 – Oct 9)', cashUsd: 5500, note: '€4,900 booked, approx $5,500 USD at ~1.12 FX. Includes 4–5 dives/day, accommodation, all meals, gear, guides.' },
       { category: 'activity', description: 'Dive crew gratuities (~$10–15/day × 12 days)', note: 'Cash for dive crew at end — ~$120–180 USD.' },

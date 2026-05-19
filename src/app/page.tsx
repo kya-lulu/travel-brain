@@ -75,6 +75,8 @@ export default function Home() {
         return { text: "text-text-muted", icon: AlertCircle };
       case "canceled":
         return { text: "text-text-muted", icon: AlertCircle };
+      case "complete":
+        return { text: "text-text-muted", icon: CheckCircle2 };
       default:
         return { text: "text-text-muted", icon: Clock };
     }

@@ -26,6 +26,7 @@ type TripStatus =
   | 'planning'
   | 'decision_needed'
   | 'canceled'
+  | 'complete'
   | 'pending'
   | 'not_booked';
 
@@ -37,6 +38,7 @@ function StatusBadge({ status, label }: { status: TripStatus; label: string }) {
     planning: 'bg-accent-soft text-accent',
     decision_needed: 'bg-[#f0ece6] text-text-muted',
     canceled: 'bg-[#f0ece6] text-text-muted line-through',
+    complete: 'bg-[#e8efe8] text-text-muted',
     pending: 'bg-accent-soft text-accent',
     not_booked: 'bg-error-soft text-error',
   };
