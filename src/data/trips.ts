@@ -937,7 +937,7 @@ export const trips: Trip[] = [
       // ─── Seychelles outbound ───
       { segment: 1, date: '2026-11-23', route: 'SEA → IST', time: '7:00pm PT → 6:00pm local +1', airline: 'Turkish Airlines (TK204)', cabin: 'Business (I)', confirmation: 'S46R5Q', status: 'booked', notes: '12h direct. Seat 03K. Terry on this PNR.' },
       { segment: 2, date: '2026-11-23', route: 'SEA → IST (Janelle, separate PNR)', airline: 'Turkish Airlines (TK204)', cabin: 'Business', status: 'booked', notes: 'Janelle on separate PNR. Same flight as Terry.' },
-      { segment: 3, date: '2026-11-24', route: 'IST → SEZ (Mahé)', airline: 'Turkish Airlines', cabin: 'Business (TBD)', status: 'booked', notes: 'Booked by friend on Terry\'s behalf. 150K Turkish miles + $400 cash for 2 pax. Full PNR pending from friend.' },
+      { segment: 3, date: '2026-11-25', route: 'IST → SEZ (Mahé)', time: '02:15 → 11:00', airline: 'Turkish Airlines (TK748)', cabin: 'Business (I)', confirmation: 'TB6NH6', status: 'booked', notes: 'Direct, 7h 45m. Terry confirmed on TK748 (conf TB6NH6). Departs IST 02:15 on Nov 25 after an overnight layover (SEA→IST arrives 18:00 Nov 24). Part of ~150K Turkish miles + $400 for 2 pax — verify Janelle is on TB6NH6 or holds her own IST→SEZ PNR.' },
       // ─── Seychelles → Madagascar ───
       { segment: 4, date: '2026-11-28', route: 'SEZ → TNR (Mahé → Antananarivo)', airline: 'Emirates (777, direct)', cabin: 'TBD', status: 'needs_action', notes: 'Daily flight, ~2hr 45min. ~$280–400/pp cash. Book for 2 pax.' },
       // ─── Madagascar → Home ───
@@ -976,8 +976,8 @@ export const trips: Trip[] = [
     ],
     itinerary: [
       { date: 'Nov 23', label: 'Depart Seattle', description: 'SEA 7:00pm → IST 6:00pm +1 on Turkish TK204 Business (Terry on conf S46R5Q, seat 03K; Janelle on separate PNR TBD). 12hr direct overnight flight.', type: 'travel' },
-      { date: 'Nov 24', label: 'Istanbul → Seychelles', description: 'Arrive IST, layover (TK Business lounge). Continue IST → SEZ on Turkish (booked by friend). Arrive Mahé, possibly 1 night Mahé hotel depending on arrival time.', type: 'travel' },
-      { date: 'Nov 25', label: 'Transfer to Platte Island', description: 'Mahé → Platte by seaplane charter (~45min) or boat (~3hr). Resort arranges. Check into Waldorf Astoria villa. House reef snorkel; settle in. Sunset cocktails on the deck.', type: 'travel' },
+      { date: 'Nov 24', label: 'Istanbul Overnight Layover', description: 'Arrive IST 18:00. ~8hr overnight layover (TK Business lounge or airside hotel) before the early-morning Seychelles flight. TK748 departs 02:15 Nov 25.', type: 'travel' },
+      { date: 'Nov 25', label: 'Seychelles → Platte Island', description: 'IST 02:15 → SEZ 11:00 on Turkish TK748 Business (Terry conf: TB6NH6). Arrive Mahé late morning. Mahé → Platte by seaplane charter (~45min) or boat (~3hr) — resort arranges. Check into Waldorf Astoria villa. House reef snorkel; sunset cocktails on the deck.', type: 'travel' },
       { date: 'Nov 26', label: 'Platte Dive Day 1', description: '2-tank morning dive (granite topography, outer wall) + 1-tank afternoon. Lunch + sunset at the resort.', type: 'activity' },
       { date: 'Nov 27', label: 'Platte Dive Day 2', description: '2-tank dive — focus on whale shark hot zones if plankton conditions allow. Afternoon: spa, fishing, or house reef snorkeling.', type: 'activity' },
       { date: 'Nov 28', label: 'Platte → Mahé → TNR (long travel day)', description: 'Morning: optional final dive. Check out Waldorf Astoria Platte. Late morning: speedboat/seaplane Platte → Mahé. Afternoon: SEZ → TNR on Emirates direct (~2hr 45min). Evening: drive ~3hr east to Andasibe area (check in to lodge), or 1 night TNR if late arrival.', type: 'travel' },
