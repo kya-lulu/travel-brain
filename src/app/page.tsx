@@ -37,7 +37,7 @@ const destinationImages: Record<string, string> = {
   "paris-vendome":
     "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=530&fit=crop&q=80",
   "seychelles-beach":
-    "https://images.unsplash.com/photo-1589179447559-26b2ea42f87c?w=800&h=530&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800&h=530&fit=crop&q=80",
   "french-polynesia-overwater":
     "https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=800&h=530&fit=crop&q=80",
 };

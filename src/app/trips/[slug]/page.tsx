@@ -151,34 +151,6 @@ const tripImages: Record<string, {
       'https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=800&h=400&fit=crop&q=80',  // tropical sunset
     ],
   },
-  'croatia-nov-2026': {
-    hero: 'https://images.unsplash.com/photo-1555990538-1e7a4d75aa14?w=1400&h=500&fit=crop&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=500&h=350&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=500&h=350&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1564594736624-def7a10ab047?w=500&h=350&fit=crop&q=80',
-    ],
-    ambient: [
-      'https://images.unsplash.com/photo-1555990538-1e7a4d75aa14?w=600&h=800&fit=crop&q=80',  // dubrovnik walls
-      'https://images.unsplash.com/photo-1558271736-cd043ef2e855?w=800&h=400&fit=crop&q=80',  // croatian coast
-      'https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=600&h=800&fit=crop&q=80',  // zagreb cathedral
-      'https://images.unsplash.com/photo-1504730030853-eff311f57d3c?w=800&h=400&fit=crop&q=80',  // adriatic sunset
-    ],
-  },
-  'nicaragua-nov-2026': {
-    hero: 'https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=1400&h=500&fit=crop&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=500&h=350&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=350&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=500&h=350&fit=crop&q=80',
-    ],
-    ambient: [
-      'https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=600&h=800&fit=crop&q=80',  // caribbean island
-      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=400&fit=crop&q=80',  // turquoise water
-      'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=800&fit=crop&q=80',  // tropical beach
-      'https://images.unsplash.com/photo-1437719417032-8799f32df5ba?w=800&h=400&fit=crop&q=80',  // sunset beach
-    ],
-  },
   'beaver-creek-jan-2027': {
     hero: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=1400&h=500&fit=crop&q=80',
     gallery: [
@@ -235,15 +207,15 @@ const tripImages: Record<string, {
       'https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=800&h=400&fit=crop&q=80',  // seine river
     ],
   },
-  'seychelles-nov-2026': {
-    hero: 'https://images.unsplash.com/photo-1589179447559-26b2ea42f87c?w=1400&h=500&fit=crop&q=80',
+  'seychelles-madagascar-nov-2026': {
+    hero: 'https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=1400&h=500&fit=crop&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=500&h=350&fit=crop&q=80',
       'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=350&fit=crop&q=80',
       'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=500&h=350&fit=crop&q=80',
     ],
     ambient: [
-      'https://images.unsplash.com/photo-1589179447559-26b2ea42f87c?w=600&h=800&fit=crop&q=80',  // seychelles beach
+      'https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=600&h=800&fit=crop&q=80',  // seychelles beach
       'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&h=400&fit=crop&q=80',  // turquoise water
       'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=800&fit=crop&q=80',  // underwater
       'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=400&fit=crop&q=80',  // tropical beach wide

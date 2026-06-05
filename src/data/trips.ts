@@ -194,8 +194,8 @@ export const trips: Trip[] = [
     dates: 'May 20–26, 2026',
     month: 'May',
     year: 2026,
-    status: 'partially_booked',
-    statusLabel: 'Partially Booked',
+    status: 'complete',
+    statusLabel: 'Complete',
     travelers: 'Janelle Tam',
     flights: [
       { segment: 1, date: '2026-05-20', route: 'SEA → SFO', time: 'TBD', airline: 'TBD', cabin: 'TBD', status: 'needs_action', notes: 'Janelle outbound to San Francisco — flight not yet booked' },
@@ -255,8 +255,8 @@ export const trips: Trip[] = [
     dates: 'May 26–31, 2026',
     month: 'May',
     year: 2026,
-    status: 'partially_booked',
-    statusLabel: 'Partially Booked',
+    status: 'complete',
+    statusLabel: 'Complete',
     travelers: '2 adults',
     heroImage: 'mobula-rays-jumping',
     flights: [
@@ -276,6 +276,7 @@ export const trips: Trip[] = [
       { text: 'Bring reef-safe sunscreen and underwater camera gear', urgent: false },
     ],
     intel: [
+      { title: 'Post-Trip Retro — May 2026', content: 'Verdict: a hit. The mobula aggregation delivered and the trip was a blast. Two lessons captured for future planning. (1) CABIN — the economy legs (Janelle SFO→SJD, and both SJD→SEA returns) were the weak point; only Terry\'s outbound was up front. Going forward we default to business/first on every leg, even short-haul, and Dr. G should price premium cabins first rather than defaulting to coach. (2) DIY OVER GUIDED — we could have skipped the packaged operator entirely: drive/transfer ourselves, book our own La Paz hotel, and arrange day boat trips à la carte. The guided expedition was convenient but not necessary. For trips like this we now prefer to self-plan rather than buy a guided package.' },
       { title: 'The Mobula Ray Phenomenon', content: 'The Sea of Cortez hosts one of nature\'s most spectacular seasonal events: the mobula ray aggregation. From late April through June, hundreds of thousands of Munk\'s devil rays (often called mobula rays) migrate through the narrow channel between Baja and mainland Mexico, breaching and jumping in synchronized waves — sometimes leaping 10+ feet out of the water. Late May through early June offers the highest probability of witnessing mass breaching events. The phenomenon is driven by plankton blooms and water temperature. Visibility and sea calmness matter more than lunar phase. This is truly a bucket-list wildlife encounter.' },
       { title: 'Operators & Logistics', content: 'Pelagic Fleet and Dive Ninja Expeditions are the two gold-standard operators for mobula encounters. Pelagic Fleet: Mexican-owned, fast pangas (open boats), marine biologist guides, emphasis on photography. Typical 3-day package includes daily boat trips, snorkeling with mobulas + sea lions + whale sharks, lunch on the water. Cost: ~$350–500/person/day. Dive Ninja: more diving-focused, also does snorkel-only, based in La Paz marina. Both operators are ethical and conservation-minded. Water temperature in late May is 75–80°F — 3mm wetsuit or rashguard is fine. Seasickness is real on the open sea — take Dramamine or Bonine the night before and morning of.' },
       { title: 'La Paz vs. Cabo', content: 'La Paz is the authentic choice: a colonial city on the Sea of Cortez side with the Malecón waterfront promenade, vibrant fish markets, hole-in-the-wall taco spots, and genuine Mexican character. Cabo San Lucas is the resort playground 2.5 hours south. You\'re arriving and staying the first night in Cabo (Park Hyatt), then transferring to La Paz for the expedition days. The Cabo → La Paz drive is scenic (Highway 1, desert and cactus). La Paz dining: Bismark for seafood, Mariscos El Molinito for fish tacos, rooftop bars along the Malecón for sunset.' },
@@ -331,8 +332,9 @@ export const trips: Trip[] = [
     travelers: '2 adults (Terry & Janelle)',
     heroImage: 'kyrgyzstan-mountains-horses',
     flights: [
-      { segment: 1, date: '2026-07-31', route: 'SEA → IST', time: '19:10 → 17:00 +1', airline: 'Turkish Airlines', cabin: 'Business', confirmation: 'S3BPNY', status: 'booked', notes: 'Seats 4A & 6A' },
-      { segment: 2, date: '2026-08-01', route: 'IST → FRU (Bishkek)', time: '20:20 → 04:30 +1', airline: 'Turkish Airlines', aircraft: 'A321', cabin: 'Business', confirmation: 'RP7MM5', status: 'booked', notes: '35K + $121/person' },
+      { segment: 1, date: '2026-07-31', route: 'SEA → IST', time: '19:10 → 17:00 +1', airline: 'Turkish Airlines', cabin: 'Business', confirmation: 'S3BPNY', status: 'booked', notes: 'TERRY ONLY — Janelle split off this PNR (she now routes via London, conf T6CGRM). Terry seat 4A. Remove Janelle from S3BPNY and redeposit her SEA→IST miles.' },
+      { segment: 1.5, date: '2026-08-01', route: 'LHR → IST → FRU (Bishkek)', time: '13:20 → 04:30 +2', airline: 'Turkish Airlines (TK1990 + TK348)', cabin: 'Business', confirmation: 'T6CGRM', status: 'booked', notes: 'JANELLE ONLY — Janelle flies to London first (SEA→LHR booked separately), then LHR 13:20 Aug 1 → IST → Bishkek 04:30 Aug 2. Final leg TK348 is the SAME Istanbul→Bishkek flight as Terry\'s RP7MM5 — they reunite at IST and arrive together. (Ticket shows arrival code BSZ — verify = Manas/FRU, same airport as Terry.)' },
+      { segment: 2, date: '2026-08-01', route: 'IST → FRU (Bishkek)', time: '20:20 → 04:30 +1', airline: 'Turkish Airlines (TK348)', aircraft: 'A321', cabin: 'Business', confirmation: 'RP7MM5', status: 'booked', notes: 'TERRY ONLY — 35K + $121. Janelle is on this same TK348 flight via her London ticket (T6CGRM), so remove her from RP7MM5 to avoid a double-booked seat and redeposit those miles. Confirm RP7MM5 = TK348 before cancelling.' },
       { segment: 3, date: '2026-08-12', route: 'ALA → IST', time: '9:00am → 1:15pm', airline: 'Turkish Airlines (TK0353)', cabin: 'Business', confirmation: 'VT8IUE', status: 'booked', notes: 'Almaty to Istanbul. 1hr 40min layover.' },
       { segment: 4, date: '2026-08-12', route: 'IST → SEA', time: '2:55pm → 5:15pm', airline: 'Turkish Airlines (TK203)', cabin: 'Business', confirmation: 'TD67GM', status: 'booked', notes: '12hr 20min flight. Direct Istanbul to Seattle.' },
       { segment: 5, date: '2026-08-12', route: 'HEL → SEA', time: '4:25pm → 4:00pm', airline: 'Finnair (AY33)', confirmation: 'DFMG2R', status: 'booked', notes: 'Ticketed as Qantas. Backup/alternative return. Also conf 96MPQQ.' },
@@ -343,6 +345,8 @@ export const trips: Trip[] = [
       { property: 'TBD — Almaty', location: 'Almaty, Kazakhstan', status: 'not_booked', notes: 'Post-trek recovery nights before Aug 12 departure' },
     ],
     actionItems: [
+      { text: 'Split outbound PNRs: remove Janelle from S3BPNY (SEA→IST) AND RP7MM5 (IST→Bishkek) — she now routes via London on T6CGRM. Redeposit her miles on both legs.', urgent: true },
+      { text: 'Verify RP7MM5 IST→Bishkek = TK348 (same flight as Janelle\'s T6CGRM final leg) and that BSZ = Manas/FRU, so they truly arrive together', urgent: true },
       { text: 'Confirm Janelle\'s Qantas/Finnair DFMG2R cancellation completed (90K refund?)', urgent: true },
       { text: 'Book Bishkek hotel for Aug 2 arrival night (4:30am — request early check-in)', urgent: true },
       { text: 'Book Almaty hotel for Aug 6–12 (post-trek recovery)', urgent: true },
@@ -362,15 +366,15 @@ export const trips: Trip[] = [
       { program: 'Turkish Miles&Smiles', route: 'IST → SEA', cost: '135K + ~$300/pp', note: 'Return long-haul. 270K miles + $600 cash for 2 pax. Total Turkish miles trip-wide: ~540K for 2 pax.' },
     ],
     itinerary: [
-      { date: 'July 31', label: 'Depart Seattle', description: 'SEA 19:10 → IST 17:00 next day (conf: S3BPNY). Seats 4A & 6A. Overnight flight.', type: 'travel' },
-      { date: 'August 1', label: 'Istanbul → Bishkek', description: 'Arrive IST 17:00. Layover. Depart IST 20:20 → FRU (Bishkek) 04:30 on Aug 2 (conf: RP7MM5). A321.', type: 'travel' },
+      { date: 'July 31', label: 'Terry Departs Seattle', description: 'Terry: SEA 19:10 → IST 17:00 next day (conf: S3BPNY, seat 4A). Overnight flight. Janelle travels separately via London (already in Europe).', type: 'travel' },
+      { date: 'August 1', label: 'Reunite in Istanbul → Bishkek', description: 'Terry arrives IST 17:00. Janelle flies LHR 13:20 → IST (TK1990, conf: T6CGRM) and meets Terry at the airport. They board the SAME flight together — TK348 IST 20:20 → Bishkek 04:30 on Aug 2 (Terry on RP7MM5, Janelle on T6CGRM). A321, Business.', type: 'travel' },
       { date: 'August 2', label: 'Arrive Bishkek', description: 'Land at 4:30am. Check into hotel. Sleep and acclimatize. Afternoon: Osh Bazaar — spices, nan bread, kumis. Meet trek operator for briefing and gear check.', type: 'rest' },
       { date: 'August 3', label: 'Drive to Trailhead', description: 'Morning drive from Bishkek toward Song-Kol region (5–6 hours). Meet horses and Kyrgyz herder guides. Short afternoon ride to first yurt camp.', type: 'travel' },
       { date: 'August 4', label: 'Horse Trek — Day 1', description: '5–6 hours in the saddle crossing high passes. Gradual altitude gain toward Song-Kol (10,000 ft). Lunch at herder\'s yurt. Simple dinner — bread, cheese, mutton stew.', type: 'activity' },
       { date: 'August 5', label: 'Horse Trek — Day 2', description: 'Ride along shores of Song-Kol Lake. Blue alpine water, snow-capped peaks. Visit nomadic herding families. Beshbarmak dinner. Night in lakeside yurt — extraordinary stars.', type: 'activity' },
       { date: 'August 6', label: 'Trek Complete — Transfer', description: 'Final morning ride. Descend from high passes. Vehicle transfer back. Trek done. Hot shower and real bed.', type: 'activity' },
       { date: 'Aug 7–11', label: 'Recovery & Explore', description: 'Travel to Almaty. Green Bazaar, coffee culture, hiking. Recovery days before departure. Explore Kyrgyz and Kazakh cuisine.', type: 'flexible' },
-      { date: 'August 12', label: 'Fly Home', description: 'ALA 9:00am → IST 13:25. Connect IST → SEA (need to book). Home by evening.', type: 'travel' },
+      { date: 'August 12', label: 'Fly Home', description: 'Check out Almaty hotel by 06:30. ALA 9:00am → IST 13:25. Connect IST → SEA (need to book). Home by evening.', type: 'travel' },
     ],
     costs: [
       // ─── Flights — Outbound ───
@@ -422,12 +426,14 @@ export const trips: Trip[] = [
       { segment: 7, date: '2026-10-12', route: 'TPE → SEA', time: '23:40 → 19:30 PT (same day)', airline: 'EVA Air BR26', cabin: 'Business', confirmation: 'FA6F6L', status: 'booked', notes: '75K Star Alliance + ~TWD 4,010 (~$130). 10h 50m. Date-line magic: arrives Seattle evening of same calendar day.' },
     ],
     hotels: [
-      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'booked', notes: '20K Hyatt points. Overnight transit before 06:45 GA456.' },
+      { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-09-25', checkOut: '2026-09-26', program: 'Hyatt', status: 'booked', notes: '20K Hyatt points. Overnight transit before 06:45 GA456 — check out by 04:30.' },
+      { property: 'Kupang overnight hotel (TBD — Sotis / Swiss-Belinn / Aston)', location: 'Kupang, Indonesia', checkIn: '2026-09-26', checkOut: '2026-09-27', status: 'not_booked', notes: 'Forced overnight in Kupang: GA456 lands 10:45 Sept 26, Wings Air IW1943 to Alor is the only daily option at 08:40 Sept 27. ~$45-80 cash. Top picks: Sotis Hotel Kupang, Swiss-Belinn Kristal, Aston Kupang.' },
       { property: 'Indo Ocean Project — Alor Expedition', location: 'Alor & Banda Sea, Indonesia', checkIn: '2026-09-27', checkOut: '2026-10-09', status: 'booked', notes: '12 nights, €4,900. Shore-based / liveaboard — citizen-science dive expedition (indooceanproject.org).' },
       { property: 'Park Hyatt Jakarta', location: 'Jakarta, Indonesia', checkIn: '2026-10-09', checkOut: '2026-10-10', program: 'Hyatt', status: 'booked', notes: '20K Hyatt points. Recovery night after dive expedition.' },
       { property: 'Grand Hyatt Taipei', location: 'Taipei, Taiwan', checkIn: '2026-10-10', checkOut: '2026-10-12', program: 'Hyatt', status: 'booked', notes: '34K Hyatt points (17K × 2 nights), Oct 10 + Oct 11 in Xinyi. Request late checkout / day-use Oct 12 to cover the 23:40 BR26 flight.' },
     ],
     actionItems: [
+      { text: 'Book Kupang overnight hotel for Sept 26 (Sotis / Swiss-Belinn / Aston — cash $45-80)', urgent: true },
       { text: 'Request late checkout / day-use room at Grand Hyatt Taipei for Oct 12 (BR26 departs 23:40)', urgent: false },
       { text: 'Contact Indo Ocean Project to confirm Sept 27 ARD arrival logistics + gear list', urgent: false },
       { text: 'Confirm CI 0762 ticket stock (CI direct vs AF codeshare) — affects seat management', urgent: false },
@@ -452,14 +458,14 @@ export const trips: Trip[] = [
     ],
     itinerary: [
       { date: 'Sept 24', label: 'Depart Seattle', description: 'SQ 027 SEA 10:15 → SIN 17:35 +1 (Business, seat 15A). 16h 20m long-haul. PNR DISMSE.', type: 'travel' },
-      { date: 'Sept 25', label: 'Singapore → Jakarta', description: 'SQ 966 SIN 18:30 → CGK 19:20 (Business, seat 15K). Check into Park Hyatt Jakarta (needs booking). Sleep early — 04:30 wake-up.', type: 'travel' },
-      { date: 'Sept 26', label: 'Jakarta → Kupang', description: 'Garuda GA456 CGK 06:45 → KOE 10:45 (Business, PNR DOUUN7 via Virgin Atlantic). Arrive Kupang. Overnight or connect depending on schedule.', type: 'travel' },
-      { date: 'Sept 27', label: 'Kupang → Alor — IOP Expedition Begins', description: 'Wings Air IW1943 KOE 08:40 → ARD 09:40 (PNR HKSRAV). Meet Indo Ocean Project crew. Orientation dive. 12-night expedition begins (€4,900 all-in).', type: 'activity' },
+      { date: 'Sept 25', label: 'Singapore → Jakarta', description: 'SQ 966 SIN 18:30 → CGK 19:20 (Business, seat 15K). Check in to Park Hyatt Jakarta. Sleep early — 04:30 wake-up.', type: 'travel' },
+      { date: 'Sept 26', label: 'Jakarta → Kupang', description: 'Check out Park Hyatt Jakarta 04:30. Garuda GA456 CGK 06:45 → KOE 10:45 (Business, PNR DOUUN7 via Virgin Atlantic). Check in to Kupang overnight hotel (Sotis / Swiss-Belinn / Aston — TBD).', type: 'travel' },
+      { date: 'Sept 27', label: 'Kupang → Alor — IOP Expedition Begins', description: 'Check out Kupang hotel 07:00. Wings Air IW1943 KOE 08:40 → ARD 09:40 (PNR HKSRAV). Meet Indo Ocean Project crew. Orientation dive. 12-night expedition begins (€4,900 all-in).', type: 'activity' },
       { date: 'Sept 28 – Oct 8', label: '11 Days of Diving', description: 'Daily 3–4 dives across Alor archipelago and Banda Sea with the IOP team. Manta rays, hammerheads, pygmy seahorses, vibrant coral walls. Citizen-science data collection. Boat moves through eastern Indonesian waters toward Ambon.', type: 'activity' },
-      { date: 'Oct 9', label: 'Diving Ends — Fly to Jakarta', description: 'Expedition complete. Garuda GA647 AMQ 16:10 → CGK 17:40 (Business, PNR DOSB8U via Virgin Atlantic). Check into Park Hyatt Jakarta (needs booking). Decompress.', type: 'travel' },
-      { date: 'Oct 10', label: 'Jakarta → Taipei', description: 'China Airlines CI 0762 CGK 14:40 → TPE 21:10 (Business, PNR YRIBKT). Arrive Taipei T1. Late-night street food at Raohe Night Market.', type: 'travel' },
-      { date: 'Oct 11', label: 'Explore Taipei — Markets & Food', description: 'Raohe and Shilin night markets. Din Tai Fung original location. Bubble tea, xiaolongbao, mango shaved ice. MRT everywhere.', type: 'activity' },
-      { date: 'Oct 12', label: 'Taipei → Late-Night Flight Home', description: 'Coffee at Cafe Junkissa or Funicello. Jiufen tea houses or Taipei 101. Late checkout / day room. Transfer to TPE T2 at 20:30. EVA BR26 TPE 23:40 → SEA 19:30 PT *same day* (Business, PNR FA6F6L). Home by 21:00 Oct 12 — trip complete, 19 days.', type: 'travel' },
+      { date: 'Oct 9', label: 'Diving Ends — Fly to Jakarta', description: 'Disembark IOP expedition at Ambon. Garuda GA647 AMQ 16:10 → CGK 17:40 (Business, PNR DOSB8U via Virgin Atlantic). Check in to Park Hyatt Jakarta. Decompress.', type: 'travel' },
+      { date: 'Oct 10', label: 'Jakarta → Taipei', description: 'Check out Park Hyatt Jakarta (mid-morning). China Airlines CI 0762 CGK 14:40 → TPE 21:10 (Business, PNR YRIBKT). Check in to Grand Hyatt Taipei. Late-night street food at Raohe Night Market.', type: 'travel' },
+      { date: 'Oct 11', label: 'Explore Taipei — Markets & Food', description: 'Raohe and Shilin night markets. Din Tai Fung original location. Bubble tea, xiaolongbao, mango shaved ice. MRT everywhere. Same Grand Hyatt for the night.', type: 'activity' },
+      { date: 'Oct 12', label: 'Taipei → Late-Night Flight Home', description: 'Coffee at Cafe Junkissa or Funicello. Jiufen tea houses or Taipei 101. Late checkout / day-use room at Grand Hyatt Taipei. Transfer to TPE T2 at 20:30. EVA BR26 TPE 23:40 → SEA 19:30 PT *same day* (Business, PNR FA6F6L). Home by 21:00 Oct 12 — trip complete, 19 days.', type: 'travel' },
     ],
     costs: [
       // ─── Flights — Outbound (SEA → Alor) ───
@@ -472,6 +478,7 @@ export const trips: Trip[] = [
       { category: 'flight', description: 'TPE → SEA on EVA BR26 Business (Oct 12, 23:40 departure)', pnr: 'FA6F6L', points: 75000, program: 'Star Alliance partner award', cashUsd: 130, note: '75K + ~TWD 4,010 (~$130). Arrives Seattle same calendar day (Oct 12 19:30 PT). Confirm exact award program for future changes.' },
       // ─── Lodging ───
       { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Sept 25 transit)', pnr: 'TBD', points: 20000, program: 'World of Hyatt', note: 'Booked at 20K Hyatt points.' },
+      { category: 'hotel', description: 'Kupang overnight (1 nt, Sept 26)', cashUsd: 60, note: 'Forced overnight — only daily KOE→ARD flight is Sept 27 morning. Sotis / Swiss-Belinn / Aston ~$45-80 cash. Booking pending.' },
       { category: 'hotel', description: 'Park Hyatt Jakarta (1 nt, Oct 9 transit)', pnr: 'TBD', points: 20000, program: 'World of Hyatt', note: 'Booked at 20K Hyatt points.' },
       { category: 'hotel', description: 'Grand Hyatt Taipei (2 nts, Oct 10–12)', pnr: 'TBD', points: 34000, program: 'World of Hyatt', note: 'Booked at 17K × 2 = 34K Hyatt points. Late checkout / day-use needed Oct 12 (BR26 departs 23:40).' },
       // ─── Activities ───
@@ -530,7 +537,7 @@ export const trips: Trip[] = [
       { date: 'Day 4', label: 'K-Beauty & Garosugil', description: 'Morning at Garosugil — K-beauty flagships. Lunch at a design café. Afternoon Myeongdong shopping. Evening wine bar.', type: 'activity' },
       { date: 'Day 5', label: 'Autumn Foliage', description: 'Morning hike up Namsan for foliage views. Han River golden hour. Lunch in Yeonnam-dong. Afternoon at Leeum Museum.', type: 'activity' },
       { date: 'Day 6', label: 'Flexible Day', description: 'Day trip to DMZ or Bukchon Hanok Village. Or slow café morning and street food crawl.', type: 'flexible' },
-      { date: 'Day 7', label: 'Depart Seoul', description: 'Final morning shopping. AREX to Incheon. Fly ICN → SEA.', type: 'travel' },
+      { date: 'Day 7', label: 'Depart Seoul', description: 'Final morning shopping. Check out Hannam-dong hotel. AREX to Incheon. Fly ICN → SEA.', type: 'travel' },
     ],
     costs: [
       // ─── Flights ───
@@ -602,12 +609,12 @@ export const trips: Trip[] = [
       { date: 'Dec 25', label: 'Christmas in Singapore', description: 'Arrive 5:45pm. Check into Andaz Singapore (conf: 30914538) in Kampong Glam. Christmas evening walk along Orchard Road lights. Late dinner at hawker centre or hotel.', type: 'travel' },
       { date: 'Dec 26', label: 'Hawker Centre Day', description: 'Morning: Tiong Bahru coffee + kaya toast at 40 Hands. Joo Chiat/Katong for Peranakan heritage + 328 Katong Laksa. Afternoon: Gardens by the Bay — Cloud Forest dome. Evening: Chinatown Complex hawker crawl. Supertree light show at 8:45pm.', type: 'activity' },
       { date: 'Dec 27', label: 'Singapore Explore', description: 'Maxwell Food Centre for Tian Tian chicken rice. Marina Bay Sands observation deck. Little India and Haji Lane shopping. Evening: cocktails at Atlas Bar (Art Deco gin palace) or Lau Pa Sat satay street.', type: 'activity' },
-      { date: 'Dec 28', label: 'Fly to Maldives', description: 'Fly SIN → MLE (needs booking, ~4.5hr). Domestic flight MLE → Kooddoo (55 min, resort arranges). Speedboat to Park Hyatt Hadahaa (15 min). Check in. First swim in the house reef. Sunset cocktails on the deck.', type: 'travel' },
+      { date: 'Dec 28', label: 'Fly to Maldives', description: 'Check out Andaz Singapore. Fly SIN → MLE (needs booking, ~4.5hr). Domestic flight MLE → Kooddoo (55 min, resort arranges). Speedboat to Park Hyatt Hadahaa (15 min). Check in to Park Hyatt Hadahaa. First swim in the house reef. Sunset cocktails on the deck.', type: 'travel' },
       { date: 'Dec 29–30', label: 'Maldives Paradise', description: 'Overwater villa life. Morning snorkeling on the house reef (reef sharks, turtles). Afternoon dive excursion to nearby channels. Spa treatments. Beach dinner. Dec 30: guided manta ray snorkel trip if conditions are right.', type: 'rest' },
       { date: 'Dec 31', label: 'New Year\'s Eve — Maldives', description: 'Morning diving or kayaking. Afternoon relaxation. NYE gala dinner on the beach at Park Hyatt. Countdown under Maldivian stars. Ring in 2027 in paradise.', type: 'activity' },
-      { date: 'Jan 1', label: 'Fly to Sri Lanka', description: 'Fly MLE → CMB (needs booking, ~1.5hr). Arrive Colombo. Drive to south coast — Galle Fort (2.5hr) or Weligama. Check into boutique hotel. Evening sunset on the ramparts of Galle Fort with a cocktail.', type: 'travel' },
+      { date: 'Jan 1', label: 'Fly to Sri Lanka', description: 'Check out Park Hyatt Hadahaa (speedboat + domestic flight back to MLE — resort arranges). Fly MLE → CMB (needs booking, ~1.5hr). Arrive Colombo. Drive to south coast — Galle Fort (2.5hr) or Weligama. Check in to boutique hotel. Evening sunset on the ramparts of Galle Fort with a cocktail.', type: 'travel' },
       { date: 'Jan 2', label: 'Sri Lanka Day', description: 'Explore Galle Fort — Dutch architecture, boutique shops, the lighthouse walk. Or beach day at Weligama. Seafood dinner at a south coast restaurant. Pack for early departure.', type: 'activity' },
-      { date: 'Jan 3', label: 'Fly Home — Leg 1', description: 'Early morning drive Galle → Colombo (2.5hr, depart by 6am). CMB 10:15am → DOH 12:45pm on Qatar QR665 (conf: 9YPE29). 19hr Doha layover. Explore Souq Waqif and Museum of Islamic Art, or rest in Al Mourjan Lounge.', type: 'travel' },
+      { date: 'Jan 3', label: 'Fly Home — Leg 1', description: 'Check out Galle boutique by 05:30. Drive Galle → Colombo (2.5hr, depart by 6am). CMB 10:15am → DOH 12:45pm on Qatar QR665 (conf: 9YPE29). 19hr Doha layover. Explore Souq Waqif and Museum of Islamic Art, or rest in Al Mourjan Lounge.', type: 'travel' },
       { date: 'Jan 4', label: 'Arrive Home', description: 'DOH 7:55am → SEA 11:40am on Qatar QR719 Business (conf: 9BHJHH / 9YPE29). Home by lunch. 12-day, 3-country holiday season trip complete.', type: 'travel' },
     ],
     costs: [
@@ -641,116 +648,6 @@ export const trips: Trip[] = [
   // LAS VEGAS — September 2026
   // LAS VEGAS — October 2026
   // TAIPEI — November 2026
-
-  // ═══════════════════════════════════════════════════════
-  // CROATIA — November 2026
-  // ═══════════════════════════════════════════════════════
-  {
-    slug: 'croatia-nov-2026',
-    title: 'Croatia',
-    subtitle: 'Zagreb via Istanbul — Canceled (mistake fare) · Turkish Airlines cancelled this booking (PNR UG8BHN) after their April 2026 pricing-system error on Vancouver-Europe routes.',
-    region: 'Europe',
-    country: 'Croatia',
-    dates: 'November 21–23, 2026',
-    month: 'November',
-    year: 2026,
-    status: 'canceled',
-    statusLabel: 'Canceled (mistake fare)',
-    travelers: 'TBD',
-    heroImage: 'croatia-dubrovnik',
-    flights: [
-      { segment: 1, date: '2026-11-21', route: 'SEA → IST', time: '7:00pm → 6:00pm +1', airline: 'Turkish Airlines (TK204)', cabin: 'Business', confirmation: 'UG8BHN', status: 'canceled', notes: 'Cancelled by Turkish Airlines following their April 2026 mistake-fare reversal.' },
-      { segment: 2, date: '2026-11-23', route: 'IST → ZAG', time: '8:20am → 8:30am', airline: 'Turkish Airlines (TK1053)', confirmation: 'UG8BHN', status: 'canceled', notes: 'Cancelled with PNR UG8BHN.' },
-    ],
-    hotels: [
-      { property: 'TBD — Zagreb (never booked)', location: 'Zagreb, Croatia', status: 'not_booked', notes: 'Trip was cancelled before any hotel was booked.' },
-    ],
-    actionItems: [
-      { text: 'Trip cancelled — no further action needed', urgent: false },
-    ],
-    intel: [
-      { title: 'Zagreb Advent & Christmas Markets', content: 'Zagreb\'s Advent market has been voted Europe\'s best Christmas market multiple years running — and late November is the opening weekend. Ban Jelačić Square transforms into a winter wonderland with mulled wine (kuhano vino), štrukli (cheese pastry), and artisan crafts. Zrinjevac Park gets a light tunnel. The ice rink at King Tomislav Square is magical. Upper Town (Gornji Grad) has intimate smaller markets with better food and fewer crowds. This timing is perfect.' },
-      { title: 'Istanbul Layover — 14 Hours', content: 'With 14 hours in Istanbul, you have time to explore. Turkish Airlines Business passengers get free Istanbul Touristanbul guided tours (book in advance). Otherwise: taxi to Sultanahmet (30 min from IST airport), see Hagia Sophia, Blue Mosque, Grand Bazaar, and grab a kebab at Sultanahmet Köftecisi. Istanbul\'s new airport (IST) is far from the center — budget 45–60 min each way. Alternatively, the Turkish Airlines Business Lounge at IST is legendary: spa, sleep rooms, full restaurant, golf simulator. You could comfortably spend the entire layover there.' },
-      { title: 'Croatian Cuisine & Culture', content: 'Croatian food is underrated — it\'s where Mediterranean meets Central European. Zagreb specialties: štrukli (baked cheese rolls), peka (slow-cooked meat under a bell lid), black risotto (crni rižot). Coffee culture is serious — Croatians sit for hours over a single cup. The Dolac Market (open-air farmers market above Ban Jelačić Square) is the city\'s beating heart. Tkalčićeva Street is the café and bar strip. November weather is cold (35–45°F) but the Advent atmosphere more than compensates.' },
-      { title: 'Getting Around Zagreb', content: 'Zagreb is very walkable — the historic core (Upper Town + Lower Town) is compact. The funicular connecting Lower to Upper Town is the world\'s shortest public funicular (66 meters, 55 seconds). Trams cover the wider city. Uber works well. The cathedral, Stone Gate, and Lotrščak Tower are all within a 15-minute walk of each other.' },
-    ],
-    awardTips: [
-      { program: 'Turkish Airlines Miles&Smiles', route: 'SEA–IST–ZAG', note: 'Already booked outbound. Return options: ZAG–IST–SEA on TK, or consider Aeroplan for Star Alliance routing.' },
-      { program: 'Hyatt Points', route: 'Esplanade Zagreb', cost: '~15–20K per night', note: 'Esplanade is not Hyatt-affiliated — check IHG or book cash. Boutique hotels may be better value.' },
-    ],
-    itinerary: [
-      { date: 'Nov 21', label: 'Depart Seattle', description: 'SEA 7:00pm → IST 6:00pm +1 on Turkish TK204 (conf: UG8BHN). Business class overnight flight. Rest up — long travel day.', type: 'travel' },
-      { date: 'Nov 22', label: 'Istanbul Layover', description: '14hr layover at IST. Options: (1) Turkish Airlines Business Lounge — spa, sleep rooms, restaurant, or (2) Sultanahmet tour — Hagia Sophia, Blue Mosque, Grand Bazaar. Touristanbul free tour available for TK Business. Return to airport by evening.', type: 'flexible' },
-      { date: 'Nov 23', label: 'Arrive Zagreb — Advent Opens', description: 'IST 8:20am → ZAG 8:30am on TK1053 (conf: UG8BHN). Check into hotel. Walk to Ban Jelačić Square for Advent Market opening. Mulled wine and štrukli at the stalls. Evening: Tkalčićeva Street for dinner and bar hopping. Upper Town lights at night.', type: 'travel' },
-    ],
-    costs: [
-      { category: 'flight', description: 'SEA → IST → ZAG on Turkish Business (round-trip mistake fare)', pnr: 'UG8BHN', canceled: true, note: 'Cancelled by Turkish Airlines following their April 2026 mistake-fare reversal. Any cash/points charged should have been refunded — verify if Terry paid anything that wasn\'t.' },
-    ],
-  },
-
-  // ═══════════════════════════════════════════════════════
-  // NICARAGUA — November 2026
-  // ═══════════════════════════════════════════════════════
-  {
-    slug: 'nicaragua-nov-2026',
-    title: 'Nicaragua',
-    subtitle: 'Calala Island — Private Island (conflicts with Seychelles Nov 23: leaning Seychelles, not confirmed)',
-    region: 'Central America',
-    country: 'Nicaragua',
-    dates: 'November 23–29, 2026',
-    month: 'November',
-    year: 2026,
-    status: 'decision_needed',
-    statusLabel: 'Decision Needed (vs Seychelles)',
-    travelers: 'TBD',
-    heroImage: 'nicaragua-island',
-    flights: [
-      { segment: 1, date: '2026-11-23', route: 'SEA → MIA', time: '8:05am → 5:06pm', airline: 'Alaska Airlines (AS311)', confirmation: 'WUBULX', status: 'booked', notes: '2hr 4min layover in Miami' },
-      { segment: 2, date: '2026-11-23', route: 'MIA → MGA', time: '7:10pm → 8:56pm', airline: 'American Airlines (AA1369)', confirmation: 'KLKSII', status: 'booked', notes: 'Arrive Managua late evening' },
-    ],
-    hotels: [
-      { property: 'TBD — Managua', location: 'Managua, Nicaragua', checkIn: '2026-11-23', checkOut: '2026-11-25', status: 'not_booked', notes: 'Need 1–2 nights before Calala transfer. Consider Hotel Contempo or Los Cardones near airport.' },
-      { property: 'Calala Island', location: 'Caribbean Coast, Nicaragua', checkIn: '2026-11-25', checkOut: '2026-11-29', status: 'booked', notes: 'Conf: 1000415272. Ultra-luxury private island, 3–6 suites max. All-inclusive. Checkout 6am Nov 29.' },
-    ],
-    actionItems: [
-      { text: 'Arrange Managua → Calala Island charter transfer (typically Cessna, ~30–45 min)', urgent: true },
-      { text: 'Book return flights MGA → SEA for Nov 29', urgent: true },
-      { text: 'Book Managua hotel for Nov 23–25 (2 nights pre-island)', urgent: true },
-      { text: 'Confirm Calala all-inclusive inclusions (diving, snorkeling gear, excursions)', urgent: false },
-      { text: 'Check Nicaragua visa requirements (US passport = visa-free 90 days)', urgent: false },
-    ],
-    intel: [
-      { title: 'Calala Island — Ultra-Luxury Private Island', content: 'Calala Island is one of the most exclusive properties in Central America — a private island off Nicaragua\'s Caribbean Mosquito Coast with a maximum of 3–6 suites. The concept is barefoot luxury meets Robinson Crusoe: overwater bungalows, pristine reef snorkeling steps from your room, no other guests in sight. All-inclusive covers gourmet meals (Caribbean seafood, lobster, ceviche), premium spirits, and most water activities. The island is ringed by coral reef — snorkeling and kayaking are world-class. This is a digital detox destination; connectivity is limited by design.' },
-      { title: 'Getting to Calala', content: 'Calala is accessible only by charter aircraft from Managua — typically a Cessna or similar light aircraft, 30–45 minutes over the Caribbean jungle canopy to a private airstrip. The resort coordinates transfers. You\'ll need to overnight in Managua (arrive 8:56pm on Nov 23) and fly to the island the morning of Nov 25. The Nov 24 gap day could be spent exploring Managua or resting.' },
-      { title: 'Caribbean Nicaragua', content: 'Nicaragua\'s Caribbean coast is a completely different world from the Pacific side — Afro-Caribbean culture, Miskito indigenous communities, reggae rhythms, coconut-based cuisine. The Mosquito Coast is one of the least-visited regions in Central America. Wildlife is extraordinary: howler monkeys, scarlet macaws, sea turtles, and reef fish. November is the tail end of the rainy season transitioning to dry — expect warm weather (80–85°F) with occasional afternoon showers.' },
-    ],
-    awardTips: [
-      { program: 'Alaska Mileage Plan', route: 'SEA–MIA on AS', note: 'Outbound booked on Alaska. Return: check AS or AA award space MGA–MIA–SEA.' },
-      { program: 'Hilton Honors', route: 'Calala Island (4 nts)', cost: '4 Hilton Free Night Certificates + $2K bonus credit', note: 'Major sweet spot — ultra-luxury private island redeemed entirely on FNCs. Hilton also providing $2K bonus (resort credit or card benefit — verify). One of the highest-value FNC redemptions possible.' },
-    ],
-    itinerary: [
-      { date: 'Nov 23', label: 'Travel to Managua', description: 'SEA 8:05am → MIA 5:06pm on Alaska AS311 (conf: WUBULX). Connect MIA 7:10pm → MGA 8:56pm on American AA1369 (conf: KLKSII). Late arrival — check into Managua hotel. Rest.', type: 'travel' },
-      { date: 'Nov 24', label: 'Managua Day', description: 'Free day in Managua before island transfer. Options: explore Masaya Volcano National Park (30 min drive), browse Masaya Artisan Market, or rest at hotel pool. Confirm charter flight details with Calala for next morning.', type: 'flexible' },
-      { date: 'Nov 25', label: 'Charter to Calala Island', description: 'Morning charter flight from Managua to Calala Island (~30–45 min Cessna over Caribbean jungle). Arrive on the island. Welcome cocktail. Settle into overwater bungalow. Afternoon snorkeling on house reef. Sunset dinner on the beach.', type: 'travel' },
-      { date: 'Nov 26', label: 'Island Day 1', description: 'Wake to Caribbean sunrise. Morning kayak or paddleboard around the island. Snorkeling the reef — tropical fish, sea fans, possible turtle sighting. Afternoon hammock time. Gourmet dinner — fresh lobster, ceviche, local rum cocktails.', type: 'rest' },
-      { date: 'Nov 27', label: 'Island Day 2', description: 'Guided reef snorkeling excursion to outer reef. Picnic lunch on a sandbar. Afternoon fishing or island walk through coconut palms. Sunset cocktails. Multi-course Caribbean seafood dinner.', type: 'activity' },
-      { date: 'Nov 28', label: 'Island Day 3', description: 'Final full day. Morning diving or deep-water snorkeling. Explore the mangroves by kayak. Afternoon spa or total relaxation. Farewell dinner under the stars. Pack for early departure.', type: 'rest' },
-      { date: 'Nov 29', label: 'Depart Calala', description: 'Early 6am checkout. Charter flight back to Managua. Connect to return flights MGA → SEA (needs booking).', type: 'travel' },
-    ],
-    costs: [
-      // ─── Flights ───
-      { category: 'flight', description: 'SEA → MIA on Alaska AS311 (Nov 23)', pnr: 'WUBULX', note: 'Booked Apr 7 2026. Cash/points TBD.' },
-      { category: 'flight', description: 'MIA → MGA on American AA1369 (Nov 23)', pnr: 'KLKSII', program: 'AAdvantage', note: 'AAdvantage award booking — exact miles + cash taxes TBD.' },
-      { category: 'flight', description: 'MGA → SEA return (Nov 29)', note: 'Not yet booked. Target AS or AA partner award; ~$300–600 cash if not on points.' },
-      // ─── Lodging ───
-      { category: 'hotel', description: 'Managua hotel (1–2 nts, Nov 23–25 pre-island)', note: 'Not yet booked. Hotel Contempo or Los Cardones near MGA airport — ~$80–150/nt.' },
-      { category: 'hotel', description: 'Calala Island (4 nts, Nov 25–29, all-inclusive)', program: 'Hilton Honors', pnr: '1000415272', note: 'BOOKED on 4 Hilton Free Night Certificates (FNCs). Hilton also providing $2,000 bonus credit (resort credit or card benefit — verify exact form). Outstanding FNC redemption value — Calala typically $1,500–2,500/nt cash = $6K–10K cash equivalent for the stay.' },
-      // ─── Transfers ───
-      { category: 'transfer', description: 'Managua ↔ Calala charter flight (Cessna, ~30–45 min each way)', note: 'Confirm if included with Calala booking or extra ($500–800/pp RT typical).' },
-      // ─── Other ───
-      { category: 'other', description: 'Tips for Calala staff + meals in Managua', note: 'Estimate ~$200–400. Calala all-inclusive covers meals/drinks; tips on top.' },
-    ],
-  },
 
   // ═══════════════════════════════════════════════════════
   // BEAVER CREEK — January 2027
@@ -865,12 +762,12 @@ export const trips: Trip[] = [
     itinerary: [
       { date: 'Feb 4', label: 'Fly to Tokyo', description: 'SEA 11:55am → NRT 3:05pm +1 on JAL JL67 (conf: EH6NYK, Cathay award). Cross the date line — arrive Feb 5 afternoon. Narita Express to Shinjuku (90 min).', type: 'travel' },
       { date: 'Feb 5', label: 'Arrive Tokyo', description: 'Check into Park Hyatt Tokyo (conf: 32906849). Freshen up on the 52nd floor. Evening walk through Shinjuku — Golden Gai for intimate bars, Omoide Yokocho for yakitori. Jet lag strategy: stay up until 10pm local.', type: 'travel' },
-      { date: 'Feb 6', label: 'Tokyo → Niseko', description: 'Morning flight HND/NRT → CTS (New Chitose). Bus or car to Niseko (2.5 hrs through snowy Hokkaido landscape). Check into Park Hyatt Niseko Hanazono (conf: 19374554). Afternoon orientation run — get your ski legs. Evening: onsen at the hotel, ramen in Kutchan.', type: 'travel' },
+      { date: 'Feb 6', label: 'Tokyo → Niseko', description: 'Check out Park Hyatt Tokyo (conf: 32906849). Morning flight HND/NRT → CTS (New Chitose). Bus or car to Niseko (2.5 hrs through snowy Hokkaido landscape). Check in to Park Hyatt Niseko Hanazono (conf: 19374554). Afternoon orientation run — get your ski legs. Evening: onsen at the hotel, ramen in Kutchan.', type: 'travel' },
       { date: 'Feb 7–10', label: 'Niseko Powder Days', description: '4 full days of Japow skiing. Hanazono Bowl, Grand Hirafu, Niseko Village terrain. Morning first tracks, afternoon tree runs. Night skiing sessions. Daily onsen recovery. Ramen, izakaya, and hot pot dinners. This is what you came for.', type: 'activity' },
-      { date: 'Feb 11', label: 'Niseko → Kyoto', description: 'Fly CTS → KIX or ITM. Train to Kyoto. Check into Park Hyatt Kyoto (conf: 35675427 / 47489247, Ninenzaka location). Evening walk through Higashiyama — stone lanes, tea houses, temple silhouettes at dusk. Kaiseki dinner.', type: 'travel' },
+      { date: 'Feb 11', label: 'Niseko → Kyoto', description: 'Check out Park Hyatt Niseko Hanazono (conf: 19374554). Fly CTS → KIX or ITM. Train to Kyoto. Check in to Park Hyatt Kyoto (conf: 35675427 / 47489247, Ninenzaka location). Evening walk through Higashiyama — stone lanes, tea houses, temple silhouettes at dusk. Kaiseki dinner.', type: 'travel' },
       { date: 'Feb 12–14', label: 'Kyoto Cultural Days', description: 'Morning: Fushimi Inari before 8am (thousand torii gates, no crowds). Kinkaku-ji (Golden Pavilion). Arashiyama bamboo grove. Afternoon: tea ceremony experience, Nishiki Market food crawl. Kaiseki at Kikunoi or Gion Sasaki. Gion geisha district evening walk. If snow falls — Kinkaku-ji in snow is once-in-a-lifetime.', type: 'activity' },
-      { date: 'Feb 15', label: 'Kyoto → Tokyo or Taipei', description: 'Shinkansen Kyoto → Tokyo (2hr 15min) for final Tokyo nights, OR fly to Taipei for the return connection. Depends on traveler routing. Some may return to Niseko (conf: 2552461).', type: 'travel' },
-      { date: 'Feb 16', label: 'Fly Home via Taipei', description: 'TPE 11:00pm → SEA 5:30pm on EVA Air BR24 Royal Laurel Class (conf: FK5O97). Taipei stopover possible if arriving early. Home same day (date line gain).', type: 'travel' },
+      { date: 'Feb 15', label: 'Kyoto → Tokyo or Taipei', description: 'Check out Park Hyatt Kyoto (conf: 35675427 / 47489247). Shinkansen Kyoto → Tokyo (2hr 15min) for final Tokyo nights, OR fly to Taipei for the return connection. Depends on traveler routing. Some may return to Niseko (conf: 2552461). Check in to next accommodation on arrival.', type: 'travel' },
+      { date: 'Feb 16', label: 'Fly Home via Taipei', description: 'Check out of final accommodation (Tokyo Hyatt or Taipei hotel depending on Feb 15 routing). TPE 23:00 → SEA 17:30 on EVA Air BR24 Royal Laurel Class (conf: FK5O97). Taipei stopover possible if arriving early. Home same day (date line gain).', type: 'travel' },
     ],
     costs: [
       // ─── International Flights ───
@@ -1083,12 +980,12 @@ export const trips: Trip[] = [
       { date: 'Nov 25', label: 'Transfer to Platte Island', description: 'Mahé → Platte by seaplane charter (~45min) or boat (~3hr). Resort arranges. Check into Waldorf Astoria villa. House reef snorkel; settle in. Sunset cocktails on the deck.', type: 'travel' },
       { date: 'Nov 26', label: 'Platte Dive Day 1', description: '2-tank morning dive (granite topography, outer wall) + 1-tank afternoon. Lunch + sunset at the resort.', type: 'activity' },
       { date: 'Nov 27', label: 'Platte Dive Day 2', description: '2-tank dive — focus on whale shark hot zones if plankton conditions allow. Afternoon: spa, fishing, or house reef snorkeling.', type: 'activity' },
-      { date: 'Nov 28', label: 'Platte → Mahé → TNR (long travel day)', description: 'Morning: optional final dive. Late morning: speedboat/seaplane Platte → Mahé. Afternoon: SEZ → TNR on Emirates direct (~2hr 45min). Evening: drive ~3hr east to Andasibe area, or 1 night TNR if late arrival.', type: 'travel' },
+      { date: 'Nov 28', label: 'Platte → Mahé → TNR (long travel day)', description: 'Morning: optional final dive. Check out Waldorf Astoria Platte. Late morning: speedboat/seaplane Platte → Mahé. Afternoon: SEZ → TNR on Emirates direct (~2hr 45min). Evening: drive ~3hr east to Andasibe area (check in to lodge), or 1 night TNR if late arrival.', type: 'travel' },
       { date: 'Nov 29', label: 'Andasibe Day 1 — arrival + night walk', description: 'Arrive Andasibe area. Orientation walk through forest reserve. Evening NIGHT WALK in Analamazaotra — mouse lemurs, chameleons, leaf-tailed geckos, frogs. Best Madagascar wildlife photography hours.', type: 'activity' },
       { date: 'Nov 30', label: 'Andasibe Day 2 — Indri at dawn', description: '5:30am hike to find INDRI lemurs at dawn — world\'s largest lemur, ear-splitting territorial calls echo across the canopy at sunrise. Also see diademed sifaka, brown lemurs, bamboo lemurs. Chameleon walk mid-morning. Afternoon: second forest walk OR Vakôna\'s lemur island for close encounters. Optional second night walk.', type: 'activity' },
       { date: 'Dec 1', label: 'Andasibe Day 3 — Deeper trek', description: 'Morning: deeper hike into Mantadia National Park (more strenuous, fewer visitors, diademed sifaka territory). Lunch at lodge. Afternoon: bird watching (Madagascar has 280+ species, ~50% endemic). Optional third night walk or rest if field-tired.', type: 'activity' },
-      { date: 'Dec 2', label: 'Andasibe → TNR (return prep)', description: 'Morning: final park walk or relaxed breakfast. Late morning: drive back to TNR (~3hr). Afternoon/evening: rest at TNR hotel.', type: 'travel' },
-      { date: 'Dec 3', label: 'Fly home', description: 'TNR → onward home routing (AF via CDG, EK via DXB, or TK via IST). Arrive SEA same calendar day or next depending on routing.', type: 'travel' },
+      { date: 'Dec 2', label: 'Andasibe → TNR (return prep)', description: 'Morning: final park walk or relaxed breakfast. Check out Andasibe lodge. Late morning: drive back to TNR (~3hr). Check in to TNR hotel. Afternoon/evening: rest.', type: 'travel' },
+      { date: 'Dec 3', label: 'Fly home', description: 'Check out TNR hotel. TNR → onward home routing (AF via CDG, EK via DXB, or TK via IST). Arrive SEA same calendar day or next depending on routing.', type: 'travel' },
     ],
     costs: [
       // ─── Flights — Booked ───
