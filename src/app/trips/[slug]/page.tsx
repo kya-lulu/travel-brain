@@ -378,7 +378,20 @@ export default async function TripPage({
                           {day.description}
                         </p>
 
-                        {/* Inline flights for this day */}
+                        {/* Hotel check-outs first — you check out before flights or new check-ins */}
+                        {dayHotelCheckouts.map((hotel, hIdx) => (
+                          <div key={`ho-${hIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
+                            <Building2 size={14} className="text-text-muted flex-shrink-0 mt-1" />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-baseline gap-2 flex-wrap">
+                                <span className="font-display text-sm font-500 text-text-muted">{hotel.property}</span>
+                              </div>
+                              <span className="text-xs text-text-muted">Check-out</span>
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Flights second */}
                         {dayFlights.map((flight, fIdx) => (
                           <div key={`f-${fIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
                             <Plane size={14} className="text-accent flex-shrink-0 mt-1" />
@@ -401,7 +414,7 @@ export default async function TripPage({
                           </div>
                         ))}
 
-                        {/* Inline hotel check-ins */}
+                        {/* Hotel check-ins last — you arrive after flights */}
                         {dayHotelCheckins.map((hotel, hIdx) => (
                           <div key={`hi-${hIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
                             <Building2 size={14} className="text-accent flex-shrink-0 mt-1" />
@@ -417,19 +430,6 @@ export default async function TripPage({
                                 <StatusBadge status={hotel.status as TripStatus} label={hotel.status} />
                               </div>
                               {hotel.notes && <p className="text-xs text-text-muted mt-1">{hotel.notes}</p>}
-                            </div>
-                          </div>
-                        ))}
-
-                        {/* Inline hotel check-outs */}
-                        {dayHotelCheckouts.map((hotel, hIdx) => (
-                          <div key={`ho-${hIdx}`} className="mt-3 flex items-start gap-3 p-3 rounded-lg bg-bg border border-border/40">
-                            <Building2 size={14} className="text-text-muted flex-shrink-0 mt-1" />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-baseline gap-2 flex-wrap">
-                                <span className="font-display text-sm font-500 text-text-muted">{hotel.property}</span>
-                              </div>
-                              <span className="text-xs text-text-muted">Check-out</span>
                             </div>
                           </div>
                         ))}

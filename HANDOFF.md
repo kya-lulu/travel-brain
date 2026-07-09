@@ -149,10 +149,12 @@ interface Hotel {
 ### Integrated Timeline
 Flights and hotels are **embedded inline within the day-by-day itinerary** — NOT in separate sections. The `isoMatchesDay()` helper function matches ISO dates from flights/hotels to itinerary day labels (handles formats like "April 21", "Aug 7–11", "Sept 28 – Oct 8").
 
-Each itinerary day card shows:
-- Day label and description text
-- Matching flight cards (route, time, airline, aircraft, cabin, confirmation, status)
-- Hotel check-in / check-out cards
+Each itinerary day card shows items in this fixed order:
+1. **Hotel check-outs** — always first. You check out before you do anything else.
+2. **Flights** — after checkout, before arriving somewhere new.
+3. **Hotel check-ins** — always last. You arrive after flying.
+
+**Rule: checkout → flight → check-in. Never reorder this.** This order is enforced in the rendering code (`page.tsx`) and must be maintained if the timeline component is ever rewritten.
 
 The standalone Flights and Hotels sections were **removed** — all data is in the timeline.
 
