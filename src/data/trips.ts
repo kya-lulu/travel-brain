@@ -615,43 +615,40 @@ export const trips: Trip[] = [
   // AUSTRALIA — November 2026
 
   // ═══════════════════════════════════════════════════════
-  // SINGAPORE, MALDIVES & SRI LANKA — Dec 2026 / Jan 2027
+  // SINGAPORE & SRI LANKA — Dec 2026 / Jan 2027
   // ═══════════════════════════════════════════════════════
   {
     slug: 'singapore-maldives-dec-2026',
-    title: 'Singapore, Maldives & Sri Lanka',
-    subtitle: 'Holiday Season — Three Countries',
-    region: 'Asia & Indian Ocean',
-    country: 'Singapore, Maldives & Sri Lanka',
+    title: 'Singapore & Sri Lanka',
+    subtitle: 'Holiday Season — Christmas in Singapore, New Year in Sri Lanka',
+    region: 'Asia',
+    country: 'Singapore & Sri Lanka',
     dates: 'December 24, 2026 – January 4, 2027',
     month: 'December',
     year: 2026,
     status: 'partially_booked',
     statusLabel: 'Partially Booked',
-    travelers: 'TBD (likely 2–4)',
+    travelers: '2 adults (Terry & Janelle)',
     heroImage: 'singapore-gardens-night',
     flights: [
-      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', time: '8:45am → 5:45pm +1', airline: 'Singapore Airlines (SQ027)', cabin: 'Business', confirmation: 'TBD-FIX (was wrongly F6MWR7)', status: 'booked', notes: 'Christmas Eve departure. 17hr flight. SQ Business is world-class — 1-2-1 layout. PNR needs correction — F6MWR7 is the Sept 2026 IOP trip\'s PNR; this Dec booking has a different one (pull from Gmail).' },
-      { segment: 2, date: '2026-12-28', route: 'SIN → MLE', status: 'needs_action', notes: 'Need to book Singapore to Malé. Check SQ or budget carriers (Scoot). ~4.5hr flight.' },
-      { segment: 3, date: '2027-01-01', route: 'MLE → CMB', status: 'needs_action', notes: 'Need to book Malé to Colombo for Sri Lanka leg. ~1.5hr flight. SriLankan Airlines or Maldivian.' },
-      { segment: 4, date: '2027-01-03', route: 'CMB → DOH', time: '10:15am → 12:45pm', airline: 'Qatar Airways (QR665)', cabin: 'Business', confirmation: '9YPE29', status: 'booked', notes: '5hr flight. 19hr layover in Doha — explore or Al Mourjan lounge.' },
-      { segment: 5, date: '2027-01-04', route: 'DOH → SEA', time: '7:55am → 11:40am', airline: 'Qatar Airways (QR719)', cabin: 'Business', confirmation: '9BHJHH', status: 'booked', notes: 'Qsuites if available. Also on conf 9YPE29. Home by lunch.' },
+      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', time: '8:45am → 5:45pm +1', airline: 'Singapore Airlines (SQ027)', cabin: 'Business', confirmation: 'TBD-FIX (was wrongly F6MWR7)', status: 'booked', notes: 'Christmas Eve departure. 17hr flight. PNR needs correction — pull from Gmail.' },
+      { segment: 2, date: '2026-12-28', route: 'SIN → CMB', time: '9:40 AM → 11:00 AM', airline: 'SriLankan Airlines (UL 307)', cabin: 'Business (U)', confirmation: 'BHZ9KV', status: 'booked', notes: 'American conf TANOAL / SriLankan conf BHZ9KV. 80K AAdvantage + $102.20 total (40K + $51.10 per person). Terry ticket 0012337292767, Janelle ticket 0012337292768.' },
+      { segment: 3, date: '2027-01-03', route: 'CMB → DOH', time: '10:15am → 12:45pm', airline: 'Qatar Airways (QR665)', cabin: 'Business', confirmation: '9YPE29', status: 'booked', notes: '5hr flight. 19hr layover in Doha — explore or Al Mourjan lounge.' },
+      { segment: 4, date: '2027-01-04', route: 'DOH → SEA', time: '7:55am → 11:40am', airline: 'Qatar Airways (QR719)', cabin: 'Business', confirmation: '9BHJHH', status: 'booked', notes: 'Qsuites if available. Also on conf 9YPE29. Home by lunch.' },
     ],
     hotels: [
       { property: 'Andaz Singapore', location: 'Kampong Glam, Singapore', checkIn: '2026-12-25', checkOut: '2026-12-28', program: 'Hyatt', status: 'booked', notes: 'Conf: 30914538. Boutique-style Hyatt in Kampong Glam — Arab Street, Haji Lane, Sultan Mosque. Rooftop pool with skyline views.' },
-      { property: 'Park Hyatt Maldives Hadahaa', location: 'Gaafu Alifu Atoll, Maldives', checkIn: '2026-12-28', checkOut: '2027-01-01', program: 'Hyatt', status: 'booked', notes: 'Conf: 25671158. Remote southern atoll — 50 villas, world-class house reef. Overwater or beach villa. NYE in the Maldives.' },
-      { property: 'TBD — Sri Lanka', location: 'South Coast or Hill Country, Sri Lanka', checkIn: '2027-01-01', checkOut: '2027-01-03', status: 'not_booked', notes: 'Need to book — 2 nights. Options: Weligama (south coast beach + surfing), Galle (Dutch fort, boutique hotels), or Kandy/Ella (hill country tea plantations). CMB departure is Jan 3 at 10:15am.' },
-      { property: 'TBD — Doha Layover', location: 'Doha, Qatar', checkIn: '2027-01-03', checkOut: '2027-01-04', status: 'not_booked', notes: '19hr Doha layover. Options: Park Hyatt Doha, Mandarin Oriental Doha, or stay in Al Mourjan Business Lounge (newly expanded).' },
+      { property: 'Park Hyatt Maldives Hadahaa — CANCEL', location: 'Gaafu Alifu Atoll, Maldives', checkIn: '2026-12-28', checkOut: '2027-01-01', program: 'Hyatt', status: 'pending', notes: '⚠️ CANCEL — Maldives leg dropped. Conf: 25671158. Cancel before penalty window.' },
+      { property: 'TBD — Sri Lanka', location: 'South Coast or Hill Country, Sri Lanka', checkIn: '2026-12-28', checkOut: '2027-01-03', status: 'not_booked', notes: 'Need to book — 6 nights (Dec 28–Jan 3). Fly in Dec 28 on UL307. CMB departure Jan 3 at 10:15am. Options: Galle Fort (boutique hotels, easy Jan 3 departure), Weligama (beach), or Kandy/Ella (hill country).' },
+      { property: 'TBD — Doha Layover', location: 'Doha, Qatar', checkIn: '2027-01-03', checkOut: '2027-01-04', status: 'not_booked', notes: '19hr Doha layover. Options: Park Hyatt Doha, Mandarin Oriental Doha, or stay in Al Mourjan Business Lounge.' },
     ],
     actionItems: [
-      { text: 'Book SIN → MLE flight for Dec 28', urgent: true },
-      { text: 'Book MLE → CMB flight for Jan 1 (Maldives to Sri Lanka)', urgent: true },
-      { text: 'Book Sri Lanka accommodations for Jan 1–3 (2 nights)', urgent: true },
-      { text: 'Decide Sri Lanka itinerary: south coast (Galle/Weligama) vs hill country (Kandy/Ella)', urgent: true },
-      { text: 'Book Doha layover hotel or confirm Al Mourjan lounge plan', urgent: false },
-      { text: 'Confirm Park Hyatt Maldives villa type (overwater vs beach)', urgent: false },
-      { text: 'Research Maldives visa (free on arrival for US) and Sri Lanka ETA', urgent: false },
-      { text: 'Reserve NYE dinner at Park Hyatt Maldives', urgent: false },
+      { text: 'CANCEL Park Hyatt Maldives Hadahaa (conf: 25671158) — Maldives leg dropped', urgent: true },
+      { text: 'Correct SEA→SIN PNR — F6MWR7 belongs to IOP Sept trip; pull actual Dec 24 PNR from Gmail', urgent: true },
+      { text: 'Book Sri Lanka accommodations for Dec 28–Jan 3 (6 nights)', urgent: true },
+      { text: 'Decide Sri Lanka base: Galle Fort (best for easy Jan 3 departure), Weligama (beach), or Kandy/Ella (hill country)', urgent: true },
+      { text: 'Book Doha layover hotel or confirm Al Mourjan lounge plan for Jan 3–4', urgent: false },
+      { text: 'Obtain Sri Lanka ETA (online, ~$20, required before arrival)', urgent: false },
     ],
     intel: [
       { title: 'Singapore: Hawker Centres & Neighborhoods', content: 'Singapore\'s food culture is the trip\'s opening act. Must-hit hawker centres: Maxwell Food Centre (Tian Tian chicken rice — the stall that won the Michelin star), Old Airport Road (broadest selection, locals\' favorite), Chinatown Complex (1,000 stalls, char kway teow at stall #2-30). Tiong Bahru is the coffee and kaya toast neighborhood — 40 Hands, Nylon Coffee. Joo Chiat/Katong for Peranakan shophouses, laksa at 328 Katong Laksa. Gardens by the Bay Supertree light show at 7:45pm and 8:45pm nightly. Christmas decorations along Orchard Road are spectacular in late December.' },
