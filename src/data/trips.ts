@@ -641,14 +641,13 @@ export const trips: Trip[] = [
       { property: 'Park Hyatt Maldives Hadahaa — CANCEL', location: 'Gaafu Alifu Atoll, Maldives', checkIn: '2026-12-28', checkOut: '2027-01-01', program: 'Hyatt', status: 'pending', notes: '⚠️ CANCEL — Maldives leg dropped. Conf: 25671158. Cancel before penalty window.' },
       { property: 'Hilton Yala Resort', location: 'Palatupana, Yala, Sri Lanka', checkIn: '2026-12-26', checkOut: '2026-12-28', program: 'Hilton Honors', status: 'booked', notes: 'Conf: 3469131393. 160,000 Hilton points. King Deluxe Room, 2 guests. Check-in 3pm Dec 26, checkout 12pm Dec 28. Hilton Honors account XXXXX0954.' },
       { property: 'TBD — Sri Lanka (Dec 28–Jan 3)', location: 'Sri Lanka', checkIn: '2026-12-28', checkOut: '2027-01-03', status: 'not_booked', notes: 'Need to book — 6 nights. CMB departure Jan 3 at 10:15am. Options: Galle Fort (boutique hotels, best for easy departure), Weligama (beach).' },
-      { property: 'TBD — Doha Layover', location: 'Doha, Qatar', checkIn: '2027-01-03', checkOut: '2027-01-04', status: 'not_booked', notes: '19hr Doha layover. Options: Park Hyatt Doha, Mandarin Oriental Doha, or stay in Al Mourjan Business Lounge.' },
+      { property: 'Park Hyatt Doha', location: 'Doha, Qatar', checkIn: '2027-01-03', checkOut: '2027-01-04', program: 'Hyatt', status: 'booked', notes: '12K Hyatt points. 19hr layover (arrive CMB→DOH 12:45pm Jan 3, depart DOH→SEA 7:55am Jan 4).' },
     ],
     actionItems: [
       { text: 'CANCEL Park Hyatt Maldives Hadahaa (conf: 25671158) — Maldives leg dropped', urgent: true },
       { text: 'Check if Dec 28 AAdvantage booking (TANOAL/BHZ9KV) needs to be cancelled — replaced by Dec 26 XRDPGP', urgent: true },
       { text: 'Correct SEA→SIN PNR — F6MWR7 belongs to IOP Sept trip; pull actual Dec 24 PNR from Gmail', urgent: true },
       { text: 'Book Sri Lanka accommodations for Dec 28–Jan 3 (6 nights after Hilton Yala)', urgent: true },
-      { text: 'Book Doha layover hotel or confirm Al Mourjan lounge plan for Jan 3–4', urgent: false },
       { text: 'Obtain Sri Lanka ETA (online, ~$20, required before arrival)', urgent: false },
     ],
     intel: [
