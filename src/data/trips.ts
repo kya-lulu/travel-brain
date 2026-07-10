@@ -631,8 +631,8 @@ export const trips: Trip[] = [
     travelers: '2 adults (Terry & Janelle)',
     heroImage: 'singapore-gardens-night',
     flights: [
-      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', time: '8:45am → 5:45pm +1', airline: 'Singapore Airlines (SQ027)', cabin: 'Business', confirmation: 'TBD-FIX (was wrongly F6MWR7)', status: 'booked', notes: 'Christmas Eve departure. 17hr flight. PNR needs correction — pull from Gmail.' },
-      { segment: 2, date: '2026-12-26', route: 'SIN → CMB', time: '9:40 AM → 11:00 AM', airline: 'SriLankan Airlines (UL 0307)', aircraft: 'Airbus A320', cabin: 'Business', confirmation: 'XRDPGP', status: 'booked', notes: 'SIN Terminal 3. 3h 50m. 49K Avios + $238.60 (BA Executive Club XXXX1363). Tickets 125-2236269655 + 125-2236269656. Note: previous Dec 28 booking (TANOAL/BHZ9KV, 80K AAdvantage) may need to be cancelled.' },
+      { segment: 1, date: '2026-12-24', route: 'SEA → SIN', time: '8:45am → 5:45pm +1', airline: 'Singapore Airlines (SQ027)', cabin: 'Business', confirmation: 'F6MWR7', status: 'booked', notes: 'Christmas Eve departure. 17hr flight. Arrive SIN Christmas Day evening.' },
+      { segment: 2, date: '2026-12-26', route: 'SIN → CMB', time: '9:40 AM → 11:00 AM', airline: 'SriLankan Airlines (UL 0307)', aircraft: 'Airbus A320', cabin: 'Business', confirmation: 'XRDPGP', status: 'booked', notes: 'SIN Terminal 3. 3h 50m. 49K Avios + $238.60 (BA Executive Club XXXX1363). Tickets 125-2236269655 + 125-2236269656. Previous Dec 28 AAdvantage booking (TANOAL) cancelled.' },
       { segment: 3, date: '2027-01-03', route: 'CMB → DOH', time: '10:15am → 12:45pm', airline: 'Qatar Airways (QR665)', cabin: 'Business', confirmation: '9YPE29', status: 'booked', notes: '5hr flight. 19hr layover in Doha — explore or Al Mourjan lounge.' },
       { segment: 4, date: '2027-01-04', route: 'DOH → SEA', time: '7:55am → 11:40am', airline: 'Qatar Airways (QR719)', cabin: 'Business', confirmation: '9BHJHH', status: 'booked', notes: 'Qsuites if available. Also on conf 9YPE29. Home by lunch.' },
     ],
@@ -645,8 +645,7 @@ export const trips: Trip[] = [
     ],
     actionItems: [
       { text: 'CANCEL Park Hyatt Maldives Hadahaa (conf: 25671158) — Maldives leg dropped', urgent: true },
-      { text: 'Check if Dec 28 AAdvantage booking (TANOAL/BHZ9KV) needs to be cancelled — replaced by Dec 26 XRDPGP', urgent: true },
-      { text: 'Correct SEA→SIN PNR — F6MWR7 belongs to IOP Sept trip; pull actual Dec 24 PNR from Gmail', urgent: true },
+
       { text: 'Book Sri Lanka accommodations for Dec 28–Jan 3 (6 nights after Hilton Yala)', urgent: true },
       { text: 'Obtain Sri Lanka ETA (online, ~$20, required before arrival)', urgent: false },
     ],
@@ -658,7 +657,7 @@ export const trips: Trip[] = [
     ],
     awardTips: [
       { program: 'Hyatt Points', route: 'Andaz SIN + Park Hyatt MLE', cost: '~45K (Andaz 3 nts) + ~120–160K (PH Maldives 4 nts)', note: '~165–205K total Hyatt for all booked nights. Peak holiday pricing on PH Hadahaa. Verify exact counts from confirmations 30914538 + 25671158.' },
-      { program: 'Singapore Airlines KrisFlyer', route: 'SEA–SIN (Dec 24)', cost: 'KrisFlyer award (miles count TBD)', note: 'SQ Business outbound. PNR needs correction (currently incorrectly stored as F6MWR7).' },
+      { program: 'Singapore Airlines KrisFlyer', route: 'SEA–SIN (Dec 24)', cost: 'KrisFlyer award (miles count TBD)', note: 'SQ Business outbound. Conf F6MWR7.' },
       { program: 'Qatar Avios', route: 'CMB–DOH–SEA', cost: '140K Avios + $300/pp = 280K Avios + $600 cash for 2 pax', note: 'Return on Qatar Business. Qsuites if lucky — check seat map closer to departure.' },
       { program: 'Hyatt Points', route: 'Park Hyatt Doha (alternative)', cost: '~20–25K per night', note: 'For the 19hr Doha layover. Alternative: skip hotel and use Al Mourjan lounge.' },
     ],
@@ -677,7 +676,7 @@ export const trips: Trip[] = [
     ],
     costs: [
       // ─── Flights — Outbound ───
-      { category: 'flight', description: 'SEA → SIN on Singapore SQ027 Business (Dec 24)', pnr: 'TBD (different from F6MWR7)', program: 'Singapore KrisFlyer', note: 'PNR FIX NEEDED: trips.ts incorrectly shows F6MWR7 (which is actually the Sept 24 IOP trip\'s PNR). Dec 24 is a separate booking — pull correct PNR from Terry\'s Gmail. Booked on KrisFlyer award; miles count + cash taxes TBD.' },
+      { category: 'flight', description: 'SEA → SIN on Singapore SQ027 Business (Dec 24)', pnr: 'F6MWR7', program: 'Singapore KrisFlyer', note: 'KrisFlyer award redemption. Miles count + cash taxes TBD.' },
       { category: 'flight', description: 'SIN → MLE (Dec 28)', note: 'Not yet booked. SQ direct ~$300–600 cash, or Scoot budget ~$150–250.' },
       // ─── Flights — Inter-region ───
       { category: 'flight', description: 'MLE → CMB (Maldives → Sri Lanka, Jan 1)', note: 'Not yet booked. SriLankan ~$170 cash, ~1.5hr.' },
