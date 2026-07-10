@@ -640,7 +640,7 @@ export const trips: Trip[] = [
       { property: 'Andaz Singapore', location: 'Kampong Glam, Singapore', checkIn: '2026-12-24', checkOut: '2026-12-26', program: 'Hyatt', status: 'booked', notes: 'Conf: 40023B17984489. Check-in 3pm Dec 24, checkout 12pm Dec 26. Boutique Hyatt in Kampong Glam — Arab Street, Haji Lane, Sultan Mosque.' },
       { property: 'Park Hyatt Maldives Hadahaa — CANCEL', location: 'Gaafu Alifu Atoll, Maldives', checkIn: '2026-12-28', checkOut: '2027-01-01', program: 'Hyatt', status: 'pending', notes: '⚠️ CANCEL — Maldives leg dropped. Conf: 25671158. Cancel before penalty window.' },
       { property: 'Hilton Yala Resort', location: 'Palatupana, Yala, Sri Lanka', checkIn: '2026-12-26', checkOut: '2026-12-28', program: 'Hilton Honors', status: 'booked', notes: 'Conf: 3469131393. 160,000 Hilton points. King Deluxe Room, 2 guests. Check-in 3pm Dec 26, checkout 12pm Dec 28. Hilton Honors account XXXXX0954.' },
-      { property: 'TBD — Sri Lanka (Dec 28–Jan 3)', location: 'Sri Lanka', checkIn: '2026-12-28', checkOut: '2027-01-03', status: 'not_booked', notes: 'Need to book — 6 nights. CMB departure Jan 3 at 10:15am. Options: Galle Fort (boutique hotels, best for easy departure), Weligama (beach).' },
+      { property: 'TBD — Sri Lanka (Dec 28–Jan 3)', location: 'Sri Lanka', checkIn: '2026-12-28', checkOut: '2027-01-03', status: 'pending', notes: 'Janelle has something booked — details TBD. Pull from Janelle\'s bookings. CMB departure Jan 3 at 10:15am.' },
       { property: 'Park Hyatt Doha', location: 'Doha, Qatar', checkIn: '2027-01-03', checkOut: '2027-01-04', program: 'Hyatt', status: 'booked', notes: '12K Hyatt points. 19hr layover (arrive CMB→DOH 12:45pm Jan 3, depart DOH→SEA 7:55am Jan 4).' },
     ],
     actionItems: [
