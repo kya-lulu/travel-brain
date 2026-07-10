@@ -333,14 +333,12 @@ export const trips: Trip[] = [
     heroImage: 'https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da',
     flights: [
       { segment: 1, date: '2026-07-14', route: 'SEA → BUR', time: '11:20 AM → 1:56 PM', airline: 'Alaska Airlines (AS529)', aircraft: 'Boeing 737-800', cabin: 'Economy', confirmation: 'KSHTZK', status: 'booked', notes: 'Nonstop, 2h 36m. Pick up National rental car at BUR.' },
-      { segment: 2, date: '2026-07-16', route: 'ONT → SEA', time: '2:05 PM → 4:45 PM', airline: 'Alaska Airlines', cabin: 'Economy', status: 'booked', notes: 'Nonstop, 2h 40m. Drop National rental car at ONT before flight.' },
+      { segment: 2, date: '2026-07-16', route: 'ONT → SEA', time: '2:05 PM → 4:45 PM', airline: 'Alaska Airlines (AS567)', cabin: 'Economy', confirmation: 'KSVWMI', status: 'booked', notes: 'Nonstop, 2h 40m. Drop National rental car at ONT before flight.' },
     ],
     hotels: [
-      { property: 'Hyatt House Medical Plaza', location: 'Los Angeles, CA', checkIn: '2026-07-14', checkOut: '2026-07-15', program: 'Hyatt', status: 'booked', notes: 'Night of Jul 14. Olivia Dean concert same evening.' },
+      { property: 'Hyatt House Medical Plaza', location: 'Los Angeles, CA', checkIn: '2026-07-14', checkOut: '2026-07-15', program: 'Hyatt', status: 'booked', notes: '12K Hyatt points. Night of Jul 14. Olivia Dean concert same evening.' },
     ],
-    actionItems: [
-      { text: 'Add ONT→SEA confirmation number once available', urgent: false },
-    ],
+    actionItems: [],
     intel: [
       { title: 'Getting Around', content: 'National rental car pickup at BUR (Burbank), drop-off at ONT (Ontario). Driving is the right call in LA — covers multiple areas and allows drop-off at the departure airport.' },
     ],
@@ -352,8 +350,8 @@ export const trips: Trip[] = [
     ],
     costs: [
       { category: 'flight', description: 'SEA → BUR on Alaska AS529 (Jul 14)', pnr: 'KSHTZK', note: 'Economy. Boeing 737-800.' },
-      { category: 'flight', description: 'ONT → SEA on Alaska (Jul 16)', note: 'Economy. Nonstop 2h 40m. Conf TBD.' },
-      { category: 'hotel', description: 'Hyatt House Medical Plaza (1 nt, Jul 14–15)', program: 'Hyatt', note: 'Booked.' },
+      { category: 'flight', description: 'ONT → SEA on Alaska AS567 (Jul 16)', pnr: 'KSVWMI', note: 'Economy. Nonstop 2h 40m.' },
+      { category: 'hotel', description: 'Hyatt House Medical Plaza (1 nt, Jul 14–15)', program: 'Hyatt', points: 12000, note: '12K Hyatt points.' },
       { category: 'activity', description: 'Olivia Dean concert tickets (Jul 14)', note: 'Won via Marriott promotion.' },
       { category: 'transfer', description: 'National rental car — BUR pickup, ONT drop-off (Jul 14–16)', note: '2 days. Covers LA area + airport flexibility.' },
     ],
