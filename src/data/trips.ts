@@ -396,8 +396,7 @@ export const trips: Trip[] = [
       { text: 'Contact Hyatt Bishkek concierge — arrive 4:30am, earliest official check-in 8am, request early room access', urgent: true },
       { text: 'Book Almaty hotel for Aug 6–12 (post-trek recovery)', urgent: true },
       { text: 'Confirm Gusary Stables trek details: dates, cost, transfers in/out', urgent: false },
-      { text: 'Obtain Kyrgyzstan e-Visa (online, 24–48 hrs; do by mid-July)', urgent: false },
-      { text: 'Confirm Kazakhstan visa-free entry (US passport, 30-day stay)', urgent: false },
+      { text: 'No visas needed — Kyrgyzstan and Kazakhstan are both visa-free for US/Canadian passports (30-day stay)', urgent: false },
     ],
     intel: [
       { title: 'The Horse in Kyrgyz Culture', content: 'In Kyrgyzstan, the horse is central to identity, spirituality, and survival on the high Tian Shan mountains. Kyrgyz nomadic herders have lived on horseback for over 1,000 years. The phrase "Kyrgyz without a horse is not Kyrgyz" encapsulates the cultural weight. Traditional games like buzkashi remain central to festivals. Staying in a yurt community and learning to ride in Kyrgyz tradition—eating fermented horse milk (kumis) with herders, sleeping in a felt home—is an immersive cultural experience. August is peak trekking season.' },
@@ -449,7 +448,7 @@ export const trips: Trip[] = [
       { category: 'transfer', description: 'Trek-end → Almaty transfer (Aug 6)', note: 'Verify if Gusary Stables includes Almaty drop-off. Otherwise private car (~$200) or shared transfer (~$80–150).' },
       { category: 'transfer', description: 'Almaty hotel → airport (Aug 12)', note: 'Yandex Taxi / Uber. ~$10–20.' },
       // ─── Other ───
-      { category: 'other', description: 'Kyrgyzstan e-Visa (~$60/person × 2)', cashUsd: 120, note: 'Apply 24–48 hrs in advance at evisa.e-gov.kg.' },
+      { category: 'other', description: 'No visas required', note: 'Kyrgyzstan and Kazakhstan both grant visa-free entry to US and Canadian passport holders (30 days).' },
       { category: 'other', description: 'Meals (Bishkek + Almaty) + market shopping + drinks', note: 'Estimate ~$400–800 across 13 days for 2 pax. Trek meals included.' },
     ],
   },
