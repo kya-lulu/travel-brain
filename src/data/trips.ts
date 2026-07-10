@@ -316,6 +316,50 @@ export const trips: Trip[] = [
   },
 
   // ═══════════════════════════════════════════════════════
+  // LA WEEKEND — July 2026
+  // ═══════════════════════════════════════════════════════
+  {
+    slug: 'la-jul-2026',
+    title: 'LA Weekend',
+    subtitle: 'Olivia Dean Concert',
+    region: 'North America',
+    country: 'United States',
+    dates: 'July 14–16, 2026',
+    month: 'July',
+    year: 2026,
+    status: 'booked',
+    statusLabel: 'Booked',
+    travelers: '2 adults (Terry & Janelle)',
+    heroImage: 'https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da',
+    flights: [
+      { segment: 1, date: '2026-07-14', route: 'SEA → BUR', time: '11:20 AM → 1:56 PM', airline: 'Alaska Airlines (AS529)', aircraft: 'Boeing 737-800', cabin: 'Economy', confirmation: 'KSHTZK', status: 'booked', notes: 'Nonstop, 2h 36m. Pick up National rental car at BUR.' },
+      { segment: 2, date: '2026-07-16', route: 'ONT → SEA', time: '2:05 PM → 4:45 PM', airline: 'Alaska Airlines', cabin: 'Economy', status: 'booked', notes: 'Nonstop, 2h 40m. Drop National rental car at ONT before flight.' },
+    ],
+    hotels: [
+      { property: 'Hyatt House Medical Plaza', location: 'Los Angeles, CA', checkIn: '2026-07-14', checkOut: '2026-07-15', program: 'Hyatt', status: 'booked', notes: 'Night of Jul 14. Olivia Dean concert same evening.' },
+    ],
+    actionItems: [
+      { text: 'Add ONT→SEA confirmation number once available', urgent: false },
+    ],
+    intel: [
+      { title: 'Getting Around', content: 'National rental car pickup at BUR (Burbank), drop-off at ONT (Ontario). Driving is the right call in LA — covers multiple areas and allows drop-off at the departure airport.' },
+    ],
+    awardTips: [],
+    itinerary: [
+      { date: 'July 14', label: 'Fly to LA — Concert Night', description: 'SEA 11:20 AM → BUR 1:56 PM on Alaska AS529 (conf: KSHTZK). Pick up National rental car at BUR. Check into Hyatt House Medical Plaza. Olivia Dean concert that evening (Marriott win).', type: 'travel' },
+      { date: 'July 15', label: 'Day in LA', description: 'Free day in Los Angeles.', type: 'flexible' },
+      { date: 'July 16', label: 'Fly Home', description: 'Check out Hyatt House Medical Plaza. Drop National rental car at ONT. ONT 2:05 PM → SEA 4:45 PM nonstop (2h 40m).', type: 'travel' },
+    ],
+    costs: [
+      { category: 'flight', description: 'SEA → BUR on Alaska AS529 (Jul 14)', pnr: 'KSHTZK', note: 'Economy. Boeing 737-800.' },
+      { category: 'flight', description: 'ONT → SEA on Alaska (Jul 16)', note: 'Economy. Nonstop 2h 40m. Conf TBD.' },
+      { category: 'hotel', description: 'Hyatt House Medical Plaza (1 nt, Jul 14–15)', program: 'Hyatt', note: 'Booked.' },
+      { category: 'activity', description: 'Olivia Dean concert tickets (Jul 14)', note: 'Won via Marriott promotion.' },
+      { category: 'transfer', description: 'National rental car — BUR pickup, ONT drop-off (Jul 14–16)', note: '2 days. Covers LA area + airport flexibility.' },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════
   // HORSE TREKKING — July/August 2026
   // ═══════════════════════════════════════════════════════
   {
