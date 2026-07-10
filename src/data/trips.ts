@@ -922,6 +922,54 @@ export const trips: Trip[] = [
   },
 
   // ═══════════════════════════════════════════════════════
+  // JANELLE — MELBOURNE FAMILY VISIT — March 2027
+  // ═══════════════════════════════════════════════════════
+  {
+    slug: 'janelle-melb-mar-2027',
+    title: 'Melbourne Family Visit',
+    subtitle: 'Janelle solo — Grandmother visit via Fiji',
+    region: 'South Pacific',
+    country: 'Australia',
+    dates: 'March 11–25, 2027',
+    month: 'March',
+    year: 2027,
+    status: 'partially_booked',
+    statusLabel: 'Partially Booked',
+    travelers: '1 adult (Janelle)',
+    heroImage: 'melbourne-city-yarra',
+    flights: [
+      { segment: 1, date: '2027-03-11', route: 'YVR → NAN', time: '10:25 PM → 5:15 AM +2', airline: 'Fiji Airways (FJ 881)', cabin: 'Business', confirmation: 'SAYHXW / A8JTZY', status: 'booked', notes: 'AA conf SAYHXW, Fiji conf A8JTZY. Crosses date line — arrives Nadi Sat Mar 13. 80K AAdvantage + $78.60 (Janelle AA MH5****).' },
+      { segment: 2, date: '2027-03-13', route: 'NAN → MEL', time: '8:00 AM → 12:25 PM', airline: 'Fiji Airways (FJ 935)', cabin: 'Business', confirmation: 'A8JTZY', status: 'booked', notes: '2h 45min connection in Nadi. Arrives Melbourne Saturday afternoon.' },
+      { segment: 3, date: '2027-03-13', route: 'SFO → DEL → MEL', time: '10:00 → 20:05 +1 / 01:20 +2 → 19:00 +2', airline: 'Air India (AI184)', cabin: 'First', confirmation: 'TBD', status: 'canceled', notes: '⚠️ CANCELLED — replaced by Fiji Airways routing. Was: SFO 10:00 → DEL 20:05 +1 → MEL 19:00 +2, Boeing 777-300ER First (O). 80K AA miles + $78.60.' },
+      { segment: 4, date: '2027-03-25', route: 'MEL → DEL → SFO', airline: 'Air India', cabin: 'First', status: 'booked', notes: 'Return — reverse of cancelled AI184. Details TBD (confirm PNR and times from Janelle\'s booking).' },
+    ],
+    hotels: [
+      { property: 'Family accommodation', location: 'Melbourne, Australia', checkIn: '2027-03-13', checkOut: '2027-03-25', status: 'booked', notes: 'Staying with grandmother / family. No hotel needed.' },
+    ],
+    actionItems: [
+      { text: 'Confirm Air India return MEL→DEL→SFO March 25 — pull PNR, times, and seat from Janelle\'s booking', urgent: true },
+      { text: 'Book SFO → SEA/home after March 25 Air India return (will land SFO)', urgent: true },
+    ],
+    intel: [
+      { title: 'Melbourne in March', content: 'March is late summer in Melbourne — warm (22–26°C / 72–79°F), golden light, and the tail end of festival season. The city is relaxed and liveable. Fitzroy, Collingwood, and Brunswick are the interesting inner-city neighborhoods — coffee culture, vintage shops, street art. The Yarra River corridor is great for morning walks. Queen Victoria Market (open Tue–Sun) is the local food hall.' },
+    ],
+    awardTips: [
+      { program: 'AAdvantage', route: 'YVR–NAN–MEL (Fiji Airways)', cost: '80K miles + $78.60 per pax (Janelle only)', note: 'Business class via Fiji Airways. Fiji is an AA partner. Conf SAYHXW/A8JTZY.' },
+    ],
+    itinerary: [
+      { date: 'Mar 11', label: 'Depart Vancouver', description: 'YVR 10:25 PM → NAN on Fiji Airways FJ 881 Business (conf: SAYHXW / A8JTZY). Overnight Pacific crossing — crosses the date line.', type: 'travel' },
+      { date: 'Mar 13', label: 'Transit Fiji → Arrive Melbourne', description: 'Arrive Nadi (NAN) 5:15 AM. 2h45m connection. Depart NAN 8:00 AM → MEL 12:25 PM on FJ 935. Arrive Melbourne Saturday afternoon. Transfer to grandmother\'s home.', type: 'travel' },
+      { date: 'Mar 13–25', label: 'Melbourne — Family Time', description: 'Staying with grandmother and family. Melbourne is beautiful in late summer — walks along the Yarra, Queen Victoria Market, coffee and brunch in Fitzroy. No fixed itinerary.', type: 'rest' },
+      { date: 'Mar 25', label: 'Fly Home via Delhi', description: 'MEL → DEL → SFO on Air India (reverse of AI184, details TBD). First Class. Then connect SFO → home.', type: 'travel' },
+    ],
+    costs: [
+      { category: 'flight', description: 'YVR → NAN → MEL on Fiji Airways Business (Janelle only)', pnr: 'SAYHXW / A8JTZY', program: 'AAdvantage', points: 80000, cashUsd: 78.60, note: '80K AA miles + $78.60 taxes.' },
+      { category: 'flight', description: 'MEL → DEL → SFO on Air India First (Mar 25)', program: 'AAdvantage', note: 'Reverse of cancelled AI184. PNR and miles cost TBD — pull from Janelle\'s AA account.' },
+      { category: 'flight', description: 'SFO → home after Mar 25 (needs booking)', note: 'Domestic connection to SEA or direct — not yet booked.' },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════
   // PARIS — March 2027
   // ═══════════════════════════════════════════════════════
   {
