@@ -1048,7 +1048,7 @@ export const trips: Trip[] = [
     travelers: 'TBD',
     heroImage: 'jordan-petra-treasury',
     flights: [
-      { segment: 1, date: '2027-05-15', route: 'DFW → AMM', time: '10:55 PM → 7:55 PM +1', airline: 'TBD', cabin: 'TBD', status: 'booked', notes: '13h. Departs Dallas May 15 late night, arrives Amman May 16 evening. Confirmation TBD — pull from booking.' },
+      { segment: 1, date: '2027-05-15', route: 'DFW → AMM', time: '10:55 PM → 7:55 PM +1', airline: 'Royal Jordanian (RJ)', cabin: 'TBD', confirmation: 'GKNDKO / BBPQ5H', status: 'booked', notes: '13h. AA conf GKNDKO, RJ conf BBPQ5H. Operated by Royal Jordanian on AA award. Arrives Amman May 16 evening.' },
       { segment: 2, date: '2027-05-25', route: 'AMM → home', status: 'needs_action', notes: 'Return flight TBD. Dates and routing not yet set.' },
     ],
     hotels: [
