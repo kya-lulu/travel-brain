@@ -1045,10 +1045,10 @@ export const trips: Trip[] = [
     year: 2027,
     status: 'decision_needed',
     statusLabel: 'Decision Needed',
-    travelers: 'TBD',
+    travelers: '2 adults (Terry + Janelle)',
     heroImage: 'jordan-petra-treasury',
     flights: [
-      { segment: 1, date: '2027-05-15', route: 'DFW → AMM', time: '10:55 PM → 7:55 PM +1', airline: 'Royal Jordanian (RJ)', cabin: 'TBD', confirmation: 'GKNDKO / BBPQ5H', status: 'booked', notes: '13h. AA conf GKNDKO, RJ conf BBPQ5H. Operated by Royal Jordanian on AA award. Arrives Amman May 16 evening.' },
+      { segment: 1, date: '2027-05-15', route: 'DFW → AMM', time: '10:55 PM → 7:55 PM +1', airline: 'Royal Jordanian (RJ)', cabin: 'Business', confirmation: 'GKNDKO / BBPQ5H', status: 'booked', notes: '13h. AA conf GKNDKO, RJ conf BBPQ5H. 70K AAdvantage + $56/pp × 2 pax = 140K miles + $112. Arrives Amman May 16 evening.' },
       { segment: 2, date: '2027-05-25', route: 'AMM → home', status: 'needs_action', notes: 'Return flight TBD. Dates and routing not yet set.' },
     ],
     hotels: [
@@ -1066,6 +1066,7 @@ export const trips: Trip[] = [
       { title: 'Wadi Rum — Martian Desert', content: 'Wadi Rum is the landscape that doubled for Mars in The Martian and for Arabia in Lawrence of Arabia. Overnight in a Bedouin camp (Memories Aicha, Mohammed Mutlak camp, or a luxury bubble tent). Jeep tours of the protected area, camel rides at sunset, and stargazing in one of the darkest skies in the Middle East. Full day minimum; overnight strongly recommended.' },
     ],
     awardTips: [
+      { program: 'AAdvantage', route: 'DFW–AMM (Royal Jordanian)', cost: '70K + $56 per pax = 140K + $112 total', note: 'Oneworld partner redemption on RJ metal. Confs GKNDKO / BBPQ5H.' },
       { program: 'Hyatt Points', route: 'Park Hyatt Amman', cost: '~20–25K per night', note: 'Park Hyatt Amman is the top luxury property in the city. Strong Globalist value here.' },
     ],
     itinerary: [
@@ -1077,7 +1078,7 @@ export const trips: Trip[] = [
       { date: 'May 24', label: 'Aqaba & Fly Home', description: 'Drive to Aqaba (Red Sea). Morning snorkel or dive. Depart AMM → home (return routing TBD).', type: 'travel' },
     ],
     costs: [
-      { category: 'flight', description: 'DFW → AMM (May 15, outbound)', note: 'Booking exists — pull confirmation code and program/cost details.' },
+      { category: 'flight', description: 'DFW → AMM on Royal Jordanian (May 15, 2 pax)', pnr: 'GKNDKO / BBPQ5H', program: 'AAdvantage', points: 140000, cashUsd: 112, note: '70K AA miles + $56/pp × 2 = 140K miles + $112 total.' },
       { category: 'flight', description: 'AMM → home (return, TBD)', note: 'Not yet booked.' },
       { category: 'other', description: 'Jordan visa on arrival', note: 'Jordan Pass (~$103) includes visa + major site entry (Petra + 40 other sites) — better value than visa separately ($56) if visiting Petra.' },
     ],
