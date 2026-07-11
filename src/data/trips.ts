@@ -1040,24 +1040,23 @@ export const trips: Trip[] = [
     subtitle: 'Petra, Wadi Rum & Aqaba — Decision Pending',
     region: 'Middle East',
     country: 'Jordan',
-    dates: 'May 2027 (TBD)',
+    dates: 'May 15–23, 2027',
     month: 'May',
     year: 2027,
-    status: 'decision_needed',
-    statusLabel: 'Decision Needed',
+    status: 'partially_booked',
+    statusLabel: 'Partially Booked',
     travelers: '2 adults (Terry + Janelle)',
     heroImage: 'jordan-petra-treasury',
     flights: [
       { segment: 1, date: '2027-05-15', route: 'DFW → AMM', time: '10:55 PM → 7:55 PM +1', airline: 'Royal Jordanian (RJ)', cabin: 'Business', confirmation: 'GKNDKO / BBPQ5H', status: 'booked', notes: '13h. AA conf GKNDKO, RJ conf BBPQ5H. 70K AAdvantage + $56/pp × 2 pax = 140K miles + $112. Arrives Amman May 16 evening.' },
-      { segment: 2, date: '2027-05-25', route: 'AMM → home', status: 'needs_action', notes: 'Return flight TBD. Dates and routing not yet set.' },
+      { segment: 2, date: '2027-05-23', route: 'AMM → DFW', time: '10:45 AM → 5:05 PM', airline: 'Royal Jordanian (RJ 291)', cabin: 'Business', confirmation: 'BJGT5Y', status: 'booked', notes: '14h 20m nonstop. RJ conf BJGT5Y. 70K AAdvantage + $136/pp × 2 pax = 140K miles + $272. AA conf TBD — pull from AA account.' },
     ],
     hotels: [
       { property: 'TBD — Amman', location: 'Amman, Jordan', status: 'not_booked', notes: 'Arrival night May 16. Nothing booked yet.' },
       { property: 'TBD — Petra / Wadi Rum / Aqaba', location: 'Jordan', status: 'not_booked', notes: 'Main itinerary hotels not yet planned.' },
     ],
     actionItems: [
-      { text: 'DECIDE: Go or cancel? Pull full flight confirmation details.', urgent: true },
-      { text: 'Book return flight AMM → home once decision made', urgent: true },
+      { text: 'Pull AA confirmation code for return RJ 291 AMM→DFW (May 23, RJ conf BJGT5Y)', urgent: true },
       { text: 'Book hotels once itinerary confirmed', urgent: false },
     ],
     intel: [
@@ -1079,7 +1078,7 @@ export const trips: Trip[] = [
     ],
     costs: [
       { category: 'flight', description: 'DFW → AMM on Royal Jordanian (May 15, 2 pax)', pnr: 'GKNDKO / BBPQ5H', program: 'AAdvantage', points: 140000, cashUsd: 112, note: '70K AA miles + $56/pp × 2 = 140K miles + $112 total.' },
-      { category: 'flight', description: 'AMM → home (return, TBD)', note: 'Not yet booked.' },
+      { category: 'flight', description: 'AMM → DFW on Royal Jordanian RJ 291 (May 23, 2 pax)', pnr: 'BJGT5Y', program: 'AAdvantage', points: 140000, cashUsd: 272, note: '70K AA miles + $136/pp × 2 = 140K miles + $272 total. AA conf TBD.' },
       { category: 'other', description: 'Jordan visa on arrival', note: 'Jordan Pass (~$103) includes visa + major site entry (Petra + 40 other sites) — better value than visa separately ($56) if visiting Petra.' },
     ],
   },
