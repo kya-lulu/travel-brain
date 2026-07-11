@@ -1032,6 +1032,58 @@ export const trips: Trip[] = [
   },
 
   // ═══════════════════════════════════════════════════════
+  // JORDAN — May 2027
+  // ═══════════════════════════════════════════════════════
+  {
+    slug: 'jordan-may-2027',
+    title: 'Jordan',
+    subtitle: 'Petra, Wadi Rum & Aqaba — Decision Pending',
+    region: 'Middle East',
+    country: 'Jordan',
+    dates: 'May 2027 (TBD)',
+    month: 'May',
+    year: 2027,
+    status: 'decision_needed',
+    statusLabel: 'Decision Needed',
+    travelers: 'TBD',
+    heroImage: 'jordan-petra-treasury',
+    flights: [
+      { segment: 1, date: '2027-05-15', route: 'DFW → AMM', time: '10:55 PM → 7:55 PM +1', airline: 'TBD', cabin: 'TBD', status: 'booked', notes: '13h. Departs Dallas May 15 late night, arrives Amman May 16 evening. Confirmation TBD — pull from booking.' },
+      { segment: 2, date: '2027-05-25', route: 'AMM → home', status: 'needs_action', notes: 'Return flight TBD. Dates and routing not yet set.' },
+    ],
+    hotels: [
+      { property: 'TBD — Amman', location: 'Amman, Jordan', status: 'not_booked', notes: 'Arrival night May 16. Nothing booked yet.' },
+      { property: 'TBD — Petra / Wadi Rum / Aqaba', location: 'Jordan', status: 'not_booked', notes: 'Main itinerary hotels not yet planned.' },
+    ],
+    actionItems: [
+      { text: 'DECIDE: Go or cancel? Pull full flight confirmation details.', urgent: true },
+      { text: 'Book return flight AMM → home once decision made', urgent: true },
+      { text: 'Book hotels once itinerary confirmed', urgent: false },
+    ],
+    intel: [
+      { title: 'Why May in Jordan', content: 'May is one of the best months for Jordan — warm but not the brutal summer heat (June–August highs hit 38°C/100°F+). Petra in May is comfortable for hiking: 25–30°C during the day, cool evenings. The rose-red city is at its most photogenic in morning light. Wadi Rum desert camping is ideal in May before the heat becomes punishing. Dead Sea floats are pleasant. Aqaba diving season runs March–May before summer jellyfish. Crowds are manageable before peak summer tourism.' },
+      { title: 'Petra — The Treasury & Beyond', content: 'Most visitors only see the Treasury (Al-Khazneh) from the Siq entrance. The real Petra is much larger: the Street of Façades, the Monastery (Ad-Deir, 800+ steps — worth every one), the High Place of Sacrifice, the Royal Tombs. Plan minimum 2 full days. Arrive before 8am when the Siq fills with tour groups. Petra by Night (Mon/Wed/Thu) offers a candlelit walk to the Treasury under stars — worth it.' },
+      { title: 'Wadi Rum — Martian Desert', content: 'Wadi Rum is the landscape that doubled for Mars in The Martian and for Arabia in Lawrence of Arabia. Overnight in a Bedouin camp (Memories Aicha, Mohammed Mutlak camp, or a luxury bubble tent). Jeep tours of the protected area, camel rides at sunset, and stargazing in one of the darkest skies in the Middle East. Full day minimum; overnight strongly recommended.' },
+    ],
+    awardTips: [
+      { program: 'Hyatt Points', route: 'Park Hyatt Amman', cost: '~20–25K per night', note: 'Park Hyatt Amman is the top luxury property in the city. Strong Globalist value here.' },
+    ],
+    itinerary: [
+      { date: 'May 15', label: 'Depart DFW', description: 'DFW 10:55 PM → AMM. 13hr overnight flight. Arrive May 16 evening.', type: 'travel' },
+      { date: 'May 16', label: 'Arrive Amman', description: 'Arrive Queen Alia Airport 7:55 PM. Transfer to hotel. Short evening in Amman — Rainbow Street, Hashem Restaurant (famous falafel, cash only, open 24hrs).', type: 'travel' },
+      { date: 'May 17–18', label: 'Amman Explore', description: 'Roman Amphitheatre, Citadel with Temple of Hercules, Jordan Museum. Day trip to Jerash (best-preserved Roman ruins outside Italy, 45 min from Amman). Dead Sea afternoon — float at zero gravity.', type: 'activity' },
+      { date: 'May 19–21', label: 'Petra (2–3 days)', description: 'The Siq at sunrise, the Treasury, the Monastery. Petra by Night on an eligible evening. Petra Kitchen cooking class. Horse or donkey ride through the city center.', type: 'activity' },
+      { date: 'May 22–23', label: 'Wadi Rum', description: 'Jeep tour, camel sunset ride, Bedouin camp overnight under the stars. Martian landscape — Mars scenes from The Martian were filmed here.', type: 'activity' },
+      { date: 'May 24', label: 'Aqaba & Fly Home', description: 'Drive to Aqaba (Red Sea). Morning snorkel or dive. Depart AMM → home (return routing TBD).', type: 'travel' },
+    ],
+    costs: [
+      { category: 'flight', description: 'DFW → AMM (May 15, outbound)', note: 'Booking exists — pull confirmation code and program/cost details.' },
+      { category: 'flight', description: 'AMM → home (return, TBD)', note: 'Not yet booked.' },
+      { category: 'other', description: 'Jordan visa on arrival', note: 'Jordan Pass (~$103) includes visa + major site entry (Petra + 40 other sites) — better value than visa separately ($56) if visiting Petra.' },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════
   // SEYCHELLES + KENYA SAFARI — November 2026 (Platte Island + Finch Hattons, Tsavo West)
   // ═══════════════════════════════════════════════════════
   {
