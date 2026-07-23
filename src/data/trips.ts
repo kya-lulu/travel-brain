@@ -379,15 +379,19 @@ export const trips: Trip[] = [
       { segment: 1.5, date: '2026-08-01', route: 'LHR → IST → BSZ (Bishkek)', time: '13:20 → 04:30 +2', airline: 'Turkish Airlines (TK1990 + TK348)', cabin: 'Business', confirmation: 'T6CGRM', status: 'booked', notes: 'JANELLE ONLY — Janelle flies to London first (SEA→LHR booked separately), then LHR 13:20 Aug 1 → IST → Bishkek (BSZ/Manas) 04:30 Aug 2. Final leg TK348 departs IST 20:25 — SAME flight as Terry\'s RP7MM5. They reunite at Istanbul and arrive together.' },
       { segment: 2, date: '2026-08-01', route: 'IST → BSZ (Bishkek)', time: '20:25 → 04:30 +1', airline: 'Turkish Airlines (TK348)', aircraft: 'A321neo', cabin: 'Business', confirmation: 'RP7MM5', status: 'booked', notes: 'TERRY ONLY — 35K + $121. 5h 5m. Manas International Airport (BSZ). Janelle is on this same TK348 flight via her London ticket (T6CGRM); remove her from RP7MM5 and redeposit those miles.' },
       { segment: 2.5, date: '2026-08-08', route: 'BSZ → ALA', time: '18:55 (BSZ) → 18:45 (ALA)', airline: 'Air Astana', cabin: 'Economy', status: 'booked', notes: 'Bishkek → Almaty. 50 min direct. Arrives 10 min "earlier" due to Bishkek (UTC+6) → Almaty (UTC+5) time zone shift. 24K Turkish Miles&Smiles.' },
-      { segment: 3, date: '2026-08-12', route: 'ALA → IST', time: '08:55 → 13:15', airline: 'Turkish Airlines (TK353)', aircraft: 'A321neo', cabin: 'Business', confirmation: 'VT8IUE', status: 'booked', notes: 'Almaty to Istanbul. 6h 20m. 1hr 40min layover before IST→SEA.' },
-      { segment: 4, date: '2026-08-12', route: 'IST → SEA', time: '2:55pm → 5:15pm', airline: 'Turkish Airlines (TK203)', cabin: 'Business', confirmation: 'TD67GM', status: 'booked', notes: '12hr 20min flight. Direct Istanbul to Seattle.' },
-      { segment: 5, date: '2026-08-12', route: 'HEL → SEA', time: '4:25pm → 4:00pm', airline: 'Finnair (AY33)', confirmation: 'DFMG2R', status: 'booked', notes: 'Ticketed as Qantas. Backup/alternative return. Also conf 96MPQQ.' },
+      { segment: 3, date: '2026-08-11', route: 'ALA → NQZ', time: '08:35 → 10:15', airline: 'Air Astana (KC 951)', cabin: 'Business', status: 'booked', notes: 'Almaty → Astana. 1h 40m. Conf TBD.' },
+      { segment: 4, date: '2026-08-11', route: 'NQZ → FRA', time: '12:10 → 17:00', airline: 'Air Astana (KC 921)', cabin: 'Business', status: 'booked', notes: 'Astana → Frankfurt. 7h 50m. Arrive 17:00 — overnight Frankfurt before Condor home. Conf TBD.' },
+      { segment: 5, date: '2026-08-12', route: 'FRA → SEA', time: '14:15 → 15:40', airline: 'Condor (DE 2032)', aircraft: 'A330-900neo', cabin: 'Business', status: 'booked', notes: '10h 25m nonstop. Depart Frankfurt 14:15, arrive Seattle 15:40 same day. Conf TBD.' },
+      { segment: 6, date: '2026-08-12', route: 'ALA → IST — CANCELLED', time: '08:55 → 13:15', airline: 'Turkish Airlines (TK353)', confirmation: 'VT8IUE', status: 'canceled', notes: '⚠️ CANCELLED — replaced by Air Astana routing. Redeposit Turkish miles.' },
+      { segment: 7, date: '2026-08-12', route: 'IST → SEA — CANCELLED', time: '14:55 → 17:15', airline: 'Turkish Airlines (TK203)', confirmation: 'TD67GM', status: 'canceled', notes: '⚠️ CANCELLED — replaced by Condor FRA→SEA. Redeposit Turkish miles.' },
+      { segment: 8, date: '2026-08-12', route: 'HEL → SEA — CANCELLED', airline: 'Finnair (AY33)', confirmation: 'DFMG2R / 96MPQQ', status: 'canceled', notes: '⚠️ CANCELLED — Qantas-ticketed backup. Confirm 90K refund received.' },
     ],
     hotels: [
       { property: 'Hyatt Regency Bishkek', location: 'Bishkek, Kyrgyzstan', checkIn: '2026-08-02', checkOut: '2026-08-03', program: 'Hyatt', status: 'booked', notes: 'Aug 2 arrival night. Flight lands 4:30am — earliest official check-in 8:00am. Contact concierge in advance to request early access. Trek operator picks up from hotel on Aug 3.' },
       { property: 'Yurt stays (Gusary Stables)', location: 'Song-Kol Lake region, Kyrgyzstan', checkIn: '2026-08-03', checkOut: '2026-08-07', status: 'booked', notes: 'Aug 3–7, included with Gusary Stables trek. 4 nights in yurt camps.' },
       { property: 'Hyatt Regency Bishkek', location: 'Bishkek, Kyrgyzstan', checkIn: '2026-08-07', checkOut: '2026-08-08', program: 'Hyatt', status: 'booked', notes: 'Post-trek recovery night in Bishkek before Aug 8 flight to Almaty.' },
-      { property: 'TBD — Almaty', location: 'Almaty, Kazakhstan', checkIn: '2026-08-08', checkOut: '2026-08-12', status: 'not_booked', notes: 'Post-trek recovery, 4 nights (Aug 8–12). Fly in from Bishkek on Aug 8.' },
+      { property: 'TBD — Almaty', location: 'Almaty, Kazakhstan', checkIn: '2026-08-08', checkOut: '2026-08-11', status: 'not_booked', notes: 'Post-trek recovery, 3 nights (Aug 8–11). Early checkout Aug 11 — flight departs ALA 08:35. Ritz-Carlton or Hilton Garden Inn.' },
+      { property: 'TBD — Frankfurt overnight', location: 'Frankfurt, Germany', checkIn: '2026-08-11', checkOut: '2026-08-12', status: 'not_booked', notes: 'Arrive FRA 17:00 Aug 11. Condor departs 14:15 Aug 12. 1 night near airport. Sheraton Frankfurt Airport or similar.' },
     ],
     actionItems: [
       { text: 'Split outbound PNRs: remove Janelle from S3BPNY (SEA→IST) AND RP7MM5 (IST→Bishkek) — she now routes via London on T6CGRM. Redeposit her miles on both legs.', urgent: true },
@@ -406,8 +410,8 @@ export const trips: Trip[] = [
     awardTips: [
       { program: 'Turkish Miles&Smiles', route: 'SEA → IST', cost: '65K + ~$300/pp', note: 'Outbound long-haul. 130K miles + $600 cash for 2 pax.' },
       { program: 'Turkish Miles&Smiles', route: 'IST → FRU (Bishkek)', cost: '35K + $121/pp', note: 'Outbound regional. 70K miles + $242 cash for 2 pax.' },
-      { program: 'Turkish Miles&Smiles', route: 'ALA → IST', cost: '35K + $180/pp', note: 'Return regional. 70K miles + $360 cash for 2 pax.' },
-      { program: 'Turkish Miles&Smiles', route: 'IST → SEA', cost: '135K + ~$300/pp', note: 'Return long-haul. 270K miles + $600 cash for 2 pax. Total Turkish miles trip-wide: ~540K for 2 pax.' },
+      { program: 'Air Astana', route: 'ALA → NQZ → FRA (Aug 11)', cost: 'TBD', note: 'New return routing via Astana and Frankfurt. Business class both legs. Conf codes TBD.' },
+      { program: 'Condor', route: 'FRA → SEA (Aug 12)', cost: 'TBD', note: 'Nonstop Frankfurt → Seattle, A330-900neo Business. 10h 25m. Conf TBD. (Same route as Janelle\'s Korea trip outbound DE 2033 in reverse.)' },
     ],
     itinerary: [
       { date: 'July 26–27', label: 'Janelle Flies to London', description: 'Janelle: SEA 21:45 → LHR T3 15:05 next day on Alaska AS100 Business (conf: OMKZTH). 9h 20m. Pre-trip in London before continuing to Bishkek on Aug 1.', type: 'travel' },
@@ -420,8 +424,9 @@ export const trips: Trip[] = [
       { date: 'August 6', label: 'Horse Trek — Day 3', description: 'Continued riding through Tian Shan highland terrain. Yurt camp overnight.', type: 'activity' },
       { date: 'August 7', label: 'Trek Complete — Return to Bishkek', description: 'Final morning ride. Descend from high passes. Trek done. Return to Bishkek, check into Hyatt Regency Bishkek for recovery night.', type: 'activity' },
       { date: 'August 8', label: 'Fly Bishkek → Almaty', description: 'Air Astana BSZ 18:55 → ALA 18:45 (50 min direct; arrives earlier due to UTC+6→UTC+5 time zone shift). Check into Almaty hotel. Begin recovery.', type: 'travel' },
-      { date: 'Aug 9–11', label: 'Almaty — Recovery & Explore', description: 'Green Bazaar, coffee culture, hiking, Charyn Canyon day trip option. Recovery days before departure. Explore Kazakh cuisine.', type: 'flexible' },
-      { date: 'August 12', label: 'Fly Home (together)', description: 'Check out Almaty hotel by 06:30. Terry & Janelle fly home together: ALA 9:00am → IST 13:15 (conf: VT8IUE), then IST 14:55 → SEA 17:15 on Turkish TK203 (conf: TD67GM). Home Seattle evening.', type: 'travel' },
+      { date: 'Aug 9–10', label: 'Almaty — Recovery & Explore', description: 'Green Bazaar, coffee culture, hiking, Charyn Canyon day trip option. Recovery days before departure. Explore Kazakh cuisine.', type: 'flexible' },
+      { date: 'August 11', label: 'Fly Almaty → Frankfurt', description: 'Early checkout. ALA 08:35 → NQZ 10:15 (Air Astana KC 951, Business). Astana layover (~2 hrs). NQZ 12:10 → FRA 17:00 (Air Astana KC 921, Business). Arrive Frankfurt early evening. Check into airport hotel. Last night on the road.', type: 'travel' },
+      { date: 'August 12', label: 'Frankfurt → Home', description: 'Morning in Frankfurt. FRA 14:15 → SEA 15:40 on Condor DE 2032 (A330-900neo, Business). 10h 25m nonstop. Home same day — arrive Seattle 3:40 PM.', type: 'travel' },
     ],
     costs: [
       // ─── Flights — Outbound (Terry: Seattle · Janelle: via London) ───
@@ -431,15 +436,20 @@ export const trips: Trip[] = [
       { category: 'flight', description: 'LHR → IST → Bishkek on Turkish Business (Aug 1, JANELLE only)', pnr: 'T6CGRM', program: 'Turkish Miles&Smiles', note: 'Janelle LHR 13:20 → IST (TK1990) → Bishkek 04:30 (TK348, same flight as Terry\'s RP7MM5). Miles + cash TBD — pull from Janelle\'s Turkish booking.' },
       // ─── Flights — Bishkek → Almaty ───
       { category: 'flight', description: 'BSZ → ALA on Air Astana (Aug 8, 2 pax)', points: 24000, program: 'Turkish Miles&Smiles', note: '18:55 BSZ → 18:45 ALA, 50 min direct. 24K Turkish Miles&Smiles transfer.' },
-      // ─── Flights — Return ───
-      { category: 'flight', description: 'ALA → IST on Turkish TK0353 Business (Aug 12, 2 pax)', pnr: 'VT8IUE', points: 70000, program: 'Turkish Miles&Smiles', cashUsd: 360, note: '35K miles + $180 cash per person × 2 pax = 70K miles + $360 cash.' },
-      { category: 'flight', description: 'IST → SEA on Turkish TK203 Business (Aug 12, 2 pax)', pnr: 'TD67GM', points: 270000, program: 'Turkish Miles&Smiles', cashUsd: 600, note: '135K miles + $300 cash per person × 2 pax = 270K miles + $600 cash. Replaced cancelled Finnair AY33 backup.' },
-      { category: 'flight', description: 'HEL → SEA on Finnair AY33 (backup, cancelled)', pnr: 'DFMG2R / 96MPQQ', canceled: true, note: 'Qantas-ticketed alternative return — confirm cancellation processed and 90K Janelle refund received.' },
+      // ─── Flights — Return (NEW: Air Astana + Condor via Frankfurt) ───
+      { category: 'flight', description: 'ALA → NQZ on Air Astana KC 951 Business (Aug 11, 2 pax)', note: '08:35→10:15. 1h 40m. Conf TBD.' },
+      { category: 'flight', description: 'NQZ → FRA on Air Astana KC 921 Business (Aug 11, 2 pax)', note: '12:10→17:00. 7h 50m. Conf TBD.' },
+      { category: 'flight', description: 'FRA → SEA on Condor DE 2032 Business A330-900neo (Aug 12, 2 pax)', note: '14:15→15:40. 10h 25m nonstop. Conf TBD.' },
+      // ─── Flights — Return (CANCELLED: Turkish Istanbul routing) ───
+      { category: 'flight', description: 'ALA → IST on Turkish TK353 Business (CANCELLED)', pnr: 'VT8IUE', canceled: true, note: 'Replaced by Air Astana routing. Redeposit 70K Turkish miles + $360.' },
+      { category: 'flight', description: 'IST → SEA on Turkish TK203 Business (CANCELLED)', pnr: 'TD67GM', canceled: true, note: 'Replaced by Condor FRA→SEA. Redeposit 270K Turkish miles + $600.' },
+      { category: 'flight', description: 'HEL → SEA on Finnair AY33 (CANCELLED)', pnr: 'DFMG2R / 96MPQQ', canceled: true, note: 'Qantas-ticketed backup — confirm 90K Janelle refund received.' },
       // ─── Lodging ───
       { category: 'hotel', description: 'Hyatt Regency Bishkek (1 nt, Aug 2–3)', program: 'Hyatt', note: 'Booked. Arrive 4:30am — earliest check-in 8am. Concierge contact needed for early access. Trek pickup from lobby Aug 3.' },
       { category: 'hotel', description: 'Hyatt Regency Bishkek (1 nt, Aug 7–8)', program: 'Hyatt', note: 'Booked. Post-trek recovery night. Fly to Almaty on Aug 8.' },
       { category: 'hotel', description: 'Yurt stays at Song-Kol Lake (3 nts trek, Aug 3–6)', note: 'Bundled with Gusary Stables trek operator — see Activities below.' },
-      { category: 'hotel', description: 'Almaty hotel (6 nts, Aug 6–12)', note: 'Not yet booked. Recovery base — Ritz-Carlton (luxury w/ spa) or Hilton Garden Inn (mid-range). $150–500/night × 6 = $900–3,000.' },
+      { category: 'hotel', description: 'Almaty hotel (3 nts, Aug 8–11)', note: 'Not yet booked. Early departure Aug 11 (flight 08:35). Ritz-Carlton or Hilton Garden Inn. $150–500/night × 3 = $450–1,500.' },
+      { category: 'hotel', description: 'Frankfurt airport hotel (1 nt, Aug 11–12)', note: 'Not yet booked. Arrive FRA 17:00, depart 14:15 next day. Sheraton Frankfurt Airport Hotel (connected to terminal) or Hilton Garden Inn Frankfurt.' },
       // ─── Activities ───
       { category: 'activity', description: 'Gusary Stables horse trek — Song-Kol Lake (Aug 3–6)', note: 'BOOKED with Gusary Stables. Includes horses, guides, all meals, yurt accommodation. Cost details TBD — confirm trek days, total cash, what\'s included (transfers in/out).' },
       { category: 'activity', description: 'Trek guide gratuities (~$10–20/pp/day × 2 pax × 4 days)', note: 'Cash for herder guides at end of trek — ~$80–160 USD or KGS equivalent.' },
