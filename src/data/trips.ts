@@ -410,8 +410,8 @@ export const trips: Trip[] = [
     awardTips: [
       { program: 'Turkish Miles&Smiles', route: 'SEA → IST', cost: '65K + ~$300/pp', note: 'Outbound long-haul. 130K miles + $600 cash for 2 pax.' },
       { program: 'Turkish Miles&Smiles', route: 'IST → FRU (Bishkek)', cost: '35K + $121/pp', note: 'Outbound regional. 70K miles + $242 cash for 2 pax.' },
-      { program: 'Air Astana', route: 'ALA → NQZ → FRA (Aug 11)', cost: 'TBD', note: 'New return routing via Astana and Frankfurt. Business class both legs. Conf codes TBD.' },
-      { program: 'Condor', route: 'FRA → SEA (Aug 12)', cost: 'TBD', note: 'Nonstop Frankfurt → Seattle, A330-900neo Business. 10h 25m. Conf TBD. (Same route as Janelle\'s Korea trip outbound DE 2033 in reverse.)' },
+      { program: 'Air Astana', route: 'ALA → NQZ → FRA (Aug 11)', cost: '63K miles + $357 total', note: '~31.5K/pp + $178.50/pp. Business both legs. Conf 97YISL.' },
+      { program: 'JetBlue TrueBlue', route: 'FRA → SEA via Condor DE 2032 (Aug 12)', cost: '151K points + $336.26 total', note: '~75.5K/pp + $168.13/pp. A330-900neo Business nonstop. Confs A9XYQ9 (Condor) / JUUZBO (JetBlue).' },
     ],
     itinerary: [
       { date: 'July 26–27', label: 'Janelle Flies to London', description: 'Janelle: SEA 21:45 → LHR T3 15:05 next day on Alaska AS100 Business (conf: OMKZTH). 9h 20m. Pre-trip in London before continuing to Bishkek on Aug 1.', type: 'travel' },
@@ -437,8 +437,8 @@ export const trips: Trip[] = [
       // ─── Flights — Bishkek → Almaty ───
       { category: 'flight', description: 'BSZ → ALA on Air Astana (Aug 8, 2 pax)', points: 24000, program: 'Turkish Miles&Smiles', note: '18:55 BSZ → 18:45 ALA, 50 min direct. 24K Turkish Miles&Smiles transfer.' },
       // ─── Flights — Return (NEW: Air Astana + Condor via Frankfurt) ───
-      { category: 'flight', description: 'ALA → NQZ → FRA on Air Astana KC 951 + KC 921 Business (Aug 11, 2 pax)', pnr: '97YISL', note: '08:35→10:15 (ALA→NQZ) + 12:10→17:00 (NQZ→FRA). Miles/cash cost TBD.' },
-      { category: 'flight', description: 'FRA → SEA on Condor DE 2032 Business A330-900neo (Aug 12, 2 pax)', pnr: 'A9XYQ9 / JUUZBO', note: '14:15→15:40. 10h 25m nonstop. Condor conf A9XYQ9, JetBlue conf JUUZBO. Miles/cash cost TBD.' },
+      { category: 'flight', description: 'ALA → NQZ → FRA on Air Astana KC 951 + KC 921 Business (Aug 11, 2 pax)', pnr: '97YISL', points: 63000, cashUsd: 357, note: '63K miles + $357 total (2 pax). ~31.5K/pp + $178.50/pp.' },
+      { category: 'flight', description: 'FRA → SEA on Condor DE 2032 Business A330-900neo (Aug 12, 2 pax)', pnr: 'A9XYQ9 / JUUZBO', program: 'JetBlue TrueBlue', points: 151000, cashUsd: 336.26, note: '151K JetBlue TrueBlue points + $336.26 total (2 pax). ~75.5K/pp + $168.13/pp. Condor conf A9XYQ9, JetBlue conf JUUZBO.' },
       // ─── Flights — Return (CANCELLED: Turkish Istanbul routing) ───
       { category: 'flight', description: 'ALA → IST on Turkish TK353 Business (CANCELLED)', pnr: 'VT8IUE', canceled: true, note: 'Replaced by Air Astana routing. Redeposit 70K Turkish miles + $360.' },
       { category: 'flight', description: 'IST → SEA on Turkish TK203 Business (CANCELLED)', pnr: 'TD67GM', canceled: true, note: 'Replaced by Condor FRA→SEA. Redeposit 270K Turkish miles + $600.' },
