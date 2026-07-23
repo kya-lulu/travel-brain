@@ -391,7 +391,7 @@ export const trips: Trip[] = [
       { property: 'Yurt stays (Gusary Stables)', location: 'Song-Kol Lake region, Kyrgyzstan', checkIn: '2026-08-03', checkOut: '2026-08-07', status: 'booked', notes: 'Aug 3–7, included with Gusary Stables trek. 4 nights in yurt camps.' },
       { property: 'Hyatt Regency Bishkek', location: 'Bishkek, Kyrgyzstan', checkIn: '2026-08-07', checkOut: '2026-08-08', program: 'Hyatt', status: 'booked', notes: 'Post-trek recovery night in Bishkek before Aug 8 flight to Almaty.' },
       { property: 'TBD — Almaty', location: 'Almaty, Kazakhstan', checkIn: '2026-08-08', checkOut: '2026-08-11', status: 'not_booked', notes: 'Post-trek recovery, 3 nights (Aug 8–11). Early checkout Aug 11 — flight departs ALA 08:35. Ritz-Carlton or Hilton Garden Inn.' },
-      { property: 'TBD — Frankfurt overnight', location: 'Frankfurt, Germany', checkIn: '2026-08-11', checkOut: '2026-08-12', status: 'not_booked', notes: 'Arrive FRA 17:00 Aug 11. Condor departs 14:15 Aug 12. 1 night near airport. Sheraton Frankfurt Airport or similar.' },
+      { property: '1789 Hotel', location: 'Frankfurt, Germany', checkIn: '2026-08-11', checkOut: '2026-08-12', status: 'booked', notes: '1 night. Arrive FRA 17:00. Condor DE 2032 departs 14:15 Aug 12. 12K points.' },
     ],
     actionItems: [
       { text: 'Split outbound PNRs: remove Janelle from S3BPNY (SEA→IST) AND RP7MM5 (IST→Bishkek) — she now routes via London on T6CGRM. Redeposit her miles on both legs.', urgent: true },
@@ -448,7 +448,7 @@ export const trips: Trip[] = [
       { category: 'hotel', description: 'Hyatt Regency Bishkek (1 nt, Aug 7–8)', program: 'Hyatt', note: 'Booked. Post-trek recovery night. Fly to Almaty on Aug 8.' },
       { category: 'hotel', description: 'Yurt stays at Song-Kol Lake (3 nts trek, Aug 3–6)', note: 'Bundled with Gusary Stables trek operator — see Activities below.' },
       { category: 'hotel', description: 'Almaty hotel (3 nts, Aug 8–11)', note: 'Not yet booked. Early departure Aug 11 (flight 08:35). Ritz-Carlton or Hilton Garden Inn. $150–500/night × 3 = $450–1,500.' },
-      { category: 'hotel', description: 'Frankfurt airport hotel (1 nt, Aug 11–12)', note: 'Not yet booked. Arrive FRA 17:00, depart 14:15 next day. Sheraton Frankfurt Airport Hotel (connected to terminal) or Hilton Garden Inn Frankfurt.' },
+      { category: 'hotel', description: '1789 Hotel Frankfurt (1 nt, Aug 11–12)', points: 12000, note: 'Booked. 12K points. Arrive FRA 17:00, depart 14:15 next day on Condor DE 2032.' },
       // ─── Activities ───
       { category: 'activity', description: 'Gusary Stables horse trek — Song-Kol Lake (Aug 3–6)', note: 'BOOKED with Gusary Stables. Includes horses, guides, all meals, yurt accommodation. Cost details TBD — confirm trek days, total cash, what\'s included (transfers in/out).' },
       { category: 'activity', description: 'Trek guide gratuities (~$10–20/pp/day × 2 pax × 4 days)', note: 'Cash for herder guides at end of trek — ~$80–160 USD or KGS equivalent.' },
