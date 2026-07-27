@@ -369,15 +369,15 @@ export const trips: Trip[] = [
     dates: 'July 31 – August 12, 2026',
     month: 'August',
     year: 2026,
-    status: 'partially_booked',
-    statusLabel: 'Partially Booked',
+    status: 'booked',
+    statusLabel: 'Booked',
     travelers: '2 adults (Terry & Janelle)',
     heroImage: 'kyrgyzstan-mountains-horses',
     flights: [
       { segment: 0.5, date: '2026-07-26', route: 'SEA → LHR', time: '21:45 (Jul 26) → 15:05 (Jul 27)', airline: 'Alaska Airlines (AS100)', cabin: 'Business', confirmation: 'OMKZTH', status: 'booked', notes: 'JANELLE ONLY — pre-trip positioning to London. SEA 21:45 Jul 26 → LHR T3 15:05 Jul 27, 9h 20m. Booked via Turkish Miles&Smiles (90K miles + ~$200–300 taxes), operated by Alaska AS100. ~5 days in London before the Aug 1 LHR→Bishkek leg.' },
-      { segment: 1, date: '2026-07-31', route: 'SEA → IST', time: '19:10 → 17:00 +1', airline: 'Turkish Airlines', cabin: 'Business', confirmation: 'S3BPNY', status: 'booked', notes: 'TERRY ONLY — Janelle split off this PNR (she now routes via London, conf T6CGRM). Terry seat 4A. Remove Janelle from S3BPNY and redeposit her SEA→IST miles.' },
+      { segment: 1, date: '2026-07-31', route: 'SEA → IST', time: '19:10 → 17:00 +1', airline: 'Turkish Airlines', cabin: 'Business', confirmation: 'S3BPNY', status: 'booked', notes: 'TERRY ONLY — Janelle routes via London (conf T6CGRM). Terry seat 4A.' },
       { segment: 1.5, date: '2026-08-01', route: 'LHR → IST → BSZ (Bishkek)', time: '13:20 → 04:30 +2', airline: 'Turkish Airlines (TK1990 + TK348)', cabin: 'Business', confirmation: 'T6CGRM', status: 'booked', notes: 'JANELLE ONLY — Janelle flies to London first (SEA→LHR booked separately), then LHR 13:20 Aug 1 → IST → Bishkek (BSZ/Manas) 04:30 Aug 2. Final leg TK348 departs IST 20:25 — SAME flight as Terry\'s RP7MM5. They reunite at Istanbul and arrive together.' },
-      { segment: 2, date: '2026-08-01', route: 'IST → BSZ (Bishkek)', time: '20:25 → 04:30 +1', airline: 'Turkish Airlines (TK348)', aircraft: 'A321neo', cabin: 'Business', confirmation: 'RP7MM5', status: 'booked', notes: 'TERRY ONLY — 35K + $121. 5h 5m. Manas International Airport (BSZ). Janelle is on this same TK348 flight via her London ticket (T6CGRM); remove her from RP7MM5 and redeposit those miles.' },
+      { segment: 2, date: '2026-08-01', route: 'IST → BSZ (Bishkek)', time: '20:25 → 04:30 +1', airline: 'Turkish Airlines (TK348)', aircraft: 'A321neo', cabin: 'Business', confirmation: 'RP7MM5', status: 'booked', notes: 'TERRY ONLY — 35K + $121. 5h 5m. Manas International Airport (BSZ). Janelle arrives on same TK348 flight via her London ticket (T6CGRM).' },
       { segment: 2.5, date: '2026-08-08', route: 'BSZ → ALA', time: '18:55 → 18:45', airline: 'Air Astana', cabin: 'Economy (Classic)', confirmation: '8NAHW4', status: 'booked', notes: 'Bishkek → Almaty. 50 min direct. PNR 8NAHW4. Arrives 10 min "earlier" due to UTC+6→UTC+5 time zone shift. 24K Turkish Miles&Smiles.' },
       { segment: 3, date: '2026-08-11', route: 'ALA → NQZ', time: '08:35 → 10:15', airline: 'Air Astana (KC 951)', cabin: 'Business', confirmation: '97YISL', status: 'booked', notes: 'Almaty → Astana. 1h 40m.' },
       { segment: 4, date: '2026-08-11', route: 'NQZ → FRA', time: '12:10 → 17:00', airline: 'Air Astana (KC 921)', cabin: 'Business', confirmation: '97YISL', status: 'booked', notes: 'Astana → Frankfurt. 7h 50m. Same PNR as ALA→NQZ. Arrive 17:00 — overnight Frankfurt before Condor home.' },
@@ -394,11 +394,9 @@ export const trips: Trip[] = [
       { property: '1789 Hotel', location: 'Frankfurt, Germany', checkIn: '2026-08-11', checkOut: '2026-08-12', status: 'booked', notes: '1 night. Arrive FRA 17:00. Condor DE 2032 departs 14:15 Aug 12. 12K points.' },
     ],
     actionItems: [
-      { text: 'Split outbound PNRs: remove Janelle from S3BPNY (SEA→IST) AND RP7MM5 (IST→Bishkek) — she now routes via London on T6CGRM. Redeposit her miles on both legs.', urgent: true },
-      { text: 'Verify RP7MM5 IST→Bishkek = TK348 (same flight as Janelle\'s T6CGRM final leg) and that BSZ = Manas/FRU, so they truly arrive together', urgent: true },
       { text: 'Confirm Janelle\'s Qantas/Finnair DFMG2R cancellation completed (90K refund?)', urgent: true },
+      { text: 'Redeposit Turkish miles: VT8IUE (70K + $360) and TD67GM cancelled legs', urgent: true },
       { text: 'Contact Hyatt Bishkek concierge — arrive 4:30am, earliest official check-in 8am, request early room access', urgent: true },
-      { text: 'Book Almaty hotel for Aug 6–12 (post-trek recovery)', urgent: true },
       { text: 'Confirm Gusary Stables trek details: dates, cost, transfers in/out', urgent: false },
       { text: 'No visas needed — Kyrgyzstan and Kazakhstan are both visa-free for US/Canadian passports (30-day stay)', urgent: false },
     ],
@@ -430,8 +428,8 @@ export const trips: Trip[] = [
     ],
     costs: [
       // ─── Flights — Outbound (Terry: Seattle · Janelle: via London) ───
-      { category: 'flight', description: 'SEA → IST on Turkish Business (Jul 31, TERRY only)', pnr: 'S3BPNY', seat: 'Terry 4A', points: 65000, program: 'Turkish Miles&Smiles', cashUsd: 300, note: 'Terry solo — 65K miles + $300. Janelle split off this PNR (now routes via London); redeposit her 65K + $300.' },
-      { category: 'flight', description: 'IST → Bishkek on Turkish TK348 Business A321 (Aug 1, TERRY only)', pnr: 'RP7MM5', points: 35000, program: 'Turkish Miles&Smiles', cashUsd: 121, note: 'Terry solo — 35K miles + $121. Janelle is on this SAME TK348 flight via her London ticket (T6CGRM); remove her from RP7MM5 and redeposit her 35K + $121.' },
+      { category: 'flight', description: 'SEA → IST on Turkish Business (Jul 31, TERRY only)', pnr: 'S3BPNY', seat: 'Terry 4A', points: 65000, program: 'Turkish Miles&Smiles', cashUsd: 300, note: 'Terry solo — 65K miles + $300. Janelle routes via London on T6CGRM.' },
+      { category: 'flight', description: 'IST → Bishkek on Turkish TK348 Business A321 (Aug 1, TERRY only)', pnr: 'RP7MM5', points: 35000, program: 'Turkish Miles&Smiles', cashUsd: 121, note: 'Terry solo — 35K miles + $121. Janelle on same TK348 flight via T6CGRM.' },
       { category: 'flight', description: 'SEA → LHR on Alaska AS100 Business (Jul 26, JANELLE only)', pnr: 'OMKZTH', points: 90000, program: 'Turkish Miles&Smiles', cashUsd: 250, note: 'Janelle\'s pre-trip positioning to London. SEA 21:45 → LHR T3 15:05 Jul 27. 9h 20m, Business. Booked via Turkish Miles&Smiles (90K miles + ~$200–300 taxes), operated by Alaska AS100.' },
       { category: 'flight', description: 'LHR → IST → Bishkek on Turkish Business (Aug 1, JANELLE only)', pnr: 'T6CGRM', program: 'Turkish Miles&Smiles', note: 'Janelle LHR 13:20 → IST (TK1990) → Bishkek 04:30 (TK348, same flight as Terry\'s RP7MM5). Miles + cash TBD — pull from Janelle\'s Turkish booking.' },
       // ─── Flights — Bishkek → Almaty ───
