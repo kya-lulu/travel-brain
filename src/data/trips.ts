@@ -390,7 +390,7 @@ export const trips: Trip[] = [
       { property: 'Hyatt Regency Bishkek', location: 'Bishkek, Kyrgyzstan', checkIn: '2026-08-02', checkOut: '2026-08-03', program: 'Hyatt', status: 'booked', notes: 'Aug 2 arrival night. Flight lands 4:30am — earliest official check-in 8:00am. Contact concierge in advance to request early access. Trek operator picks up from hotel on Aug 3.' },
       { property: 'Yurt stays (Gusary Stables)', location: 'Song-Kol Lake region, Kyrgyzstan', checkIn: '2026-08-03', checkOut: '2026-08-07', status: 'booked', notes: 'Aug 3–7, included with Gusary Stables trek. 4 nights in yurt camps.' },
       { property: 'Hyatt Regency Bishkek', location: 'Bishkek, Kyrgyzstan', checkIn: '2026-08-07', checkOut: '2026-08-08', program: 'Hyatt', status: 'booked', notes: 'Post-trek recovery night in Bishkek before Aug 8 flight to Almaty.' },
-      { property: 'TBD — Almaty', location: 'Almaty, Kazakhstan', checkIn: '2026-08-08', checkOut: '2026-08-11', status: 'not_booked', notes: 'Post-trek recovery, 3 nights (Aug 8–11). Early checkout Aug 11 — flight departs ALA 08:35. Ritz-Carlton or Hilton Garden Inn.' },
+      { property: 'Airbnb', location: 'Almaty, Kazakhstan', checkIn: '2026-08-08', checkOut: '2026-08-11', status: 'booked', notes: 'Post-trek recovery, 3 nights (Aug 8–11). Early departure Aug 11 — ALA 08:35 flight (Air Astana KC 951).' },
       { property: '1789 Hotel', location: 'Frankfurt, Germany', checkIn: '2026-08-11', checkOut: '2026-08-12', status: 'booked', notes: '1 night. Arrive FRA 17:00. Condor DE 2032 departs 14:15 Aug 12. 12K points.' },
     ],
     actionItems: [
@@ -447,7 +447,7 @@ export const trips: Trip[] = [
       { category: 'hotel', description: 'Hyatt Regency Bishkek (1 nt, Aug 2–3)', program: 'Hyatt', note: 'Booked. Arrive 4:30am — earliest check-in 8am. Concierge contact needed for early access. Trek pickup from lobby Aug 3.' },
       { category: 'hotel', description: 'Hyatt Regency Bishkek (1 nt, Aug 7–8)', program: 'Hyatt', note: 'Booked. Post-trek recovery night. Fly to Almaty on Aug 8.' },
       { category: 'hotel', description: 'Yurt stays at Song-Kol Lake (3 nts trek, Aug 3–6)', note: 'Bundled with Gusary Stables trek operator — see Activities below.' },
-      { category: 'hotel', description: 'Almaty hotel (3 nts, Aug 8–11)', note: 'Not yet booked. Early departure Aug 11 (flight 08:35). Ritz-Carlton or Hilton Garden Inn. $150–500/night × 3 = $450–1,500.' },
+      { category: 'hotel', description: 'Airbnb Almaty (3 nts, Aug 8–11)', note: 'Booked. Post-trek recovery. Early checkout Aug 11 for 08:35 ALA→NQZ flight.' },
       { category: 'hotel', description: '1789 Hotel Frankfurt (1 nt, Aug 11–12)', points: 12000, note: 'Booked. 12K points. Arrive FRA 17:00, depart 14:15 next day on Condor DE 2032.' },
       // ─── Activities ───
       { category: 'activity', description: 'Gusary Stables horse trek — Song-Kol Lake (Aug 3–6)', note: 'BOOKED with Gusary Stables. Includes horses, guides, all meals, yurt accommodation. Cost details TBD — confirm trek days, total cash, what\'s included (transfers in/out).' },
