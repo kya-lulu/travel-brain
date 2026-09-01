@@ -567,7 +567,7 @@ export const trips: Trip[] = [
     heroImage: 'seoul-autumn',
     flights: [
       { segment: 0, date: '2026-10-11', route: 'SEA → ICN', cabin: 'Business', status: 'needs_action', notes: '⚠️ CANCEL THIS BOOKING — original direct outbound, replaced by new SEA→FRA→LHR→SGN→ICN routing. Pull PNR from janelle.tam@gmail.com and cancel.' },
-      { segment: 1, date: '2026-10-11', route: 'SEA → FRA', time: '5:40 PM (Oct 11) → 12:45 PM (Oct 12)', airline: 'Condor (DE 2033)', cabin: 'Business', status: 'booked', notes: 'Terminal 1. 75K JetBlue points + $22.50. Janelle departs Seattle for Frankfurt, continues to London for work trip.' },
+      { segment: 1, date: '2026-10-11', route: 'SEA → LHR', time: '17:30 (Oct 11) → 11:20 (Oct 12)', airline: 'Virgin Atlantic (VS106)', cabin: 'Upper Class', confirmation: 'TBD', status: 'booked', notes: 'Direct, 9h 50m. Seat 6K (window). Janelle Tam.' },
       { segment: 2, date: '2026-10-18', route: 'FRA → HAN → ICN', time: '13:55 (Oct 18) → 16:35 (Oct 19)', airline: 'Vietnam Airlines (VN0036 + VN0414)', aircraft: 'Boeing 787 / A350-900', cabin: 'Business (O)', confirmation: 'JJ2VZE', status: 'booked', notes: 'FRA 13:55 → HAN 06:05 +1 (VN0036, B787) · 4h 15m layover Hanoi · HAN → ICN 16:35 (VN0414, A350-900). Seats 5A (FRA→HAN) and 4A (HAN→ICN). eTicket 0062444335693. Total 19h 40m.' },
       { segment: 4, date: '2026-10-25', route: 'ICN → SEA', time: '21:00 → 14:55', airline: 'Asiana Airlines (OZ272)', cabin: 'Business (I)', confirmation: 'TBD', status: 'booked', notes: 'ICN Terminal 2. 9h 55m. Seat 77L. 75K Aeroplan + CA$120.50. Booked via Aeroplan.' },
     ],
@@ -586,13 +586,13 @@ export const trips: Trip[] = [
       { title: 'October Autumn Strategy', content: 'Mid-to-late October is peak autumn foliage in Seoul. Best spots: Changdeokgung Secret Garden (book the English tour — limited spots), Namsan Tower trail (take the cable car up, walk down through flaming maples), Bukhansan National Park (Bukhansanseong trail for panoramic fall views). For a day trip: Nami Island (2hr from Seoul) is the quintessential Korean autumn postcard. Gyeongbokgung Palace with hanbok rental is a classic — wearing hanbok gets you free palace entry.' },
     ],
     awardTips: [
-      { program: 'JetBlue TrueBlue', route: 'SEA → FRA', cost: '75K + $22.50', note: 'Condor DE 2033 Oct 11. Booked.' },
+      { program: 'Virgin Atlantic', route: 'SEA → LHR', cost: 'TBD', note: 'VS106 Oct 11. Upper Class. Seat 6K. Direct 9h 50m. Arrives LHR 11:20 Oct 12.' },
       { program: 'Vietnam Airlines (SkyTeam)', route: 'FRA → HAN → ICN', cost: '80K + $75', note: 'Oct 18. Conf JJ2VZE. Via Hanoi. Business (O). Seats 5A + 4A.' },
       { program: 'Aeroplan', route: 'ICN → SEA', cost: '75K + CA$120.50', note: 'Asiana OZ272 Oct 25. Booked.' },
     ],
     itinerary: [
-      { date: 'October 11', label: 'Depart Seattle → Frankfurt', description: 'Condor DE 2033 SEA 5:40 PM → FRA Oct 12 12:45 PM. Terminal 1. 75K JetBlue + $22.50.', type: 'travel' },
-      { date: 'October 12–17', label: 'Frankfurt / Work Trip', description: 'Arrive FRA 12:45 PM Oct 12. Work trip Oct 12–17 (London area or Frankfurt).', type: 'rest' },
+      { date: 'October 11', label: 'Depart Seattle → London', description: 'Virgin Atlantic VS106 SEA 17:30 → LHR 11:20 Oct 12. Upper Class, seat 6K. Direct, 9h 50m.', type: 'travel' },
+      { date: 'October 12–17', label: 'London — Work Trip', description: 'Arrive LHR 11:20 Oct 12. Work trip Oct 12–17. Depart for Frankfurt before Oct 18 FRA→HAN→ICN.', type: 'rest' },
       { date: 'October 18', label: 'Frankfurt → Seoul via Hanoi', description: 'Vietnam Airlines VN0036 FRA 13:55 → HAN 06:05+1 (B787, seat 5A). 4h 15m Hanoi layover. VN0414 HAN → ICN 16:35 Oct 19 (A350-900, seat 4A). Conf JJ2VZE. 19h 40m total. 80K points + $75.', type: 'travel' },
       { date: 'October 19', label: 'Seoul — Arrive & Check In', description: 'Land ICN 16:35. AREX to Seoul Station. Check into Hannam-dong hotel. Rest. Evening walk through Itaewon.', type: 'travel' },
       { date: 'TBD', label: 'Hannam-dong & Ikseon-dong', description: 'Morning coffee and galleries in Hannam-dong. Afternoon hanok cafés in Ikseon-dong. Dinner at Gwangjang Market.', type: 'activity' },
@@ -603,7 +603,7 @@ export const trips: Trip[] = [
     costs: [
       // ─── Flights ───
       { category: 'flight', description: 'SEA → ICN original booking — CANCEL', note: '⚠️ Cancel this. Replaced by new routing. Pull PNR from janelle.tam@gmail.com.', canceled: true },
-      { category: 'flight', description: 'SEA → FRA on Condor DE 2033 (Oct 11)', points: 75000, program: 'JetBlue TrueBlue', cashUsd: 22.50, note: '5:40 PM → 12:45 PM Oct 12. Terminal 1. Business.' },
+      { category: 'flight', description: 'SEA → LHR on Virgin Atlantic VS106 Upper Class (Oct 11)', note: '17:30 → 11:20 Oct 12. Direct, 9h 50m. Seat 6K window. Conf + program/cost TBD.' },
       { category: 'flight', description: 'FRA → HAN → ICN on Vietnam Airlines VN0036 + VN0414 (Oct 18)', pnr: 'JJ2VZE', points: 80000, cashUsd: 75, note: 'FRA 13:55 → ICN 16:35 Oct 19. Via Hanoi. Business (O). Seats 5A + 4A. B787 + A350-900. eTicket 0062444335693.' },
       { category: 'flight', description: 'ICN → SEA on Asiana OZ272 (Oct 25)', points: 75000, program: 'Aeroplan', cashUsd: 88, note: 'ICN T2 21:00 → SEA 14:55. Business (I). Seat 77L. CA$120.50 (~$88 USD).' },
       // ─── Lodging ───
