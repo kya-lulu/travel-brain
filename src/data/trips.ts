@@ -567,7 +567,7 @@ export const trips: Trip[] = [
     heroImage: 'seoul-autumn',
     flights: [
       { segment: 0, date: '2026-10-11', route: 'SEA → ICN', cabin: 'Business', status: 'needs_action', notes: '⚠️ CANCEL THIS BOOKING — original direct outbound, replaced by new SEA→FRA→LHR→SGN→ICN routing. Pull PNR from janelle.tam@gmail.com and cancel.' },
-      { segment: 1, date: '2026-10-11', route: 'SEA → LHR', time: '17:30 (Oct 11) → 11:20 (Oct 12)', airline: 'Virgin Atlantic (VS106)', cabin: 'Upper Class', confirmation: 'TBD', status: 'booked', notes: 'Direct, 9h 50m. Seat 6K (window). Janelle Tam.' },
+      { segment: 1, date: '2026-10-11', route: 'SEA → LHR', time: '17:30 (Oct 11) → 11:20 (Oct 12)', airline: 'Virgin Atlantic (VS106)', cabin: 'Upper Class', confirmation: 'DASRRA', status: 'booked', notes: 'Direct, 9h 50m. Seat 6K (window). 47K Virgin Atlantic miles. Janelle Tam.' },
       { segment: 2, date: '2026-10-18', route: 'FRA → HAN → ICN', time: '13:55 (Oct 18) → 16:35 (Oct 19)', airline: 'Vietnam Airlines (VN0036 + VN0414)', aircraft: 'Boeing 787 / A350-900', cabin: 'Business (O)', confirmation: 'JJ2VZE', status: 'booked', notes: 'FRA 13:55 → HAN 06:05 +1 (VN0036, B787) · 4h 15m layover Hanoi · HAN → ICN 16:35 (VN0414, A350-900). Seats 5A (FRA→HAN) and 4A (HAN→ICN). eTicket 0062444335693. Total 19h 40m.' },
       { segment: 4, date: '2026-10-25', route: 'ICN → SEA', time: '21:00 → 14:55', airline: 'Asiana Airlines (OZ272)', cabin: 'Business (I)', confirmation: 'TBD', status: 'booked', notes: 'ICN Terminal 2. 9h 55m. Seat 77L. 75K Aeroplan + CA$120.50. Booked via Aeroplan.' },
     ],
@@ -586,7 +586,7 @@ export const trips: Trip[] = [
       { title: 'October Autumn Strategy', content: 'Mid-to-late October is peak autumn foliage in Seoul. Best spots: Changdeokgung Secret Garden (book the English tour — limited spots), Namsan Tower trail (take the cable car up, walk down through flaming maples), Bukhansan National Park (Bukhansanseong trail for panoramic fall views). For a day trip: Nami Island (2hr from Seoul) is the quintessential Korean autumn postcard. Gyeongbokgung Palace with hanbok rental is a classic — wearing hanbok gets you free palace entry.' },
     ],
     awardTips: [
-      { program: 'Virgin Atlantic', route: 'SEA → LHR', cost: 'TBD', note: 'VS106 Oct 11. Upper Class. Seat 6K. Direct 9h 50m. Arrives LHR 11:20 Oct 12.' },
+      { program: 'Virgin Atlantic Flying Club', route: 'SEA → LHR', cost: '47K miles', note: 'VS106 Oct 11. Conf DASRRA. Upper Class. Seat 6K. Direct 9h 50m. Arrives LHR 11:20 Oct 12.' },
       { program: 'Vietnam Airlines (SkyTeam)', route: 'FRA → HAN → ICN', cost: '80K + $75', note: 'Oct 18. Conf JJ2VZE. Via Hanoi. Business (O). Seats 5A + 4A.' },
       { program: 'Aeroplan', route: 'ICN → SEA', cost: '75K + CA$120.50', note: 'Asiana OZ272 Oct 25. Booked.' },
     ],
@@ -603,7 +603,7 @@ export const trips: Trip[] = [
     costs: [
       // ─── Flights ───
       { category: 'flight', description: 'SEA → ICN original booking — CANCEL', note: '⚠️ Cancel this. Replaced by new routing. Pull PNR from janelle.tam@gmail.com.', canceled: true },
-      { category: 'flight', description: 'SEA → LHR on Virgin Atlantic VS106 Upper Class (Oct 11)', note: '17:30 → 11:20 Oct 12. Direct, 9h 50m. Seat 6K window. Conf + program/cost TBD.' },
+      { category: 'flight', description: 'SEA → LHR on Virgin Atlantic VS106 Upper Class (Oct 11)', pnr: 'DASRRA', points: 47000, program: 'Virgin Atlantic Flying Club', note: '17:30 → 11:20 Oct 12. Direct, 9h 50m. Seat 6K window.' },
       { category: 'flight', description: 'FRA → HAN → ICN on Vietnam Airlines VN0036 + VN0414 (Oct 18)', pnr: 'JJ2VZE', points: 80000, cashUsd: 75, note: 'FRA 13:55 → ICN 16:35 Oct 19. Via Hanoi. Business (O). Seats 5A + 4A. B787 + A350-900. eTicket 0062444335693.' },
       { category: 'flight', description: 'ICN → SEA on Asiana OZ272 (Oct 25)', points: 75000, program: 'Aeroplan', cashUsd: 88, note: 'ICN T2 21:00 → SEA 14:55. Business (I). Seat 77L. CA$120.50 (~$88 USD).' },
       // ─── Lodging ───
