@@ -1201,7 +1201,7 @@ export const trips: Trip[] = [
     subtitle: 'Papeete via LAX on Qantas Points',
     region: 'South Pacific',
     country: 'French Polynesia',
-    dates: 'April 4–19, 2027',
+    dates: 'April 18–27, 2027',
     month: 'April',
     year: 2027,
     status: 'partially_booked',
@@ -1209,33 +1209,35 @@ export const trips: Trip[] = [
     travelers: '2 adults (Terry & Janelle)',
     heroImage: 'french-polynesia-overwater',
     flights: [
-      { segment: 1, date: '2027-04-04', route: 'LAX → PPT', time: '23:55 → 05:05 +1', airline: 'Air Tahiti Nui (QF3816)', aircraft: 'Boeing 787-9', cabin: 'Business', confirmation: 'ERJ75I', status: 'booked', notes: 'Qantas-ticketed, Air Tahiti Nui metal. LAX Terminal B, PPT Terminal 1. Seats 3A (Terry) + 3B (Janelle). 8h 10m nonstop. eTickets 081-2386223666 (Terry) + 081-2386223665 (Janelle). $338 total cash fees.' },
-      { segment: 2, date: '2027-04-18', route: 'PPT → LAX', time: '23:00 → 04:10 +1', airline: 'Air Tahiti Nui (QF3818)', aircraft: 'Boeing 787-9', cabin: 'Business', confirmation: 'ERJ75I', status: 'booked', notes: 'Same PNR as outbound. 8h 10m nonstop. Return leg.' },
+      { segment: 1, date: '2027-04-18', route: 'LAX → PPT', time: '23:00 → 04:10 +1', airline: 'Air Tahiti Nui (QF3818)', aircraft: 'Boeing 787-9', cabin: 'Business', confirmation: 'ERJ75I', status: 'booked', notes: 'Qantas-ticketed, Air Tahiti Nui metal. LAX Terminal B, PPT Terminal 1. Seats 3A (Terry) + 3B (Janelle). 8h 10m nonstop. eTickets 081-2386223666 (Terry) + 081-2386223665 (Janelle). $338 total cash fees.' },
+      { segment: 2, date: '2027-04-26', route: 'PPT → LAX', time: '22:30 → 09:20 +1', airline: 'Air Tahiti Nui (QF3817)', aircraft: 'Boeing 787-9', cabin: 'Business', confirmation: 'FY5YPV', status: 'booked', notes: 'Qantas-ticketed, Air Tahiti Nui metal. PPT Terminal 1, LAX Terminal B. 7h 50m nonstop. Both passengers (Terry + Janelle).' },
     ],
     hotels: [],
     actionItems: [
-      { text: 'Book SEA→LAX positioning flight (need to arrive LAX by ~9 PM Apr 4 for 23:55 departure)', urgent: true },
-      { text: 'Book LAX→SEA return flight after Apr 18 PPT→LAX lands ~04:10 Apr 19', urgent: true },
+      { text: 'Book SEA→LAX positioning flight (need to arrive LAX by ~9 PM Apr 18 for 23:00 QF3818 departure)', urgent: true },
+      { text: 'Book LAX→SEA return flight after QF3817 lands LAX 09:20 Apr 27', urgent: true },
       { text: 'Decide island(s) and book lodging: Bora Bora / Moorea / Tikehau', urgent: false },
       { text: 'Book Air Tahiti inter-island flights once islands decided', urgent: false },
     ],
     intel: [
-      { title: 'Qantas LAX-PPT via Air Tahiti Nui', content: 'PNR ERJ75I issued by Qantas, operated by Air Tahiti Nui. QF3816 outbound (Apr 4) + QF3818 return (Apr 18), both B787-9 Business, seats 3A+3B. Both passengers confirmed: Terry Lin + Janelle Tam. $338 total cash fees.' },
+      { title: 'Qantas LAX-PPT via Air Tahiti Nui', content: 'Outbound ERJ75I: QF3818 LAX→PPT Apr 18 23:00 → Apr 19 04:10, B787-9 Business, seats 3A+3B, $338 cash fees. Return FY5YPV: QF3817 PPT→LAX Apr 26 22:30 → Apr 27 09:20, B787-9 Business. Both Qantas-ticketed, Air Tahiti Nui metal. Both passengers: Terry + Janelle.' },
     ],
     awardTips: [
-      { program: 'Qantas Points', route: 'LAX ↔ PPT round trip (QF3816 + QF3818)', cost: 'Qantas Points + $338 cash fees', note: 'Conf ERJ75I. Both passengers. eTickets 081-2386223666 (Terry) + 081-2386223665 (Janelle). Booked Apr 16, 2026.' },
+      { program: 'Qantas Points', route: 'LAX → PPT (QF3818, Apr 18)', cost: 'Qantas Points + $338 cash fees', note: 'Conf ERJ75I. Both passengers. eTickets 081-2386223666 (Terry) + 081-2386223665 (Janelle). Booked Apr 16, 2026.' },
+      { program: 'Qantas Points', route: 'PPT → LAX (QF3817, Apr 26)', cost: 'Qantas Points', note: 'Conf FY5YPV. Both passengers (Terry + Janelle). B787-9 Business, 7h 50m.' },
     ],
     itinerary: [
-      { date: 'TBD pre-Apr 4', label: 'Position SEA → LAX', description: 'Need to book SEA→LAX — must arrive LAX by ~9 PM for 23:55 QF3816 departure. Alaska or Delta.', type: 'travel' },
-      { date: 'Apr 4–5', label: 'LAX → Papeete', description: 'QF3816 LAX 23:55 Apr 4 → PPT 05:05 Apr 5. Air Tahiti Nui B787-9 Business. Seats 3A (Terry) + 3B (Janelle). Conf ERJ75I. 8h 10m nonstop.', type: 'travel' },
-      { date: 'Apr 5–18', label: 'French Polynesia — Islands TBD', description: 'Itinerary pending — decide island(s). Bora Bora for overwater bungalows, Moorea for hiking + diving, Tikehau for atoll life.', type: 'flexible' },
-      { date: 'Apr 18–19', label: 'Return PPT → LAX', description: 'QF3818 PPT 23:00 Apr 18 → LAX 04:10 Apr 19. Air Tahiti Nui B787-9 Business. Conf ERJ75I. 8h 10m nonstop. Need LAX→SEA positioning same day.', type: 'travel' },
+      { date: 'TBD pre-Apr 18', label: 'Position SEA → LAX', description: 'Need to book SEA→LAX — must arrive LAX by ~9 PM for 23:00 QF3818 departure on Apr 18. Alaska or Delta.', type: 'travel' },
+      { date: 'Apr 18–19', label: 'LAX → Papeete', description: 'QF3818 LAX 23:00 Apr 18 → PPT 04:10 Apr 19. Air Tahiti Nui B787-9 Business. Seats 3A (Terry) + 3B (Janelle). Conf ERJ75I. 8h 10m nonstop.', type: 'travel' },
+      { date: 'Apr 19–26', label: 'French Polynesia — Islands TBD', description: 'Itinerary pending — decide island(s). Bora Bora for overwater bungalows, Moorea for hiking + diving, Tikehau for atoll life.', type: 'flexible' },
+      { date: 'Apr 26–27', label: 'Return PPT → LAX', description: 'QF3817 PPT 22:30 Apr 26 → LAX 09:20 Apr 27. Air Tahiti Nui B787-9 Business. Conf FY5YPV. 7h 50m nonstop. Need LAX→SEA positioning same day.', type: 'travel' },
     ],
     costs: [
       // ─── Flights ───
-      { category: 'flight', description: 'SEA → LAX positioning (TBD, Apr 4)', note: 'Not yet booked. Must arrive LAX by ~9 PM. Alaska MVP ~$80–150 cash or ~5K miles.' },
-      { category: 'flight', description: 'LAX ↔ PPT round trip on Air Tahiti Nui QF3816+QF3818 Business (2 pax)', pnr: 'ERJ75I', program: 'Qantas Points', cashUsd: 338, note: 'Apr 4 outbound + Apr 18 return. B787-9, seats 3A+3B. eTickets 081-2386223666 + 081-2386223665. $338 cash fees total.' },
-      { category: 'flight', description: 'LAX → SEA positioning (TBD, Apr 19)', note: 'Not yet booked. After QF3818 lands LAX ~04:10 Apr 19. Alaska or Delta.' },
+      { category: 'flight', description: 'SEA → LAX positioning (TBD, Apr 18)', note: 'Not yet booked. Must arrive LAX by ~9 PM for 23:00 QF3818. Alaska ~$80–150 cash.' },
+      { category: 'flight', description: 'LAX → PPT on Air Tahiti Nui QF3818 Business (2 pax, Apr 18)', pnr: 'ERJ75I', program: 'Qantas Points', cashUsd: 338, note: 'Apr 18 23:00 → Apr 19 04:10. B787-9, seats 3A+3B. eTickets 081-2386223666 + 081-2386223665. $338 cash fees.' },
+      { category: 'flight', description: 'PPT → LAX on Air Tahiti Nui QF3817 Business (2 pax, Apr 26)', pnr: 'FY5YPV', program: 'Qantas Points', note: 'Apr 26 22:30 → Apr 27 09:20. B787-9. 7h 50m.' },
+      { category: 'flight', description: 'LAX → SEA positioning (TBD, Apr 27)', note: 'Not yet booked. After QF3817 lands LAX 09:20 Apr 27. Alaska or Delta.' },
       // ─── Lodging ───
       { category: 'hotel', description: 'Tahiti / Bora Bora / Moorea — island lodging TBD', note: 'No bookings yet. Options: Conrad Bora Bora Nui (Hilton FNCs!), Four Seasons Bora Bora, InterContinental Moorea (IHG points). Cash rates $700–2,500/nt typical.' },
       // ─── Transfers ───
